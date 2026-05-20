@@ -1,0 +1,47 @@
+:root {
+  /* Color */
+  --bg: #FAF8F4;
+  --ink: #1A1A1A;
+  --ink-muted: #6B6B6B;
+  --rule: #E8E3D7;
+  --accent: #1A1A1A;
+
+  /* Typography */
+  --font-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --fs-h1: 52px;
+  --fs-dek: 22px;
+  --fs-h2: 28px;
+  --fs-h3: 20px;
+  --fs-body: 18px;
+  --fs-margin: 13px;
+  --fs-meta: 12px;
+
+  --lh-tight: 1.1;
+  --lh-snug: 1.35;
+  --lh-normal: 1.45;
+  --lh-relaxed: 1.6;
+
+  /* Spacing (8px scale) */
+  --s-1: 8px;
+  --s-2: 16px;
+  --s-3: 24px;
+  --s-4: 32px;
+  --s-6: 48px;
+  --s-7: 56px;
+  --s-8: 64px;
+  --s-12: 96px;
+  --s-16: 128px;
+
+  /* Layout */
+  --page-max: 1280px;
+  --col-center: 640px;
+  --col-left: 200px;
+  --col-right: 240px;
+  --col-gutter: 56px;
+
+  /* Misc */
+  --radius-sm: 4px;
+}
