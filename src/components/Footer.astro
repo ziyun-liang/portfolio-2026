@@ -1,0 +1,27 @@
+---
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="inner">
+    <span>© {year} · Lindsey Liang</span>
+    <a href="#top">Back to top</a>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--rule);
+    font-family: var(--font-sans);
+    font-size: var(--fs-meta);
+    color: var(--ink-muted);
+    margin-top: var(--s-16);
+  }
+  .inner {
+    max-width: var(--page-max);
+    margin: 0 auto;
+    padding: var(--s-3) var(--s-4);
+    display: flex;
+    justify-content: space-between;
+  }
+  a { text-decoration: none; }
+</style>
