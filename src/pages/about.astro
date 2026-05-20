@@ -1,0 +1,48 @@
+---
+import Base from "../layouts/Base.astro";
+const lastUpdated = "May 2026";
+---
+<Base title="About — Lindsey Liang">
+  <main class="about">
+    <header>
+      <h1>About</h1>
+    </header>
+    <section class="bio">
+      <p>I'm a designer focused on the boundary between people and intelligent systems. I currently work at the New York Times on editorial products powered by AI — search, summarization, and personalization.</p>
+      <p>My practice sits between research, prototyping, and shipping. I tend to build to think: most of what I learn comes from putting an interactive thing in front of someone and watching what they do.</p>
+      <p>Before NYT I worked on consumer software and design tooling.</p>
+    </section>
+
+    <section class="cv">
+      <h2>Background</h2>
+      <ul>
+        <li><span class="when">2024 — Present</span><span class="what">Designer, The New York Times</span></li>
+        <li><span class="when">Earlier</span><span class="what">Consumer software, design tooling</span></li>
+      </ul>
+    </section>
+
+    <section class="contact">
+      <h2>Contact</h2>
+      <ul>
+        <li><a href="mailto:hello@example.com">Email</a></li>
+        <li><a href="https://www.linkedin.com/in/" rel="me">LinkedIn</a></li>
+      </ul>
+    </section>
+
+    <p class="updated">Last updated {lastUpdated}.</p>
+  </main>
+</Base>
+
+<style>
+  .about {
+    max-width: var(--col-center);
+    margin: 0 auto;
+    padding: var(--s-12) var(--s-4);
+  }
+  h1 { font-size: var(--fs-h1); margin-bottom: var(--s-6); }
+  h2 { font-size: var(--fs-h2); margin: var(--s-8) 0 var(--s-3); }
+  .cv ul, .contact ul { display: flex; flex-direction: column; gap: var(--s-1); }
+  .cv li { display: grid; grid-template-columns: 180px 1fr; gap: var(--s-3); font-family: var(--font-sans); font-size: var(--fs-margin); }
+  .cv .when { color: var(--ink-muted); }
+  .updated { font-family: var(--font-sans); font-size: var(--fs-meta); color: var(--ink-muted); margin-top: var(--s-12); }
+</style>
