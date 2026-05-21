@@ -1,0 +1,29 @@
+---
+interface Props {
+  src: string;
+  caption?: string;
+  controls?: boolean;
+  poster?: string;
+}
+const { src, caption, controls = false, poster } = Astro.props;
+---
+<figure>
+  {controls ? (
+    <video src={src} poster={poster} preload="metadata" controls />
+  ) : (
+    <video src={src} poster={poster} preload="metadata" autoplay loop muted playsinline />
+  )}
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>
+
+<style>
+  figure { margin: var(--s-6) 0; }
+  video { width: 100%; border-radius: var(--radius-sm); }
+  figcaption {
+    margin-top: var(--s-2);
+    font-family: var(--font-sans);
+    font-size: var(--fs-margin);
+    line-height: var(--lh-normal);
+    color: var(--ink-muted);
+  }
+</style>

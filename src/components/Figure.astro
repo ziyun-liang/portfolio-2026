@@ -1,0 +1,36 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  caption?: string;
+  credit?: string;
+  fullBleed?: boolean;
+}
+const { src, alt, caption, credit, fullBleed = false } = Astro.props;
+---
+<figure class={fullBleed ? "full-bleed" : "inline"}>
+  <img src={src} alt={alt} loading="lazy" />
+  {(caption || credit) && (
+    <figcaption>
+      {caption && <span class="caption">{caption}</span>}
+      {credit && <span class="credit">{credit}</span>}
+    </figcaption>
+  )}
+</figure>
+
+<style>
+  figure { margin: var(--s-6) 0; }
+  figure.inline img { border-radius: var(--radius-sm); }
+  figure.full-bleed { margin-left: calc(-1 * var(--s-6)); margin-right: calc(-1 * var(--s-6)); }
+  figcaption {
+    margin-top: var(--s-2);
+    font-family: var(--font-sans);
+    font-size: var(--fs-margin);
+    line-height: var(--lh-normal);
+    color: var(--ink-muted);
+    display: flex;
+    justify-content: space-between;
+    gap: var(--s-3);
+  }
+  .credit { white-space: nowrap; }
+</style>
