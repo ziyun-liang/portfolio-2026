@@ -1,0 +1,31 @@
+---
+interface Props {
+  kind: "footnote" | "note" | "credit";
+  n?: number;
+}
+const { kind, n } = Astro.props;
+---
+<aside class={`margin margin--${kind}`} data-kind={kind}>
+  {kind === "footnote" && n !== undefined && <span class="num">{n}</span>}
+  <div class="body"><slot /></div>
+</aside>
+
+<style>
+  .margin {
+    grid-column: 3;
+    font-family: var(--font-sans);
+    font-size: var(--fs-margin);
+    line-height: var(--lh-normal);
+    color: var(--ink-muted);
+    align-self: start;
+  }
+  .margin--footnote { display: grid; grid-template-columns: auto 1fr; gap: var(--s-1); }
+  .margin--footnote .num {
+    font-variant-numeric: tabular-nums;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .margin--note { font-style: italic; }
+  .margin--credit :global(ul) { display: flex; flex-direction: column; gap: 4px; }
+  .margin--credit :global(li) { display: grid; grid-template-columns: 90px 1fr; gap: var(--s-1); }
+</style>
