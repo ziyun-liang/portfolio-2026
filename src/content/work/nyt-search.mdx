@@ -10,6 +10,7 @@ order: 1
 
 import Margin from "../../components/Margin.astro";
 import Figure from "../../components/Figure.astro";
+import Video from "../../components/Video.astro";
 
 ## Context
 
@@ -68,7 +69,69 @@ Alongside those rules, design produced a small visual vocabulary that signals wh
 
 ## Exploration
 
-Placeholder copy for the Exploration section.
+**Tools as clarity.** The question I keep coming back to isn't "Figma or code?" — it's "what brings the most clarity in this moment?" When the *system* I'm trying to understand is unclear, I prototype: I need to see it move before I can think about it. When I have a *specific* idea I want to interrogate, I start in Figma — sketches let me hold many parallel options without committing to any. For motion polish, I build directly in code; animation timing doesn't survive a Figma round-trip.
+
+**Concepting: two moments, two tools.**
+
+The first was the intent map. The system itself was vague — what does an "intent-driven" search experience even *do*? I started with a rough sketch in FigJam, then built it into an interactive prototype I could push on. Watching it move was how I understood what I was making.
+
+<Figure
+  src="/media/nyt-search/intent-map-figjam.png"
+  alt="FigJam intent map sketch"
+  caption="The FigJam sketch. The system on a whiteboard."
+/>
+
+<Video
+  src="/media/nyt-search/intent-map-prototype.mp4"
+  caption="The same system, made interactive. Where it started to make sense."
+/>
+
+The second was concept exploration. Once I had specific ideas — a timeline answer, a comparison card, a related-questions panel — I worked in Figma. About 10–20 sketches, each testing a different theory of what AI search at NYT could be. None shipped as designed. All shaped what we eventually built.
+
+<Figure
+  src="/media/nyt-search/early-concepts.png"
+  alt="Grid of early concept explorations"
+  caption="A subset of the early concept work."
+/>
+
+**Building: prototyping toward shippable.** When NAPP formed, the first intent we shipped for was **Latest News** — the most frequent reader query type, and a good place to learn the pipeline before generalizing. The answer card pulls a synthesized recap with editorial voice, an excerpt drawn directly from a current report, and a path to deeper coverage. The card sits at the top of results when intent detection has high confidence; results-first when it doesn't.
+
+<Margin kind="footnote" n={3}>
+  Intent detection confidence thresholds were tuned over months. Placement above or below results is a query-by-query call.
+</Margin>
+
+<Figure
+  src="/media/nyt-search/latest-news-card.png"
+  alt="Latest News answer card"
+  caption="The shipping form of the Latest News answer card."
+/>
+
+**Motion belongs in code.** Loading states, the chain-of-thought reveal, the failure mode — moments where the gap between a thoughtful experience and a janky one is timing. I built motion directly in code; the final pixel pushing happened in real CSS against real content.
+
+<Video
+  src="/media/nyt-search/latest-news-interaction.mp4"
+  caption="Working prototype: query → loading → chain-of-thought reveal → answer card."
+/>
+
+**The last 10%: AI labeling.** A smaller-feeling decision that ended up mattering most: how we labeled AI-generated content inside the answer card. Earlier versions used a subtle sparkle icon and italic *"AI summary"* caption — readable, but easy to miss. The label kept losing the visual hierarchy fight against the editorial copy itself. We refined: stronger typographic label, slightly more visual weight, an explicit disclaimer one tap away. Same intent, different trust signal.
+
+<Margin kind="note">
+  The first 90% — where the AI summary sits, what it contains, how citations work — felt like the heavy lift. The last 10% — what the label looks like — shifted the experience from feeling LLM-generic to feeling NYT.
+</Margin>
+
+<Figure
+  src="/media/nyt-search/ai-label-before.png"
+  alt="AI label, earlier version"
+  caption="Before. Readable but losing the hierarchy fight."
+/>
+
+<Figure
+  src="/media/nyt-search/ai-label-after.png"
+  alt="AI label, refined version"
+  caption="After. Same label, more weight, more trust."
+/>
+
+This change wasn't only visual. Some of design's input here shifted the *prompt* — the shorter, more digestible excerpt length we wanted UX-side got baked into what the prompt asks the model for. More on that in the Reflection.
 
 ## Outcome
 
