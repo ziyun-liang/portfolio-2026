@@ -1,5 +1,9 @@
 ---
+import { getCollection } from "astro:content";
 import Base from "../layouts/Base.astro";
+import CaseStudyCard from "../components/CaseStudyCard.astro";
+
+const entries = (await getCollection("work")).sort((a, b) => a.data.order - b.data.order);
 ---
 <Base title="Lindsey Liang — Designer">
   <main class="index">
@@ -17,7 +21,19 @@ import Base from "../layouts/Base.astro";
     <h2 class="section-label">Selected work</h2>
 
     <ul class="work-list">
-      {/* Cards will be wired in Task 10 */}
+      {entries.map((e) => (
+        <li>
+          <CaseStudyCard
+            href={`/work/${e.id}`}
+            title={e.data.title}
+            dek={e.data.dek}
+            role={e.data.role}
+            year={e.data.year}
+            context={e.data.context}
+            thumbnail={e.data.thumbnail}
+          />
+        </li>
+      ))}
     </ul>
   </main>
 </Base>
