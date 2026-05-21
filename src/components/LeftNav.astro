@@ -4,4 +4,67 @@ interface Props {
 }
 const { sections } = Astro.props;
 ---
-<nav class="left-nav"></nav>
+<nav class="left-nav" aria-label="Section navigation">
+  <ul>
+    {sections.map((s) => (
+      <li><a href={`#${s.id}`} data-section={s.id}>{s.label}</a></li>
+    ))}
+  </ul>
+</nav>
+
+<script>
+  const links = document.querySelectorAll<HTMLAnchorElement>(".left-nav a[data-section]");
+  const targets: HTMLElement[] = [];
+  links.forEach((a) => {
+    const id = a.dataset.section!;
+    const el = document.getElementById(id);
+    if (el) targets.push(el);
+  });
+
+  if (targets.length > 0) {
+    const setActive = (id: string) => {
+      links.forEach((a) => {
+        a.classList.toggle("is-active", a.dataset.section === id);
+      });
+    };
+
+    const obs = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => a.target.getBoundingClientRect().top - b.target.getBoundingClientRect().top);
+        if (visible[0]) setActive(visible[0].target.id);
+      },
+      { rootMargin: "-20% 0px -70% 0px", threshold: 0 }
+    );
+    targets.forEach((t) => obs.observe(t));
+  }
+</script>
+
+<style>
+  .left-nav {
+    grid-column: 1;
+    position: sticky;
+    top: var(--s-6);
+    align-self: start;
+  }
+  .left-nav ul { display: flex; flex-direction: column; gap: var(--s-1); }
+  .left-nav a {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: var(--fs-margin);
+    color: var(--ink-muted);
+    text-decoration: none;
+    line-height: var(--lh-normal);
+    padding: 4px 0;
+    border-left: 2px solid transparent;
+    padding-left: var(--s-1);
+    transition: color 150ms ease, border-color 150ms ease;
+  }
+  .left-nav a:hover { color: var(--ink); }
+  .left-nav a.is-active { color: var(--ink); border-left-color: var(--accent); }
+
+  @media (max-width: 1199px) {
+    .left-nav { display: none; }
+  }
+</style>
