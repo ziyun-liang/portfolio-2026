@@ -9,6 +9,7 @@ order: 1
 ---
 
 import Margin from "../../components/Margin.astro";
+import Figure from "../../components/Figure.astro";
 
 ## Context
 
@@ -36,7 +37,34 @@ In January 2026 NYT formalized the work as **NAPP** — New AI Products and Plat
 
 ## Approach
 
-Placeholder copy for the Approach section.
+**The thesis.** AI search engines like Google Gemini are useful — fast, informative, broadly capable. What NYT can add is a different *kind* of answer. NYT has its own editorial standards: how summaries are written, how contested questions are framed, when to surface visual evidence instead of a flat yes/no. A line from user research stuck with me: someone said NYT's AI summary felt like *"show me the answer,"* while Gemini felt like *"tell me the answer."* That distinction — show vs. tell — captures the opportunity. Built on NYT reporting, AI search can foreground evidence rather than flatten it.
+
+The longer-range bet is that search becomes an "ask" capability — an action you take wherever you are, not a destination. The hard part is figuring out *when and why* readers ask the Times specifically, and *what and how* the Times can answer at editorial standard.
+
+**Intent-first.** A central structural choice: NYT search is built around user intent, not keyword matching. Queries pass through an intent analyzer that parses possible intents and generates outputs matched to them. Working with engineers and PMs, I helped crystallize the six major intents we now design and build for. The long-term thesis is a multi-intent world; in the short term we ship one intent at a time, starting with **Latest News**.
+
+<Margin kind="footnote" n={2}>
+  Each intent we ship refines the pipeline — prompt patterns, intent detection, output formats — and the learnings feed the next intent.
+</Margin>
+
+**How I worked.** Through 2024 and most of 2025, my contribution was Figma — high-fidelity design and prototypes that engineers used as a spec for what to build. Starting in late 2025 I shifted to vibe coding: building real working prototypes directly, so each Friday's demo was an actual interaction, not a flat mockup. Engineers handle the backend — prompt refinement, intent analysis, orchestration; the front-end surfaces start as live prototypes I push.
+
+<Margin kind="note">
+  The team works in four-week cycles. Daily standups across eng, newsroom, design, and PM. Wednesday cross-team check-ins. Friday demos with working prototypes. The bar isn't polish — it's that something has to actually run.
+</Margin>
+
+**Principles.** Two rules shape every AI output we ship:
+
+1. **Sourced from NYT reporting.** Every output starts from NYT articles. Not the open web.
+2. **Delivered as content cards.** AI surfaces are multi-modal — text, video, audio, interactive — not text walls. Latest News started with text; other intents will pull in other modalities.
+
+Alongside those rules, design produced a small visual vocabulary that signals when, how, and on what authority AI is acting. The same elements appear across NYT AI surfaces, not only in search.
+
+<Figure
+  src="/media/nyt-search/ai-elements.png"
+  alt="Common AI elements: AI label, sparkle icon, disclaimer, link for more info, feedback affordance, chain of thought, detailed AI use info, haptics"
+  caption="The AI design language. Each element has a distinct purpose and appears wherever AI assists."
+/>
 
 ## Exploration
 
