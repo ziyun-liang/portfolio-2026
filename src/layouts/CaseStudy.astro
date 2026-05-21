@@ -63,14 +63,9 @@ const { title, dek, role, year, context, sections, prev, next } = Astro.props;
     column-gap: var(--col-gutter);
     align-items: start;
   }
-  .cs-body .content {
-    grid-column: 2;
-    display: grid;
-    grid-template-columns: subgrid;
-    column-gap: var(--col-gutter);
-  }
-  .cs-body .content > * { grid-column: 1; }
-  .cs-body .content > .margin { grid-column: 2; }
+  .cs-body .content { display: contents; }
+  .cs-body .content > * { grid-column: 2; }
+  .cs-body .content > .margin { grid-column: 3; }
 
   .cs-body h2 {
     font-size: var(--fs-h2);
@@ -97,12 +92,12 @@ const { title, dek, role, year, context, sections, prev, next } = Astro.props;
 
   @media (max-width: 1199px) {
     .cs-body { grid-template-columns: var(--col-center) var(--col-right); }
-    .cs-body .content { grid-column: 1; }
+    .cs-body .content > * { grid-column: 1; }
     .cs-body .content > .margin { grid-column: 2; }
   }
   @media (max-width: 767px) {
     .cs-body { grid-template-columns: 1fr; }
-    .cs-body .content { grid-column: 1; }
+    .cs-body .content > * { grid-column: 1; }
     .cs-body .content > .margin {
       grid-column: 1;
       border-left: 2px solid var(--rule);
