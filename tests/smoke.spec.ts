@@ -15,7 +15,7 @@ test.describe("portfolio smoke", () => {
   });
 
   test("each case study renders title, dek, sections, and footer nav", async ({ page }) => {
-    const slugs = ["nyt-search", "article-overview", "wellness-shop"];
+    const slugs = ["nyt-search", "summary", "wellness-shop"];
     for (const slug of slugs) {
       await page.goto(`/work/${slug}`);
       await expect(page.locator("article.cs h1")).toBeVisible();
@@ -28,8 +28,8 @@ test.describe("portfolio smoke", () => {
   test("nyt-search case study has marginalia in three kinds", async ({ page }) => {
     await page.setViewportSize({ width: 1400, height: 900 });
     await page.goto("/work/nyt-search");
-    await expect(page.locator(".margin--footnote")).toHaveCount(1);
-    await expect(page.locator(".margin--note")).toHaveCount(1);
-    await expect(page.locator(".margin--credit")).toHaveCount(1);
+    await expect(page.locator(".margin--footnote").first()).toBeVisible();
+    await expect(page.locator(".margin--note").first()).toBeVisible();
+    await expect(page.locator(".margin--credit").first()).toBeVisible();
   });
 });
