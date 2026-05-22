@@ -147,4 +147,18 @@ This change wasn't only visual. Some of design's input here shifted the *prompt*
 
 ## Reflection
 
-Placeholder copy for the Reflection section.
+**Designing through prompts.** This work taught me that design's surface area on AI features extends beyond pixels. The prompt is part of the artifact. The question of *what makes a good answer* — its length, its tone, what it includes, what it leaves out — is a design question that ends up encoded in the prompt as much as in the UI.
+
+One small example. An early version of the answer card asked the model to write a bridging line introducing the NYT excerpt that followed the summary. The intro kept growing — long, redundant, hedging. The fix wasn't to refine the prompt's wording. It was to take that work *off* the prompt entirely. We added a static UI label — *"From Times coverage"* — that did the bridging job better than any generated sentence could. The prompt got simpler. The output got cleaner. The reader got clarity.
+
+<Margin kind="note">
+  Sometimes the best design move on an AI surface is removing a job from the model and giving it back to the UI.
+</Margin>
+
+Design has a place in the *eval* stage, too. Editors and engineers need concrete rules to write good prompts and evaluate good outputs — and rules need a point of view about what "good" even means for *this* feature, *this* query type, *this* reader. The "From Times coverage" decision started as a design observation and ended up changing both the prompt and the UI. The artifact list keeps expanding.
+
+**Strong partners.** What this work has reinforced: AI doesn't take the human work out of any of these roles — it sharpens what each of them is for. Editors hold the line on judgment and voice. Engineers write prompts that are real, careful writing in their own right. PMs keep the vision sharp and the work moving. Design's job is what it has always been — pursuing clarity for the reader, again and again, in whatever medium serves. None of those parts is replaceable; the collaboration is what makes the whole thing better than any of us could make alone.
+
+The personal piece, alongside all that: being able to *build* what I can see. Vibe coding closed the gap between "I can imagine this clearly" and "I can put it in front of you on Friday." Quietly transforming.
+
+**What's next.** Two years ago I asked to work on Search because it was bad. The work has its own shape now, and the questions are bigger: what reader–editorial interaction becomes in an AI age, how far the newsroom can push without losing what makes it the newsroom, what *valuable* even means when an AI is in the loop. More to figure out. More to build.
