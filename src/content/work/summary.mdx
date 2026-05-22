@@ -27,7 +27,25 @@ The more I sat with it, the bigger it got. Article summary was one application. 
 
 ## Approach
 
-Placeholder copy for the Approach section.
+**The working thesis.** Most AI summaries on the market are text — natural language, quick, generated on demand. The working theory at NYT is that summary here should be different: not a replacement for the human report, but an *additive* layer. Engaging, often visual, often interactive, in support of the broader newsroom move toward multimodal storytelling. The point isn't to compress the story so a reader can skip it; the hope is to give them a useful entry, a satisfying angle, or a way back into reporting they wouldn't otherwise approach. None of this is settled — these are the differences we currently think are worth starting from.
+
+<Margin kind="note">
+  A market summary asks: how do I get the answer fast? The version we're sketching tries to ask: how do I make the journalism more reachable?
+</Margin>
+
+**Open questions.** What does "good" mean for an NYT summary, in a way that's testable? What does the editorial review workflow look like for AI-generated outputs in this workstream? How do different surfaces and brands need different voices? These are the questions the work is trying to answer — and they're still open. The system sketch below is one shape we're prototyping toward; it isn't the answer yet.
+
+**System sketch (still exploratory).** The shape I've been sketching uses Scoop — NYT's internal publishing CMS — as the foundation. The idea: for any piece of journalism, an editor in Scoop can produce up to three base summary types — a paragraph, a bullet or multi-slide breakdown, and a richer one organized around evidence (quotes, numbers, charts, video). Each surface that wants to *show* a summary picks the base it needs and applies its own prompt at request time, shaping the output to the moment. An article-page "summarize this" tap, for example, would draw from the bullet base and produce a full-screen, Instagram-story-style card — because the reader's intent at that moment is *get the gist*, not leave the article behind.
+
+<Margin kind="footnote" n={1}>
+  This is still a sketch, not a shipped architecture. Leadership commitment is light; the shape is meant to invite review, not to declare a direction.
+</Margin>
+
+<Figure
+  src="/media/summary/architecture-diagram.png"
+  alt="Summary system sketch: Scoop produces 3 base summary types per article; each consumer surface applies its own prompt at request time"
+  caption="The system as I currently sketch it: Scoop bases at the bottom, surface-specific prompts on top. Still exploratory."
+/>
 
 ## Exploration
 
