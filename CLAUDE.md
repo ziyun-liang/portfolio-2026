@@ -4,32 +4,13 @@ Personal long-form portfolio. Editorial three-column layout (left TOC · center 
 
 ---
 
-## ▶ RESUME HERE — Lindsey's three questions to answer next
+## ▶ Next up — Wellness Shop case study
 
-We were starting **Exploration** for the Summary case study. Lindsey is restarting her computer. When she returns, she answers these in bullets, then assistant drafts.
+Summary at the Times is fully complete (all 5 sections). Next session starts on Wellness Shop (case study 3) — same workflow: assistant asks 2–3 framing questions for Context, Lindsey answers in bullets, draft → edit → MDX → build → commit, repeat per section.
 
-### 1. The strongest single design move to land in Exploration.
-Pick one (or one + one). Exploration earns its weight when one decision gets full treatment with visuals.
-- The full-screen Instagram-story summary card (and *why* that format won)
-- The 3-base-types architecture (how it emerged)
-- A specific surface treatment (article page summarize tap → Instagram story; home tab digest; multi-source briefing)
-- The "summary as expanding vision" sketch arc — how the work grew from one article to a system
+### Note on parallel work — Summary assets
 
-### 2. Visual material she has or can produce.
-- Sketches / Figma comps of the Instagram-story summary card (any state)
-- Examples of the three base summary types
-- Per-surface treatments (article page, home tab, multi-source, multi-modal)
-- Process artifacts (early FigJam, range of explorations)
-- Working prototype screen recordings
-
-Placeholders OK for anything not ready — same workflow as NYT Search.
-
-### 3. The "why this format" story for the Instagram-story card.
-- What made that format resonate when other styles didn't?
-- Anything about reader behavior on phones, attention, scroll fatigue, journalism-as-deck?
-- Was the format borrowed (Instagram / Snapchat / TikTok stories), and how did she adapt it for editorial content?
-
-After her bullets, assistant drafts Exploration with placeholder figures.
+A separate Claude session is producing the visual assets for Summary (the placeholder PNGs/MP4 currently rendering). **Do not touch `public/media/summary/` in this session** — let the other Claude own it. The MDX references will resolve when those files appear.
 
 ---
 
@@ -41,21 +22,18 @@ All 5 sections written + committed.
 - Real visual already in place: `public/media/nyt-search/ai-elements.png`
 - Visuals to drop in later (placeholders rendering): `intent-map-figjam.png`, `intent-map-prototype.mp4`, `early-concepts.png`, `latest-news-card.png`, `latest-news-interaction.mp4`, `ai-label-before.png`, `ai-label-after.png`
 
-### Case study 2: Summary at the Times — IN PROGRESS
+### Case study 2: Summary at the Times — COMPLETE
+All 5 sections written + committed.
 - File: `src/content/work/summary.mdx`
 - Title: "Summary at the Times"
 - Dek: "A capability that takes many shapes — text, audio, email, article overview — across NYT's brands and surfaces."
-- Renamed from Article Overview (slug now `/work/summary`)
-- ✅ Context — done
-- ✅ Approach — done
-- ⏳ **Exploration — answer 3 questions above to start**
-- ⏸ Outcome — pending
-- ⏸ Reflection — pending
-- Visual placeholder in place: `architecture-diagram.png`
+- Slug: `/work/summary` (renamed from Article Overview)
+- Visual placeholders rendering until parallel asset work lands: `architecture-diagram.png`, `story-card-sketches.png`, `story-card-comps.png`, `story-card-prototype.mp4`
+- Reminder: a separate Claude session owns the Summary assets — don't touch `public/media/summary/` here.
 
-### Case study 3: Wellness Shop — PENDING
+### Case study 3: Wellness Shop — NEXT UP
 - File: `src/content/work/wellness-shop.mdx` (frontmatter only; sections still placeholder)
-- Start after Summary is complete
+- Start with Context — assistant asks framing questions, same workflow as previous case studies
 
 ---
 
@@ -121,4 +99,5 @@ npx astro check      # type/schema check
 - All work has been done with each section approved by Lindsey before commit.
 - The "tools as clarity" framing in NYT Search Exploration is Lindsey's own POV — keep the through-line consistent across case studies.
 - The "From Times coverage" / prompt-as-design-surface insight is the strongest single moment in NYT Search; it lands in Reflection.
+- Summary's Reflection through-line: *design as making the invisible visible*, paired with *process matters more than outcome / hold influence loosely when the decision isn't yours*. The card moved the room more than the system diagram did — keep that hierarchy if Summary comes up again.
 - Do not over-credit Lindsey's individual contribution; honor the shared work. Don't undersell either — Lindsey was lead on key threads.
