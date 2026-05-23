@@ -4,9 +4,9 @@ Personal long-form portfolio. Editorial three-column layout (left TOC · center 
 
 ---
 
-## ▶ Next up — Wellness Shop case study
+## ▶ In progress — Advertising at the Times case study
 
-Summary at the Times is fully complete (all 5 sections). Next session starts on Wellness Shop (case study 3) — same workflow: assistant asks 2–3 framing questions for Context, Lindsey answers in bullets, draft → edit → MDX → build → commit, repeat per section.
+Case study 3 was repositioned: replacing Wellness Shop with a 4-year retrospective on Lindsey's NYT Advertising work. Order on the index unchanged (NYT Search → Summary → Advertising). Currently scaffolded; starting with Context section using the standard co-writing workflow.
 
 ### Note on parallel work — Summary assets
 
@@ -31,9 +31,17 @@ All 5 sections written + committed.
 - Visual placeholders rendering until parallel asset work lands: `architecture-diagram.png`, `story-card-sketches.png`, `story-card-comps.png`, `story-card-prototype.mp4`
 - Reminder: a separate Claude session owns the Summary assets — don't touch `public/media/summary/` here.
 
-### Case study 3: Wellness Shop — NEXT UP
-- File: `src/content/work/wellness-shop.mdx` (frontmatter only; sections still placeholder)
-- Start with Context — assistant asks framing questions, same workflow as previous case studies
+### Case study 3: Advertising at the Times — IN PROGRESS
+- File: `src/content/work/advertising.mdx` (scaffolded; sections still placeholder)
+- Title: "Advertising at the Times"
+- Dek: "Four years leading the design of the ad experience across the Times' bundle — Games, Cooking, The Athletic, Wirecutter, and News."
+- Slug: `/work/advertising`
+- **Non-standard structure**: 3 sections, not 5 — Context, Major Contribution, Reflection. Major Contribution has 3 h3 sub-sections: Monetizing the bundle, Video monetization, Internal ad tooling. (Smoke test updated to expect h2Count: 3 for this slug.)
+- Replaced Wellness Shop in case study 3 slot. Old `public/media/wellness-shop/` renamed to `public/media/advertising/`.
+- Confidentiality: revenue numbers from public earnings (e.g., 2025's double-digit ad revenue growth) are OK to cite. Internal infra names still off-limits unless they earn their place.
+- ⏳ Context — next to write
+- ⏸ Major Contribution — pending (3 sub-sections)
+- ⏸ Reflection — pending
 
 ---
 

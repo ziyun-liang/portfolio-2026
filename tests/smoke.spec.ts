@@ -15,12 +15,16 @@ test.describe("portfolio smoke", () => {
   });
 
   test("each case study renders title, dek, sections, and footer nav", async ({ page }) => {
-    const slugs = ["nyt-search", "summary", "wellness-shop"];
-    for (const slug of slugs) {
+    const cases = [
+      { slug: "nyt-search", h2Count: 5 },
+      { slug: "summary", h2Count: 5 },
+      { slug: "advertising", h2Count: 3 },
+    ];
+    for (const { slug, h2Count } of cases) {
       await page.goto(`/work/${slug}`);
       await expect(page.locator("article.cs h1")).toBeVisible();
       await expect(page.locator("article.cs .dek")).toBeVisible();
-      await expect(page.locator("article.cs h2")).toHaveCount(5);
+      await expect(page.locator("article.cs h2")).toHaveCount(h2Count);
       await expect(page.locator("nav.cs-foot")).toBeVisible();
     }
   });
