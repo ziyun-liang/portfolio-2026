@@ -16,11 +16,13 @@ A separate Claude session is producing the visual assets for Summary (the placeh
 
 ## Status
 
-### Case study 1: NYT AI-Powered Search — COMPLETE
-All 5 sections written + committed.
+### Case study 1: NYT AI-Powered Search — COMPLETE (copy + most visuals)
+All 5 sections written. Visual placement restructure landed: figures/videos added throughout Context, Approach, Exploration, Outcome, Reflection. Two structural changes during wiring: content-card slot turned into a Video (Lindsey supplied an mp4), and the AI-label before/after collapsed into a single combined Figure (`ai-label.png`).
+
 - File: `src/content/work/nyt-search.mdx`
-- Real visual already in place: `public/media/nyt-search/ai-elements.png`
-- Visuals to drop in later (placeholders rendering): `intent-map-figjam.png`, `intent-map-prototype.mp4`, `early-concepts.png`, `latest-news-card.png`, `latest-news-interaction.mp4`, `ai-label-before.png`, `ai-label-after.png`
+- **Real assets wired (11):** `ai-elements.png`, `cover.png`, `vision-collage.png`, `summary-standards.png`, `search-as-ask-vision.png`, `intent-map-prototype.mp4`, `figma-2024-spec.png`, `content-card-system.mp4`, `intent-map-figjam.png`, `latest-news-interaction.mp4`, `ai-label.png`
+- **Still placeholder grey-box (5):** `prototype-workflow.png` (Approach, second of the stacked How-I-worked pair), `early-concepts.png` (Exploration), `latest-news-card.png` (Exploration), `roadmap.png` (Outcome), `from-times-coverage.png` (Reflection). MDX uses `<Figure placeholder ... />` for these — when a real asset arrives, drop it in `public/media/nyt-search/` with the canonical name and replace `placeholder` with `src="/media/nyt-search/<file>"`.
+- **Heads-up:** the three wired videos are heavy (15 MB, 12 MB, 5 MB). Fine for local dev; downsample before any deploy where size matters.
 
 ### Case study 2: Summary at the Times — COMPLETE
 All 5 sections written + committed.
@@ -81,9 +83,9 @@ OK to name (already in copy): NAPP, Cooking, Wirecutter, Scoop (in context), the
 
 Layouts: `src/layouts/{Base,CaseStudy}.astro`
 Components: `src/components/{SiteHeader,Footer,LeftNav,Margin,Figure,Video,PullQuote,Aside,CaseStudyCard}.astro`
-Content: `src/content/work/{nyt-search,summary,wellness-shop}.mdx`
+Content: `src/content/work/{nyt-search,summary,advertising}.mdx`
 Styles: `src/styles/{tokens,base,fonts}.css`
-Media: `public/media/{nyt-search,summary,wellness-shop,about}/`
+Media: `public/media/{nyt-search,summary,advertising,about}/` (+ `_placeholder/video-placeholder.mp4` shared by Video placeholder mode)
 Fonts: `public/fonts/`
 
 ---
@@ -98,7 +100,7 @@ npm test             # Playwright smoke tests
 npx astro check      # type/schema check
 ```
 
-5 routes: `/`, `/about`, `/work/nyt-search`, `/work/summary`, `/work/wellness-shop`.
+5 routes: `/`, `/about`, `/work/nyt-search`, `/work/summary`, `/work/advertising`.
 
 ---
 
@@ -110,3 +112,4 @@ npx astro check      # type/schema check
 - The "From Times coverage" / prompt-as-design-surface insight is the strongest single moment in NYT Search; it lands in Reflection.
 - Summary's Reflection through-line: *design as making the invisible visible*, paired with *process matters more than outcome / hold influence loosely when the decision isn't yours*. The card moved the room more than the system diagram did — keep that hierarchy if Summary comes up again.
 - Do not over-credit Lindsey's individual contribution; honor the shared work. Don't undersell either — Lindsey was lead on key threads.
+- **Visual placeholder system:** `Figure` and `Video` both accept a `placeholder` boolean prop. When true they render a labeled grey box (image or autoplay video with full controls), with the alt text shown inside so flow is readable before real captures land. Use this for any new visual slot — drop assets later, swap `placeholder` → `src` to wire. Shared placeholder loop lives at `public/media/_placeholder/video-placeholder.mp4`.
