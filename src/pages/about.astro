@@ -7,18 +7,21 @@ const lastUpdated = "May 2026";
     <header>
       <h1>About</h1>
     </header>
-    <section class="bio">
-      <p>I'm a designer focused on the boundary between people and intelligent systems. I currently work at the New York Times on editorial products powered by AI — search, summarization, and personalization.</p>
-      <p>My practice sits between research, prototyping, and shipping. I tend to build to think: most of what I learn comes from putting an interactive thing in front of someone and watching what they do.</p>
-      <p>Before NYT I worked on consumer software and design tooling.</p>
-    </section>
 
-    <section class="cv">
-      <h2>Background</h2>
-      <ul>
-        <li><span class="when">2024 — Present</span><span class="what">Designer, The New York Times</span></li>
-        <li><span class="when">Earlier</span><span class="what">Consumer software, design tooling</span></li>
-      </ul>
+    <section class="bio">
+      <p>I'm a product designer. Right now I'm at The New York Times, where I work across advertising, AI-powered search, and editorial summarization — much of what I've shipped lives in the case studies on this site.</p>
+
+      <p>What I value in design is clarity, and craft, and the small moments of delight that simple, consistent design can hold. I enjoy the process. The ideal day for me is one where, after each conversation, brainstorm, or meeting, the idea is sharper than it was before we walked in. That's the bar I set for myself when I'm in the room.</p>
+
+      <p>If I have a magic power, it's speed — being able to pull a clear, simple solution out of a vague idea or a chaotic conversation, and put it on a page so the room can react to it. Product design is visual problem-solving, and at its best it feels a little like driving in the dark with strong partners, figuring out where to go together.</p>
+
+      <p>I came into design through a startup. My first job was at <em>Marco Polo</em>, designing and building mobile games alongside the engineers and the CEO without really knowing what I was doing — somehow the company raised $8M during that period. I wore a lot of hats: games, illustrations, investor decks, animation storyboards, TV show concepts. It taught me to be useful in any room.</p>
+
+      <p>After that I worked agency-side — branding, advertising, animation, social, product, with big and small clients. The agency era taught me what excellence looks like and built the judgment I now mostly use to critique my own work.</p>
+
+      <p>The last few years at the Times have been different. Bigger teams, more people, more conflict, more impact. The work is slower and the systems are bigger, and a lot of design here is advocacy as much as it is pixels.</p>
+
+      <p>Inside that, a lot of the time I feel like a one-person shop. I meet the colleagues who want to build something, dive in with them, invest the craft and skills I bring, and enjoy the process alongside them. Most of what I've made lately is on this site.</p>
     </section>
 
     <section class="contact">
@@ -41,8 +44,9 @@ const lastUpdated = "May 2026";
   }
   h1 { font-size: var(--fs-h1); margin-bottom: var(--s-6); }
   h2 { font-size: var(--fs-h2); margin: var(--s-8) 0 var(--s-3); }
-  .cv ul, .contact ul { display: flex; flex-direction: column; gap: var(--s-1); }
-  .cv li { display: grid; grid-template-columns: 180px 1fr; gap: var(--s-3); font-family: var(--font-sans); font-size: var(--fs-margin); }
-  .cv .when { color: var(--ink-muted); }
+  .bio p { margin-bottom: var(--s-3); }
+  .bio em { font-style: italic; }
+  .contact ul { display: flex; flex-direction: column; gap: var(--s-1); }
+  .contact li { font-family: var(--font-sans); font-size: var(--fs-margin); }
   .updated { font-family: var(--font-sans); font-size: var(--fs-meta); color: var(--ink-muted); margin-top: var(--s-12); }
 </style>
