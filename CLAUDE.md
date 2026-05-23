@@ -36,11 +36,12 @@ All 5 sections written + committed.
 - Title: "Advertising at the Times"
 - Dek: "Four years leading the design of the ad experience across the Times' bundle — Games, Cooking, The Athletic, Wirecutter, and News."
 - Slug: `/work/advertising`
-- **Non-standard structure**: 3 sections, not 5 — Context, Major Contribution, Reflection. Major Contribution has 3 h3 sub-sections: Monetizing the bundle, Video monetization, Internal ad tooling. (Smoke test updated to expect h2Count: 3 for this slug.)
+- **Non-standard structure**: 3 sections, not 5 — Context, Major Contribution, Reflection. Major Contribution has 4 h3 sub-sections: Monetizing the bundle, Building native ad products, Video monetization, Internal ad tooling. (Smoke test set to h2Count: 3 for this slug.)
 - Replaced Wellness Shop in case study 3 slot. Old `public/media/wellness-shop/` renamed to `public/media/advertising/`.
-- Confidentiality: revenue numbers from public earnings (e.g., 2025's double-digit ad revenue growth) are OK to cite. Internal infra names still off-limits unless they earn their place.
-- ⏳ Context — next to write
-- ⏸ Major Contribution — pending (3 sub-sections)
+- Confidentiality: AdWeek-cited revenue figures are OK (Q4 2025 +24.9% YoY; Q1 2026 +31.6% / $93.3M). Internal-only figures (e.g., Games revenue $11M→$32M, Flex 2.0 Beta $800k) skip unless surfaced publicly.
+- Source for the 4-year project audit: `~/Downloads/2025 Work Document - My work.csv` — Lindsey's running work doc covering 2023–2025.
+- ✅ Context — done
+- ⏳ Major Contribution — next to write (4 sub-sections, draft one at a time)
 - ⏸ Reflection — pending
 
 ---
