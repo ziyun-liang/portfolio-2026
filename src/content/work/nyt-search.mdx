@@ -25,7 +25,7 @@ ChatGPT had been out for a while and reader behavior was shifting fast — peopl
 For two years the design side ran ahead in vision — AI summaries, timelines, multi-modal answers, related questions, interactive formats. The work was free labor on the side of our day jobs, but the prototypes were concrete. We shared them with newsroom partners and business leadership, and they did two things: built the conviction that NYT search could be something different, and articulated what a new architecture would need to support.
 
 <Figure
-  placeholder
+  src="/media/nyt-search/vision-collage.png"
   alt="Wide collage / overview of the 2024–2025 vision work — summaries, timelines, multi-modal answers, related questions, interactive formats — assembled as one visual."
   caption="Two years of vision work, in one frame."
 />
@@ -47,7 +47,7 @@ In January 2026 NYT formalized the work as **NAPP** — New AI Products and Plat
 **The thesis.** AI search engines like Google Gemini are useful — fast, informative, broadly capable. What NYT can add is a different *kind* of answer. NYT has its own editorial standards: how summaries are written, how contested questions are framed, when to surface visual evidence instead of a flat yes/no. A line from user research stuck with me: someone said NYT's AI summary felt like *"show me the answer,"* while Gemini felt like *"tell me the answer."* That distinction — show vs. tell — captures the opportunity. Built on NYT reporting, AI search can foreground evidence rather than flatten it.
 
 <Figure
-  placeholder
+  src="/media/nyt-search/summary-standards.png"
   alt="NYT summary standards — annotated prompt excerpts (faithfulness, voice, framing of contested claims) shown alongside an example AI-generated summary that follows those rules."
   caption="What 'editorial standard' looks like inside the prompt: faithfulness, voice, how contested claims get framed."
 />
@@ -55,7 +55,7 @@ In January 2026 NYT formalized the work as **NAPP** — New AI Products and Plat
 The longer-range bet is that search becomes an "ask" capability — an action you take wherever you are, not a destination. The hard part is figuring out *when and why* readers ask the Times specifically, and *what and how* the Times can answer at editorial standard.
 
 <Figure
-  placeholder
+  src="/media/nyt-search/search-as-ask-vision.png"
   alt="Vision diagram of search-as-ask — readers triggering an NYT 'ask' from many surfaces (article page, home, podcast, email) and getting answers shaped to the moment."
   caption="The longer-range bet: search as an action you take wherever you are."
 />
@@ -67,7 +67,7 @@ The longer-range bet is that search becomes an "ask" capability — an action yo
 </Margin>
 
 <Video
-  placeholder
+  src="/media/nyt-search/intent-map-prototype.mp4"
   alt="Working prototype of the intent map — query enters, intent analyzer parses possible intents, the matched intent routes to its output format."
   caption="The intent map, made interactive. Query in, parsed intent, output shaped to it."
 />
@@ -75,7 +75,7 @@ The longer-range bet is that search becomes an "ask" capability — an action yo
 **How I worked.** Through 2024 and most of 2025, my contribution was Figma — high-fidelity design and prototypes that engineers used as a spec for what to build. Starting in late 2025 I shifted to vibe coding: building real working prototypes directly, so each Friday's demo was an actual interaction, not a flat mockup. Engineers handle the backend — prompt refinement, intent analysis, orchestration; the front-end surfaces start as live prototypes I push.
 
 <Figure
-  placeholder
+  src="/media/nyt-search/figma-2024-spec.png"
   alt="2024 exploration — gallery of high-fidelity Figma frames produced as a spec for engineering."
   caption="2024: Figma as the spec. High-fidelity frames engineers built against."
 />
@@ -95,8 +95,8 @@ The longer-range bet is that search becomes an "ask" capability — an action yo
 1. **Sourced from NYT reporting.** Every output starts from NYT articles. Not the open web.
 2. **Delivered as content cards.** AI surfaces are multi-modal — text, video, audio, interactive — not text walls. Latest News started with text; other intents will pull in other modalities.
 
-<Figure
-  placeholder
+<Video
+  src="/media/nyt-search/content-card-system.mp4"
   alt="Content card system — a family of card types (text recap, timeline, comparison, audio, video, interactive) shown together as a visual vocabulary."
   caption="The content card system. One vocabulary, many shapes — text, timeline, comparison, audio, video, interactive."
 />
@@ -118,7 +118,7 @@ Two examples from this work.
 **The collaborative moment — FigJam.** When I needed to make sure I really understood the intent system, and that the people around me did too, I started on a FigJam whiteboard. FigJam is a physical-feeling place: shareable, digestible, easy for an editor or engineer to drop a sticky on. I sketched the intent map there first to pull the system out of my head and into a space where everyone could react to it. Once I felt I'd understood it, I built it into an interactive prototype.
 
 <Figure
-  placeholder
+  src="/media/nyt-search/intent-map-figjam.png"
   alt="The FigJam intent map sketch — system on a whiteboard with editorial and engineering reactions in the margins."
   caption="The system on a whiteboard. Built to be reacted to."
 />
@@ -148,7 +148,7 @@ Two examples from this work.
 The first was motion. Loading states, the chain-of-thought reveal, the failure mode — these are timing problems, not layout problems. I built motion directly in code; the final pixel pushing happened in real CSS against real content.
 
 <Video
-  placeholder
+  src="/media/nyt-search/latest-news-interaction.mp4"
   alt="Working prototype: query → loading → chain-of-thought reveal → answer card."
   caption="Motion in code. Query → loading → chain-of-thought reveal → answer card."
 />
@@ -160,15 +160,9 @@ The second was AI labeling — how we marked AI-generated content inside the ans
 </Margin>
 
 <Figure
-  placeholder
-  alt="AI label, earlier version — subtle sparkle icon, italic 'AI summary' caption."
-  caption="Before. Readable but losing the hierarchy fight."
-/>
-
-<Figure
-  placeholder
-  alt="AI label, refined version — stronger typographic label, more weight, explicit disclaimer one tap away."
-  caption="After. Same label, more weight, more trust."
+  src="/media/nyt-search/ai-label.png"
+  alt="The AI label refinement, before and after — earlier subtle sparkle/italic caption next to the refined stronger typographic label with disclaimer one tap away."
+  caption="Before and after. Same label, more weight, more trust."
 />
 
 This change wasn't only visual. Some of design's input here shifted the *prompt* — the shorter, more digestible excerpt length we wanted UX-side got baked into what the prompt asks the model for. More on that in the Reflection.
