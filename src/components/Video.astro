@@ -1,29 +1,85 @@
 ---
 interface Props {
-  src: string;
+  src?: string;
   caption?: string;
-  controls?: boolean;
   poster?: string;
+  placeholder?: boolean;
+  ratio?: string;
+  alt?: string;
 }
-const { src, caption, controls = false, poster } = Astro.props;
+const {
+  src,
+  caption,
+  poster,
+  placeholder = false,
+  ratio = "16 / 9",
+  alt,
+} = Astro.props;
+
+const placeholderSrc = "/media/_placeholder/video-placeholder.mp4";
 ---
 <figure>
-  {controls ? (
-    <video src={src} poster={poster} preload="metadata" controls />
+  {placeholder ? (
+    <div class="placeholder-wrap" style={`aspect-ratio: ${ratio};`}>
+      <video src={placeholderSrc} preload="metadata" autoplay loop muted playsinline controls />
+      <div class="placeholder-overlay">
+        <span class="placeholder-tag">video</span>
+        <span class="placeholder-label">{alt || caption}</span>
+      </div>
+    </div>
   ) : (
-    <video src={src} poster={poster} preload="metadata" autoplay loop muted playsinline />
+    <video src={src} poster={poster} preload="metadata" autoplay loop muted playsinline controls />
   )}
   {caption && <figcaption>{caption}</figcaption>}
 </figure>
 
 <style>
   figure { margin: var(--s-6) 0; }
-  video { width: 100%; border-radius: var(--radius-sm); }
+  video { width: 100%; border-radius: var(--radius-sm); display: block; }
   figcaption {
     margin-top: var(--s-2);
     font-family: var(--font-sans);
     font-size: var(--fs-margin);
     line-height: var(--lh-normal);
     color: var(--ink-muted);
+  }
+  .placeholder-wrap {
+    position: relative;
+    width: 100%;
+    border: 1px dashed #BFB8A6;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+  .placeholder-wrap video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0;
+  }
+  .placeholder-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--s-2);
+    padding: var(--s-4);
+    text-align: center;
+    pointer-events: none;
+  }
+  .placeholder-tag {
+    font-family: var(--font-mono);
+    font-size: var(--fs-meta);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-muted);
+  }
+  .placeholder-label {
+    font-family: var(--font-sans);
+    font-size: var(--fs-margin);
+    color: var(--ink);
+    max-width: 50ch;
+    line-height: var(--lh-normal);
   }
 </style>

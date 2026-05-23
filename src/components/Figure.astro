@@ -1,15 +1,32 @@
 ---
 interface Props {
-  src: string;
+  src?: string;
   alt: string;
   caption?: string;
   credit?: string;
   fullBleed?: boolean;
+  placeholder?: boolean;
+  ratio?: string;
 }
-const { src, alt, caption, credit, fullBleed = false } = Astro.props;
+const {
+  src,
+  alt,
+  caption,
+  credit,
+  fullBleed = false,
+  placeholder = false,
+  ratio = "16 / 10",
+} = Astro.props;
 ---
 <figure class={fullBleed ? "full-bleed" : "inline"}>
-  <img src={src} alt={alt} loading="lazy" />
+  {placeholder ? (
+    <div class="placeholder" style={`aspect-ratio: ${ratio};`}>
+      <span class="placeholder-tag">image</span>
+      <span class="placeholder-label">{alt}</span>
+    </div>
+  ) : (
+    <img src={src} alt={alt} loading="lazy" />
+  )}
   {(caption || credit) && (
     <figcaption>
       {caption && <span class="caption">{caption}</span>}
@@ -33,4 +50,31 @@ const { src, alt, caption, credit, fullBleed = false } = Astro.props;
     gap: var(--s-3);
   }
   .credit { white-space: nowrap; }
+  .placeholder {
+    width: 100%;
+    background: #ECE7DA;
+    border: 1px dashed #BFB8A6;
+    border-radius: var(--radius-sm);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--s-2);
+    padding: var(--s-4);
+    text-align: center;
+  }
+  .placeholder-tag {
+    font-family: var(--font-mono);
+    font-size: var(--fs-meta);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-muted);
+  }
+  .placeholder-label {
+    font-family: var(--font-sans);
+    font-size: var(--fs-margin);
+    color: var(--ink);
+    max-width: 50ch;
+    line-height: var(--lh-normal);
+  }
 </style>
