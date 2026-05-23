@@ -4,9 +4,9 @@ Personal long-form portfolio. Editorial three-column layout (left TOC · center 
 
 ---
 
-## ▶ In progress — Advertising at the Times case study
+## ▶ All three case studies are written
 
-Case study 3 was repositioned: replacing Wellness Shop with a 4-year retrospective on Lindsey's NYT Advertising work. Order on the index unchanged (NYT Search → Summary → Advertising). Currently scaffolded; starting with Context section using the standard co-writing workflow.
+Copy phase complete: NYT Search, Summary, and Advertising all have full text end-to-end. What's left is visual finalization (Summary assets via the parallel Claude; Advertising visuals to be added) and any deploy work (password protection, hosting).
 
 ### Note on parallel work — Summary assets
 
@@ -33,18 +33,17 @@ All 5 sections written + committed.
 - Visual placeholders rendering until parallel asset work lands: `architecture-diagram.png`, `story-card-sketches.png`, `story-card-comps.png`, `story-card-prototype.mp4`
 - Reminder: a separate Claude session owns the Summary assets — don't touch `public/media/summary/` here.
 
-### Case study 3: Advertising at the Times — IN PROGRESS
-- File: `src/content/work/advertising.mdx` (scaffolded; sections still placeholder)
+### Case study 3: Advertising at the Times — COMPLETE (copy)
+All 3 sections + 4 sub-sections written. No visuals yet.
+- File: `src/content/work/advertising.mdx`
 - Title: "Advertising at the Times"
 - Dek: "Four years leading the design of the ad experience across the Times' bundle — Games, Cooking, The Athletic, Wirecutter, and News."
 - Slug: `/work/advertising`
-- **Non-standard structure**: 3 sections, not 5 — Context, Major Contribution, Reflection. Major Contribution has 4 h3 sub-sections: Monetizing the bundle, Building native ad products, Video monetization, Internal ad tooling. (Smoke test set to h2Count: 3 for this slug.)
-- Replaced Wellness Shop in case study 3 slot. Old `public/media/wellness-shop/` renamed to `public/media/advertising/`.
-- Confidentiality: AdWeek-cited revenue figures are OK (Q4 2025 +24.9% YoY; Q1 2026 +31.6% / $93.3M). Internal-only figures (e.g., Games revenue $11M→$32M, Flex 2.0 Beta $800k) skip unless surfaced publicly.
-- Source for the 4-year project audit: `~/Downloads/2025 Work Document - My work.csv` — Lindsey's running work doc covering 2023–2025.
-- ✅ Context — done
-- ⏳ Major Contribution — next to write (4 sub-sections, draft one at a time)
-- ⏸ Reflection — pending
+- **Non-standard structure**: 3 sections — Context, Major Contribution (4 h3 sub-sections: Monetizing the bundle, Building native ad products, Video monetization, Internal ad tooling), Reflection. Smoke test pinned to h2Count: 3.
+- Replaced Wellness Shop in case study 3 slot. `public/media/wellness-shop/` → `public/media/advertising/`.
+- Through-lines pinned across the case study: reader-first inside constraints; working in someone else's space (collaboration without defensiveness); designing for scale across products *and* advertisers. Cross-link to Summary's "ok with not controlling outcomes" sits inside Building native ad products.
+- Confidentiality: AdWeek figures OK (Q4 2025 +24.9% YoY; Q1 2026 +31.6% / $93.3M). Internal-only figures skipped (Games $11M→$32M, Flex 2.0 Beta $800k). "Elvex" generic-ized to "AI-assistant button"; Kaleidoscope kept by name as the load-bearing artifact.
+- Source for the 4-year project audit: `~/Downloads/2025 Work Document - My work.csv`.
 
 ---
 
