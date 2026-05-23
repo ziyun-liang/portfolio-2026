@@ -63,7 +63,16 @@ These are the native formats I designed that ship in the public catalog.
 
 ### Video monetization
 
-Placeholder.
+**Editorial video and ad video deserve the same craft.** Most of the video ads on a Times surface come through programmatic — but on a product where editorial video is treated as a piece of journalism, the ads playing alongside it have to hold their own. The work in this thread was about building a base video ad format that could flex across the bundle without losing editorial quality at any stop.
+
+**The base, and the adaptations.** Each surface has its own rhythm, and the format had to meet each one:
+
+- **Games (Wordle and beyond)** — 5s skip, fade-in CTA, viewability tuning. The ad lives in the pause between rounds; skip-readiness is part of respecting the play loop.
+- **News' Watch Tab** — full-screen video, lean-back rhythm. Skip behavior and autoplay tuned for sustained viewing rather than interruption.
+- **Cooking** — pre-roll and vertical video, with editorial framing borrowed from the recipes themselves.
+- **Connections, podcast (where I led the Podcast Video UX), and in-stream long-form** — each with its own autoplay rules, length caps, sound-on or sound-off defaults, viewability targets.
+
+The design that pulled it all together: a single spec where features could be turned on or off based on the surface and the product's needs. One format underneath, surface-appropriate behavior on top — so an advertiser could ship a single video creative and have it land sensibly on Wordle, Watch Tab, Cooking, or a podcast app, without any of those surfaces feeling out of character.
 
 ### Internal ad tooling
 
