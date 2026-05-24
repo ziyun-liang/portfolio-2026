@@ -31,6 +31,13 @@ NYT's Q4 2025 digital ad revenue grew 24.9% year-over-year, the strongest growth
 
 Joy Robins, NYT's chief advertising officer, attributed the growth to three things — a clear internal strategy, the lifestyle brand portfolio, and *"a deliberate buildout of ad supply across surfaces that previously had none."* That buildout — surface by surface, brand by brand, format by format — is what this case study is about.
 
+<Figure
+  wide
+  placeholder
+  alt="Map of NYT ad surfaces in 2021 (News only) versus 2025 (Games, Cooking, Wirecutter, The Athletic, News all carrying ads) — a two-state diagram of the buildout"
+  caption="The buildout, at a glance: News-only in 2021 to every brand in 2025."
+/>
+
 ## Major Contribution
 
 ### Monetizing the bundle
@@ -45,6 +52,13 @@ Cooking was a different kind of expansion — not first-ads, but inventory expan
 
 Wirecutter was the trickiest. The product relies on affiliate revenue, so display advertising couldn't be aggressive without undercutting the business model, and the audience comes for buying advice rather than to be marketed at. I led the work to introduce the first display ads on Wirecutter while protecting the affiliate flow, and we built a custom native format — the [Wirecutter Shopper Unit](https://advertising.nytimes.com/formats/display-formats/wirecutter-shopper-unit/) — purpose-built for a shopping context. The full craft of that format lives in the next sub-section.
 
+<Figure
+  wide
+  placeholder
+  alt="Four-brand composite — Athletic ad launch, Wordle interstitial, Cooking inventory expansion, Wirecutter context — shown side by side"
+  caption="One image, four launches: ads landed across Athletic, Wordle, Cooking, and Wirecutter."
+/>
+
 ### Building native ad products
 
 **Programmatic carries volume; native carries identity.** Both halves of the ad mix earn the design. We rely heavily on programmatic, and where its slots appear, when they appear, and what they sit next to is its own design decision — a slot placed after the first paragraph, once a reader has gotten something out of the content, reads differently than the same slot dropped at the top. Native formats sit alongside that work: bespoke, NYT-shaped, built for surfaces where a generic IAB unit would feel wrong.
@@ -53,13 +67,48 @@ These are the native formats I designed that ship in the public catalog.
 
 [**Wordle Flex XL**](https://advertising.nytimes.com/formats/display-formats/wordle-flex-xl/). The productized form of the Wordle interstitial — first introduced in July 2023, refined over multiple iterations: 5s skip timing, fade-in CTA, 2s skip-button delay, viewability tuning. The principle was respect for the play loop. The ad earns its impression in the natural pause between rounds, rather than by interrupting one.
 
+<Figure
+  wide
+  placeholder
+  alt="Three-still sequence of the Wordle interstitial — end of round, ad fade-in with viewability tuning, CTA appearing after 2s skip-button delay"
+  caption="The interstitial in three frames: round ends, ad fades in, CTA appears once the play loop has paused."
+/>
+
 [**Product Carousel Flex XL**](https://advertising.nytimes.com/formats/display-formats/product-carousel-flex-xl/). A horizontal product-browse format with direct-purchase paths from the carousel. Built through the Flex 2.0 program — a long arc of design exploration, user research, stakeholder iteration, and production handoff. The design challenge was making a multi-product ad feel like editorial content rather than a banner of products.
+
+<Figure
+  wide
+  placeholder
+  alt="The Product Carousel Flex XL format in context — a horizontal product-browse unit with direct-purchase paths, designed to read as editorial rather than as a banner"
+  caption="Multi-product browse with direct-purchase paths — built to sit beside editorial content."
+/>
 
 [**Wirecutter Shopper Unit**](https://advertising.nytimes.com/formats/display-formats/wirecutter-shopper-unit/). Custom to Wirecutter's shopping context. Built to coexist with Wirecutter's affiliate revenue — which meant fewer slots, native pacing, and an aesthetic that fits buying-advice journalism. This one had to earn its place through restraint.
 
+<Figure
+  wide
+  placeholder
+  alt="The Wirecutter Shopper Unit shown in context on a Wirecutter page — a custom format designed to coexist with affiliate revenue through native pacing and restrained visual treatment"
+  caption="In context on Wirecutter: native pacing, restrained treatment, designed to coexist with the affiliate flow."
+/>
+
 **Cooking Sponsored Collection.** Less visible than the others — it's primarily a backend product. A sponsor (a milk brand, say) maps to a curated set of recipes that share an ingredient or theme; their ads then surface in slots on those recipe and collection pages. I decided the placements and added the slots. I also sketched UI variants that called out the sponsor more prominently, but those didn't ship — Cooking's editorial team preferred a quieter sponsor presence.
 
+<Figure
+  wide
+  placeholder
+  alt="Cooking Sponsored Collection — the shipped quiet placements alongside the unshipped UI variants that called out the sponsor more prominently"
+  caption="What shipped, beside what didn't: Cooking's editorial preference for quieter sponsor presence."
+/>
+
 **The work that didn't ship.** Some of the design I'm proudest of from this period didn't make it into the catalog. **Wirecutter Hub** sketched a sustained editorial-meets-advertiser destination, not just a slot. The **NYT Thanksgiving sponsored moment** (and a related Holiday Hub concept) imagined seasonal experiences with native ad integration. The **Athletic × Ads Moments** exploration looked at sponsorship around live sports rituals. None of these had a budget asking for them — I made them because the brief wasn't ambitious enough on its own. Like a thread that runs through [Summary at the Times](/work/summary), what matters here is making the design tangible enough to be argued over and pulled forward; the outcome is something I have to be ok with not controlling.
+
+<Figure
+  wide
+  placeholder
+  alt="Three unshipped concepts side by side — Wirecutter Hub as a sustained editorial-meets-advertiser destination, the NYT Thanksgiving sponsored moment, and the Athletic × Ads Moments exploration around live sports rituals"
+  caption="The work that didn't ship — Wirecutter Hub, the Thanksgiving moment, Athletic × Ads. Some of the design I'm proudest of from this period."
+/>
 
 ### Video monetization
 
@@ -74,6 +123,13 @@ These are the native formats I designed that ship in the public catalog.
 
 The design that pulled it all together: a single spec where features could be turned on or off based on the surface and the product's needs. One format underneath, surface-appropriate behavior on top — so an advertiser could ship a single video creative and have it land sensibly on Wordle, Watch Tab, Cooking, or a podcast app, without any of those surfaces feeling out of character.
 
+<Figure
+  wide
+  placeholder
+  alt="The same video creative landing across four surfaces — Wordle's pause-between-rounds, News' Watch Tab full-screen rhythm, Cooking pre-roll with editorial framing, and a podcast app with sound-on defaults — shown as four stills in one composite"
+  caption="One creative, four surfaces: a single spec underneath, surface-appropriate behavior on top."
+/>
+
 ### Internal ad tooling
 
 **Kaleidoscope is the system the ad org runs on.** It supports the full lifecycle of a campaign — pre, mid, and post:
@@ -84,12 +140,26 @@ The design that pulled it all together: a single spec where features could be tu
 
 The users are campaign managers, ad sales, and analytics — the people who keep the ad business running day to day. I've been on and off Kaleidoscope across the four years, picking up redesign threads as they came up.
 
+<Figure
+  wide
+  placeholder
+  alt="Kaleidoscope dashboard overview showing the pre / mid / post campaign lifecycle — segment search, delivery tracking, and post-buy reporting in one system"
+  caption="Kaleidoscope — pre, mid, post — the system the ad org runs on day to day."
+/>
+
 Starting in 2024, more of the work began incorporating AI features — moving in step with the company's broader AI strategy and the maturity of the underlying tools. By late 2025, that included:
 
 - **Semantic search across audience segments** — faster finding the segments an advertiser cares about, by meaning rather than exact-match keyword.
 - **Brief-page ingestion** — feeding an advertiser's brief into the system and getting a starting set of relevant segments back, before a campaign manager has to assemble them by hand.
 - **Ad-format performance and audience-insight redesigns** — surfacing patterns that previously required pulling and crossing multiple reports.
 - **A redesigned post-buy report**, including an AI-assistant button and a new eval process — turning what had been a manual reporting exercise into a guided, AI-assisted analysis.
+
+<Figure
+  wide
+  placeholder
+  alt="AI features in Kaleidoscope — semantic search across audience segments returning meaning-based matches, and the AI-assisted post-buy report flow with the AI-assistant button surfacing patterns across pulled reports"
+  caption="AI in tools, the shipped version: semantic segment search and the AI-assisted post-buy report."
+/>
 
 The design goal throughout: every AI feature had to add real value, not show up for the sake of being AI. A campaign manager doesn't need a new app; they need the next click in their job to be faster and easier than the day before. That's the version of "AI in tools" we built.
 
