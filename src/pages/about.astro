@@ -70,6 +70,10 @@ const experience = [
   <main class="about">
     <h2 class="section-label">About</h2>
 
+    <figure class="about-cover">
+      <img src="/media/about/portrait.jpg" alt="Lindsey Liang portrait" />
+    </figure>
+
     <section class="bio">
       <p>I'm a product designer. Right now I'm at The New York Times, where I work across advertising, AI-powered search, and editorial summarization — much of what I've shipped lives in the case studies on this site.</p>
 
@@ -134,6 +138,20 @@ const experience = [
     max-width: var(--col-center);
     margin: 0 auto;
     padding: var(--s-12) var(--s-4);
+  }
+
+  .about-cover {
+    width: min(100vw - 64px, 960px);
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0 0 var(--s-8);
+  }
+  .about-cover img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--radius-sm);
   }
 
   .cv-label {
