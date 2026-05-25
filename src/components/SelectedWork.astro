@@ -189,9 +189,8 @@ const { entries } = Astro.props;
       const scrolled = -rect.top;
       const progress = Math.max(0, Math.min(1, scrolled / runway));
 
-      const listContentHeight = list.scrollHeight;
-      const visible = section.offsetHeight;
-      const maxTranslate = Math.max(0, listContentHeight - visible * 0.6);
+      const lastRowTop = rows[rows.length - 1].offsetTop;
+      const maxTranslate = Math.max(0, lastRowTop - section.offsetHeight * 0.4);
       list.style.transform = `translateY(-${progress * maxTranslate}px)`;
 
       scrollActiveIndex = Math.min(N - 1, Math.round(progress * (N - 1)));
