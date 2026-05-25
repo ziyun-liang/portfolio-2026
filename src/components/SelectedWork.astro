@@ -30,7 +30,7 @@ const { entries } = Astro.props;
             <span class="sw-row-sep"> · </span>
             <span class="sw-row-year">{entry.year}</span>
           </p>
-          <h3 class="sw-row-title">{entry.project}</h3>
+          <h3 class="sw-row-title"><span class="sw-row-title-mark">{entry.project}</span></h3>
           <p class="sw-row-role">{entry.role}</p>
         </li>
       ))}
@@ -76,20 +76,15 @@ const { entries } = Astro.props;
     flex: 1 1 50%;
     list-style: none;
     margin: 0;
-    padding: 40vh 0 60vh 0;
+    padding: 0;
     overflow: hidden;
     position: relative;
     will-change: transform;
   }
 
   .sw-row {
-    padding: var(--s-3) var(--s-6);
+    padding: var(--s-2) var(--s-6);
     border-bottom: 1px solid var(--rule);
-    transition: opacity 200ms ease;
-    opacity: 0.55;
-  }
-  .sw-row.is-active {
-    opacity: 1;
   }
 
   .sw-row-meta {
@@ -98,15 +93,32 @@ const { entries } = Astro.props;
     text-transform: uppercase;
     letter-spacing: 0.06em;
     color: var(--ink-muted);
-    margin-bottom: var(--s-1);
+    margin-bottom: 6px;
   }
   .sw-row-client { color: var(--ink); }
   .sw-row-title {
     font-family: var(--font-display);
-    font-size: var(--fs-h3);
-    font-weight: 500;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.2;
     color: var(--ink);
     margin: 0 0 4px 0;
+  }
+  .sw-row-title-mark {
+    background-image: linear-gradient(
+      transparent 20%,
+      var(--highlight) 20%,
+      var(--highlight) 85%,
+      transparent 85%
+    );
+    background-size: 0% 100%;
+    background-repeat: no-repeat;
+    padding: 0 4px;
+    margin: 0 -4px;
+    transition: background-size 280ms ease;
+  }
+  .sw-row.is-active .sw-row-title-mark {
+    background-size: 100% 100%;
   }
   .sw-row-role {
     font-family: var(--font-body);
@@ -131,9 +143,6 @@ const { entries } = Astro.props;
       padding: 0;
       overflow: visible;
       transform: none !important;
-    }
-    .sw-row {
-      opacity: 1;
     }
   }
 </style>
@@ -189,11 +198,16 @@ const { entries } = Astro.props;
       const scrolled = -rect.top;
       const progress = Math.max(0, Math.min(1, scrolled / runway));
 
-      const lastRowTop = rows[rows.length - 1].offsetTop;
-      const maxTranslate = Math.max(0, lastRowTop - section.offsetHeight * 0.4);
-      list.style.transform = `translateY(-${progress * maxTranslate}px)`;
+      // Translate so the bottom of the list reaches the bottom of the section
+      // at progress=1. Top rows scroll out the top; bottom rows enter from below.
+      const maxTranslate = Math.max(0, list.scrollHeight - section.offsetHeight);
+      const currentTranslate = progress * maxTranslate;
+      list.style.transform = `translateY(-${currentTranslate}px)`;
 
-      scrollActiveIndex = Math.min(N - 1, Math.round(progress * (N - 1)));
+      // Active row = whichever row's top is at or just past the section top
+      // (i.e. the top-most fully-visible row).
+      const rowHeight = rows[0].offsetHeight || 1;
+      scrollActiveIndex = Math.min(N - 1, Math.floor(currentTranslate / rowHeight));
       showIndex(activeIndex());
     }
 
