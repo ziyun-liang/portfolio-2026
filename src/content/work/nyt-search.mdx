@@ -14,12 +14,13 @@ order: 1
 import Margin from "../../components/Margin.astro";
 import Figure from "../../components/Figure.astro";
 import Video from "../../components/Video.astro";
+import Fn from "../../components/Fn.astro";
 
 ## Context
 
 In 2024 I was lead product designer on the Ad mission. I asked my manager if I could also work on Search — NYT search was so bad that most readers found NYT articles through Google rather than through NYT itself. He let me try. Search became my passion project for the next two years, alongside my Ad work.
 
-ChatGPT had been out for a while and reader behavior was shifting fast — people had stopped expecting keyword search to work and started expecting a synthesized answer. NYT's search at the time was still lexical: type a word, hope an article matches it.
+ChatGPT had been out for a while and reader behavior was shifting fast — people had stopped expecting keyword search to work and started expecting a synthesized answer. NYT's search at the time was still lexical<Fn n={1} />: type a word, hope an article matches it.
 
 <Margin kind="footnote" n={1}>
   Lexical search ranks documents by literal word overlap. Semantic search matches by meaning using embeddings — a different retrieval architecture entirely.
@@ -66,7 +67,7 @@ The longer-range bet is that search becomes an "ask" capability — an action yo
   caption="The longer-range bet: search as an action you take wherever you are."
 />
 
-**Intent-first.** A central structural choice: NYT search is built around user intent, not keyword matching. Queries pass through an intent analyzer that parses possible intents and generates outputs matched to them. Working with engineers and PMs, I helped crystallize the six major intents we now design and build for. The long-term thesis is a multi-intent world; in the short term we ship one intent at a time, starting with **Latest News**.
+**Intent-first.** A central structural choice: NYT search is built around user intent, not keyword matching. Queries pass through an intent analyzer that parses possible intents and generates outputs matched to them. Working with engineers and PMs, I helped crystallize the six major intents<Fn n={2} /> we now design and build for. The long-term thesis is a multi-intent world; in the short term we ship one intent at a time, starting with **Latest News**.
 
 <Margin kind="footnote" n={2}>
   The six intents: **Latest News**, **Q&A**, **Navigational**, **Topic**, **Recommendation**, **Specific Retrieval**.
@@ -144,7 +145,7 @@ Two examples from this work.
   caption="A subset of the early concept work."
 />
 
-**Building: prototyping toward shippable.** When NAPP formed, the first intent we shipped for was **Latest News** — the most frequent reader query type, and a good place to learn the pipeline before generalizing. The answer card pulls a synthesized recap with editorial voice, an excerpt drawn directly from a current report, and a path to deeper coverage. The card sits at the top of results when intent detection has high confidence; results-first when it doesn't.
+**Building: prototyping toward shippable.** When NAPP formed, the first intent we shipped for was **Latest News** — the most frequent reader query type, and a good place to learn the pipeline before generalizing. The answer card pulls a synthesized recap with editorial voice, an excerpt drawn directly from a current report, and a path to deeper coverage. The card sits at the top of results when intent detection has high confidence; results-first when it doesn't.<Fn n={3} />
 
 <Margin kind="footnote" n={3}>
   Intent detection confidence thresholds were tuned over months. Placement above or below results is a query-by-query call.

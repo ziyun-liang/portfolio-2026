@@ -13,6 +13,7 @@ order: 2
 import Margin from "../../components/Margin.astro";
 import Figure from "../../components/Figure.astro";
 import Video from "../../components/Video.astro";
+import Fn from "../../components/Fn.astro";
 
 ## Context
 
@@ -119,7 +120,7 @@ The implication I find most interesting is what this would mean for editorial wo
   caption="Summary as a capability: one set of primitives, many surfaces — article tap, digest, briefing, synthesis."
 />
 
-The shape I've been sketching uses Scoop — NYT's internal publishing CMS — as the foundation. The idea: for any piece of journalism, an editor in Scoop can produce up to three base summary types — a paragraph, a bullet or multi-slide breakdown, and a richer one organized around evidence (quotes, numbers, charts, video). Each surface that wants to *show* a summary picks the base it needs and applies its own prompt at request time, shaping the output to the moment. An article-page "summarize this" tap, for example, would draw from the bullet base and produce a full-screen, Instagram-story-style card — because the reader's intent at that moment is *get the gist*, not leave the article behind.
+The shape I've been sketching<Fn n={1} /> uses Scoop — NYT's internal publishing CMS — as the foundation. The idea: for any piece of journalism, an editor in Scoop can produce up to three base summary types — a paragraph, a bullet or multi-slide breakdown, and a richer one organized around evidence (quotes, numbers, charts, video). Each surface that wants to *show* a summary picks the base it needs and applies its own prompt at request time, shaping the output to the moment. An article-page "summarize this" tap, for example, would draw from the bullet base and produce a full-screen, Instagram-story-style card — because the reader's intent at that moment is *get the gist*, not leave the article behind.
 
 <Margin kind="footnote" n={1}>
   This is still a sketch, not a shipped architecture. Leadership commitment is light; the shape is meant to invite review, not to declare a direction.
