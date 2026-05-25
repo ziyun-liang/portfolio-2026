@@ -71,7 +71,9 @@ const { entries } = Astro.props;
     inset: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    padding: var(--s-3);
+    box-sizing: border-box;
+    object-fit: contain;
     opacity: 0;
     transition: opacity 250ms ease;
   }
