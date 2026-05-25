@@ -65,9 +65,13 @@ const {
 
     <div class="hero"><slot name="hero" /></div>
 
-    <div class="cs-body">
-      <LeftNav sections={sections} />
-      <div class="content"><slot /></div>
+    <div class="cs-layout">
+      <aside class="cs-aside">
+        <LeftNav sections={sections} />
+      </aside>
+      <div class="cs-body">
+        <div class="content"><slot /></div>
+      </div>
     </div>
 
     <nav class="cs-foot">
@@ -145,16 +149,26 @@ const {
   .hero { margin-bottom: var(--s-8); }
   .hero:empty { display: none; }
 
-  .cs-body {
-    display: grid;
-    grid-template-columns: var(--col-left) var(--col-center) var(--col-right);
-    column-gap: var(--col-gutter);
+  /* Body layout: LeftNav as sticky aside, body grid for content + margin. */
+  .cs-layout {
+    display: flex;
+    align-items: flex-start;
     justify-content: center;
+    column-gap: var(--col-gutter);
+  }
+  .cs-aside {
+    flex: 0 0 var(--col-left);
+  }
+  .cs-body {
+    flex: 0 1 calc(var(--col-center) + var(--col-gutter) + var(--col-right));
+    display: grid;
+    grid-template-columns: var(--col-center) var(--col-right);
+    column-gap: var(--col-gutter);
     align-items: start;
   }
   .cs-body .content { display: contents; }
-  .cs-body .content > * { grid-column: 2; }
-  .cs-body .content > .margin { grid-column: 3; }
+  .cs-body .content > * { grid-column: 1; }
+  .cs-body .content > .margin { grid-column: 2; }
 
   .cs-body h2 {
     font-size: var(--fs-h2);
@@ -179,21 +193,19 @@ const {
   .cs-foot a:nth-child(2) { justify-self: center; color: var(--ink-muted); }
   .cs-foot a:nth-child(3) { justify-self: end; }
 
-  /* Stack title + metadata at narrower widths. */
+  /* Stack title + metadata at narrower widths; hide LeftNav. */
   @media (max-width: 1199px) {
     .cs-hero {
       grid-template-columns: 1fr;
       gap: var(--s-6);
     }
     .cs-hero-title { max-width: none; }
-    .cs-body { grid-template-columns: var(--col-center) var(--col-right); }
-    .cs-body .content > * { grid-column: 1; }
-    .cs-body .content > .margin { grid-column: 2; }
+    .cs-aside { display: none; }
+    .cs-body { flex: 1 1 auto; }
   }
   @media (max-width: 767px) {
     .cs-meta-row { grid-template-columns: 110px 1fr; column-gap: var(--s-2); }
     .cs-body { grid-template-columns: 1fr; }
-    .cs-body .content > * { grid-column: 1; }
     .cs-body .content > .margin {
       grid-column: 1;
       border-left: 2px solid var(--rule);

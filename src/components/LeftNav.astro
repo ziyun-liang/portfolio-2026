@@ -86,11 +86,8 @@ const { sections } = Astro.props;
 
 <style>
   .left-nav {
-    grid-column: 1;
-    grid-row: 1 / -1;
     position: sticky;
     top: var(--s-6);
-    align-self: start;
     z-index: 5;
   }
   .left-nav ul {
@@ -140,7 +137,4 @@ const { sections } = Astro.props;
     opacity: 1;
   }
 
-  @media (max-width: 1199px) {
-    .left-nav { display: none; }
-  }
 </style>
