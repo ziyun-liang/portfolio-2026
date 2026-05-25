@@ -37,7 +37,7 @@ p + p { margin-top: var(--s-3); }
 
 hr { border: none; border-top: 1px solid var(--rule); margin: var(--s-12) 0; }
 
-::selection { background: var(--ink); color: var(--bg); }
+::selection { background: var(--highlight); color: var(--ink); }
 
 .full-bleed {
   width: 100vw;
