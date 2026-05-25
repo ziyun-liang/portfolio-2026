@@ -19,7 +19,13 @@ const { kind, n } = Astro.props;
     color: var(--ink-muted);
     align-self: start;
   }
-  .margin--footnote { display: grid; grid-template-columns: auto 1fr; gap: var(--s-1); }
+  .margin--footnote {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--s-1);
+    font-family: var(--font-display);
+    font-size: 12px;
+  }
   .margin--footnote .num {
     font-family: var(--font-mono);
     font-variant-numeric: tabular-nums;
