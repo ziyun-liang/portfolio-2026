@@ -20,7 +20,7 @@ const { title, description = "Portfolio of Lindsey Liang." } = Astro.props;
   <body id="top">
     <SiteHeader />
     <slot />
-    <Footer />
+    <slot name="footer"><Footer /></slot>
   </body>
 </html>
 
