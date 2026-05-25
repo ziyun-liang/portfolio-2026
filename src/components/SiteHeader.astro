@@ -1,16 +1,14 @@
 ---
 const path = Astro.url.pathname;
 const isWork = path === "/" || path.startsWith("/work");
-const isAbout = path.startsWith("/about");
-const isCV = path.startsWith("/cv");
+const isAboutCV = path.startsWith("/about") || path.startsWith("/cv");
 ---
 <header class="site-header">
   <div class="inner">
     <a href="/" class="brand">Lindsey Liang</a>
     <nav>
       <a href="/" aria-current={isWork ? "page" : undefined}>Work</a>
-      <a href="/about" aria-current={isAbout ? "page" : undefined}>About</a>
-      <a href="/cv" aria-current={isCV ? "page" : undefined}>CV</a>
+      <a href="/about" aria-current={isAboutCV ? "page" : undefined}>About/CV</a>
     </nav>
   </div>
 </header>

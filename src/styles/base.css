@@ -44,3 +44,13 @@ hr { border: none; border-top: 1px solid var(--rule); margin: var(--s-12) 0; }
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
 }
+
+.section-label {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: #818181;
+  margin-bottom: var(--s-6);
+}
