@@ -76,9 +76,10 @@ const { entries } = Astro.props;
     flex: 1 1 50%;
     list-style: none;
     margin: 0;
-    padding: 0;
+    padding: 40vh 0 60vh 0;
     overflow: hidden;
     position: relative;
+    will-change: transform;
   }
 
   .sw-row {
@@ -113,3 +114,47 @@ const { entries } = Astro.props;
     color: var(--ink-muted);
   }
 </style>
+
+<script>
+  function initSelectedWork(anchor: HTMLElement) {
+    const section = anchor.querySelector(".sw") as HTMLElement;
+    const list = section.querySelector(".sw-list") as HTMLElement;
+    const rows = Array.from(section.querySelectorAll<HTMLElement>(".sw-row"));
+    const images = Array.from(section.querySelectorAll<HTMLElement>(".sw-image-layer"));
+    const N = rows.length;
+    if (N === 0) return;
+
+    let scrollActiveIndex = 0;
+    let lastShown = 0;
+
+    function showIndex(i: number) {
+      if (i === lastShown) return;
+      images[lastShown].classList.remove("is-visible");
+      rows[lastShown].classList.remove("is-active");
+      images[i].classList.add("is-visible");
+      rows[i].classList.add("is-active");
+      lastShown = i;
+    }
+
+    function update() {
+      const rect = anchor.getBoundingClientRect();
+      const runway = anchor.offsetHeight - window.innerHeight;
+      const scrolled = -rect.top;
+      const progress = Math.max(0, Math.min(1, scrolled / runway));
+
+      const listContentHeight = list.scrollHeight;
+      const visible = section.offsetHeight;
+      const maxTranslate = Math.max(0, listContentHeight - visible * 0.6);
+      list.style.transform = `translateY(-${progress * maxTranslate}px)`;
+
+      scrollActiveIndex = Math.min(N - 1, Math.round(progress * (N - 1)));
+      showIndex(scrollActiveIndex);
+    }
+
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    update();
+  }
+
+  document.querySelectorAll<HTMLElement>(".sw-anchor").forEach(initSelectedWork);
+</script>
