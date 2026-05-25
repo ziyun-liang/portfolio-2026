@@ -124,6 +124,15 @@ const { entries } = Astro.props;
     const N = rows.length;
     if (N === 0) return;
 
+    // Preload all images so swaps are instant.
+    images.forEach((img) => {
+      const real = (img as HTMLImageElement).src;
+      if (real) {
+        const pre = new Image();
+        pre.src = real;
+      }
+    });
+
     let scrollActiveIndex = 0;
     let hoverIndex: number | null = null;
     let lastShown = 0;
