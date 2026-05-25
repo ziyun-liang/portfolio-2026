@@ -1,7 +1,6 @@
 ---
 import { getCollection } from "astro:content";
 import Base from "../layouts/Base.astro";
-import CaseStudyCard from "../components/CaseStudyCard.astro";
 import SelectedWork from "../components/SelectedWork.astro";
 import { selectedWork } from "../data/selected-work";
 
@@ -9,37 +8,36 @@ const entries = (await getCollection("work")).sort((a, b) => a.data.order - b.da
 ---
 <Base title="Lindsey Liang — Designer">
   <main class="index">
-    <section class="intro">
-      <h1>Lindsey Liang</h1>
-      <p class="dek">Designer working on AI-powered editorial products at the New York Times.</p>
-      <div class="bio">
-        <p>I focus on the seam between people and intelligent systems — how interfaces shape what people understand, trust, and decide. My work spans search, summarization, and personalization in editorial contexts.</p>
-        <p>Before NYT I worked on consumer software and design tooling.</p>
-      </div>
-    </section>
+    <p class="intro">
+      I'm at The New York Times, where I work across advertising, AI-powered search, and editorial summarization — much of what I've shipped lives in the case studies on this site.
+    </p>
 
-    <hr />
+    <h2 class="section-label">Case Study</h2>
 
-    <h2 class="section-label">Selected work</h2>
-
-    <ul class="work-list">
+    <ul class="cs-list">
       {entries.map((e) => (
-        <li>
-          <CaseStudyCard
-            href={`/work/${e.id}`}
-            title={e.data.title}
-            dek={e.data.dek}
-            role={e.data.role}
-            year={e.data.year}
-            context={e.data.context}
-            thumbnail={e.data.thumbnail}
-          />
+        <li class="cs-card">
+          <a href={`/work/${e.id}`} class="cs-card-link">
+            <div class="cs-card-thumb">
+              <img src={e.data.thumbnail} alt="" loading="lazy" />
+            </div>
+            <div class="cs-card-meta">
+              <h3 class="cs-card-title">{e.data.title}</h3>
+              <p class="cs-card-dek">{e.data.dek}</p>
+            </div>
+          </a>
         </li>
       ))}
     </ul>
 
-    <!-- TEMP: SelectedWork preview -->
+    <h2 class="section-label">Other Selected Work</h2>
+
     <SelectedWork entries={selectedWork} />
+
+    <footer class="home-foot">
+      <p>© 2026 · Lindsey Liang</p>
+      <a href="#top">Back to top</a>
+    </footer>
   </main>
 </Base>
 
@@ -47,26 +45,89 @@ const entries = (await getCollection("work")).sort((a, b) => a.data.order - b.da
   .index {
     max-width: var(--page-max);
     margin: 0 auto;
-    padding: var(--s-12) var(--s-4);
+    padding: var(--s-12) var(--s-4) 0;
   }
-  .intro h1 { font-size: var(--fs-h1); margin-bottom: var(--s-3); }
-  .intro .dek {
+
+  .intro {
+    font-family: var(--font-body);
     font-size: var(--fs-dek);
-    font-style: italic;
     line-height: var(--lh-snug);
     color: var(--ink);
-    margin-bottom: var(--s-6);
-    max-width: var(--col-center);
+    max-width: 600px;
+    margin-left: auto;
+    margin-bottom: var(--s-12);
   }
-  .intro .bio { max-width: var(--col-center); }
+
   .section-label {
-    font-family: var(--font-sans);
+    font-family: var(--font-mono);
     font-size: var(--fs-meta);
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--ink-muted);
-    font-weight: 500;
+    font-weight: 400;
     margin-bottom: var(--s-6);
   }
-  .work-list { display: flex; flex-direction: column; gap: var(--s-8); }
+
+  .cs-list {
+    list-style: none;
+    margin: 0 0 var(--s-16) 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-12);
+  }
+  .cs-card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+  .cs-card-thumb {
+    aspect-ratio: 1262 / 700;
+    background: var(--rule);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    margin-bottom: var(--s-3);
+  }
+  .cs-card-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: filter 150ms ease;
+  }
+  .cs-card-link:hover .cs-card-thumb img { filter: brightness(1.05); }
+  .cs-card-title {
+    font-family: var(--font-display);
+    font-size: var(--fs-h2);
+    line-height: var(--lh-tight);
+    margin: 0 0 var(--s-1) 0;
+  }
+  .cs-card-link:hover .cs-card-title {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+  .cs-card-dek {
+    font-family: var(--font-body);
+    font-size: var(--fs-body);
+    color: var(--ink-muted);
+    max-width: 600px;
+  }
+
+  .home-foot {
+    max-width: var(--page-max);
+    margin: var(--s-12) auto 0;
+    padding: var(--s-6) var(--s-4);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-sans);
+    font-size: var(--fs-meta);
+    color: var(--ink-muted);
+    border-top: 1px solid var(--rule);
+  }
+  .home-foot a { text-decoration: none; }
+  .home-foot a:hover { text-decoration: underline; }
+
+  @media (max-width: 767px) {
+    .intro { margin-left: 0; }
+  }
 </style>
