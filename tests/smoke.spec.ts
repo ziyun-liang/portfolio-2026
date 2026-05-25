@@ -19,7 +19,7 @@ test.describe("portfolio smoke", () => {
     await expect(page.locator(".cs-list > li")).toHaveCount(3);
     await expect(page.locator(".sw-anchor")).toBeVisible();
     await expect(page.locator(".sw-row").first()).toBeVisible();
-    await expect(page.locator(".home-foot")).toBeVisible();
+    await expect(page.locator("footer.site-footer")).toBeVisible();
   });
 
   test("about page renders About label + bio + contact links", async ({ page }) => {

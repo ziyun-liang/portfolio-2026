@@ -33,11 +33,6 @@ const entries = (await getCollection("work")).sort((a, b) => a.data.order - b.da
     <h2 class="section-label">Other Selected Work</h2>
 
     <SelectedWork entries={selectedWork} />
-
-    <footer class="home-foot">
-      <p>© 2026 · Lindsey Liang</p>
-      <a href="#top">Back to top</a>
-    </footer>
   </main>
 </Base>
 
@@ -115,18 +110,4 @@ const entries = (await getCollection("work")).sort((a, b) => a.data.order - b.da
     color: var(--ink);
   }
 
-  .home-foot {
-    max-width: var(--page-max);
-    margin: var(--s-12) auto 0;
-    padding: var(--s-6) var(--s-4);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-family: var(--font-sans);
-    font-size: var(--fs-meta);
-    color: var(--ink-muted);
-    border-top: 1px solid var(--rule);
-  }
-  .home-foot a { text-decoration: none; }
-  .home-foot a:hover { text-decoration: underline; }
 </style>
