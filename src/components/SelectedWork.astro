@@ -125,7 +125,12 @@ const { entries } = Astro.props;
     if (N === 0) return;
 
     let scrollActiveIndex = 0;
+    let hoverIndex: number | null = null;
     let lastShown = 0;
+
+    function activeIndex() {
+      return hoverIndex !== null ? hoverIndex : scrollActiveIndex;
+    }
 
     function showIndex(i: number) {
       if (i === lastShown) return;
@@ -148,8 +153,19 @@ const { entries } = Astro.props;
       list.style.transform = `translateY(-${progress * maxTranslate}px)`;
 
       scrollActiveIndex = Math.min(N - 1, Math.round(progress * (N - 1)));
-      showIndex(scrollActiveIndex);
+      showIndex(activeIndex());
     }
+
+    rows.forEach((row, i) => {
+      row.addEventListener("pointerenter", () => {
+        hoverIndex = i;
+        showIndex(activeIndex());
+      });
+      row.addEventListener("pointerleave", () => {
+        hoverIndex = null;
+        showIndex(activeIndex());
+      });
+    });
 
     window.addEventListener("scroll", update, { passive: true });
     window.addEventListener("resize", update);
