@@ -12,6 +12,15 @@ test.describe("portfolio smoke", () => {
     await expect(navLinks.nth(0)).toHaveAttribute("aria-current", "page");
   });
 
+  test("index renders intro, three case-study cards, and selected-work section", async ({ page }) => {
+    await page.goto("/");
+    await expect(page.locator("main.index .intro")).toBeVisible();
+    await expect(page.locator(".cs-list > li")).toHaveCount(3);
+    await expect(page.locator(".sw-anchor")).toBeVisible();
+    await expect(page.locator(".sw-row").first()).toBeVisible();
+    await expect(page.locator(".home-foot")).toBeVisible();
+  });
+
   test("about page renders title and contact section", async ({ page }) => {
     await page.goto("/about");
     await expect(page.locator("main.about h1")).toHaveText("About");
