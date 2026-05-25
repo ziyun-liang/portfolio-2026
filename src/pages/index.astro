@@ -22,7 +22,7 @@ const entries = (await getCollection("work")).sort((a, b) => a.data.order - b.da
               <img src={e.data.thumbnail} alt="" loading="lazy" />
             </div>
             <div class="cs-card-meta">
-              <h3 class="cs-card-title">{e.data.title}</h3>
+              <h3 class="cs-card-title"><span class="cs-card-title-mark">{e.data.title}</span></h3>
               <p class="cs-card-dek">{e.data.dek}</p>
             </div>
           </a>
@@ -50,12 +50,12 @@ const entries = (await getCollection("work")).sort((a, b) => a.data.order - b.da
 
   .intro {
     font-family: var(--font-body);
-    font-size: var(--fs-dek);
-    line-height: var(--lh-snug);
+    font-size: var(--fs-body);
+    line-height: 24px;
     color: var(--ink);
     max-width: 600px;
-    margin-left: auto;
-    margin-bottom: var(--s-12);
+    margin: 0 auto var(--s-12);
+    text-align: center;
   }
 
   .section-label {
@@ -92,24 +92,37 @@ const entries = (await getCollection("work")).sort((a, b) => a.data.order - b.da
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: filter 150ms ease;
   }
-  .cs-card-link:hover .cs-card-thumb img { filter: brightness(1.05); }
   .cs-card-title {
     font-family: var(--font-display);
-    font-size: var(--fs-h2);
-    line-height: var(--lh-tight);
-    margin: 0 0 var(--s-1) 0;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.2;
+    margin: 0 0 10px 0;
   }
-  .cs-card-link:hover .cs-card-title {
-    text-decoration: underline;
-    text-underline-offset: 0.2em;
+  .cs-card-title-mark {
+    background-image: linear-gradient(
+      transparent 20%,
+      var(--highlight) 20%,
+      var(--highlight) 85%,
+      transparent 85%
+    );
+    background-size: 0% 100%;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    padding: 0 5px;
+    margin: 0 -5px;
+    transition: background-size 320ms ease;
+  }
+  .cs-card-link:hover .cs-card-title-mark,
+  .cs-card-link:focus-visible .cs-card-title-mark {
+    background-size: 100% 100%;
   }
   .cs-card-dek {
     font-family: var(--font-body);
     font-size: var(--fs-body);
-    color: var(--ink-muted);
-    max-width: 600px;
+    line-height: 24px;
+    color: var(--ink);
   }
 
   .home-foot {
@@ -126,8 +139,4 @@ const entries = (await getCollection("work")).sort((a, b) => a.data.order - b.da
   }
   .home-foot a { text-decoration: none; }
   .home-foot a:hover { text-decoration: underline; }
-
-  @media (max-width: 767px) {
-    .intro { margin-left: 0; }
-  }
 </style>
