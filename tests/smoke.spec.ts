@@ -1,11 +1,15 @@
 import { test, expect } from "@playwright/test";
 
 test.describe("portfolio smoke", () => {
-  test("index renders header, intro, and three case-study cards", async ({ page }) => {
+  test("index renders header with nav and active highlight on Work", async ({ page }) => {
     await page.goto("/");
     await expect(page.locator("header.site-header .brand")).toHaveText("Lindsey Liang");
-    await expect(page.locator("main.index h1")).toHaveText("Lindsey Liang");
-    await expect(page.locator(".work-list > li")).toHaveCount(3);
+    const navLinks = page.locator("header.site-header nav a");
+    await expect(navLinks).toHaveCount(3);
+    await expect(navLinks.nth(0)).toHaveText("Work");
+    await expect(navLinks.nth(1)).toHaveText("About");
+    await expect(navLinks.nth(2)).toHaveText("CV");
+    await expect(navLinks.nth(0)).toHaveAttribute("aria-current", "page");
   });
 
   test("about page renders title and contact section", async ({ page }) => {

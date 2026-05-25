@@ -1,16 +1,16 @@
 ---
 const path = Astro.url.pathname;
 const isWork = path === "/" || path.startsWith("/work");
-const isCV = path.startsWith("/cv");
 const isAbout = path.startsWith("/about");
+const isCV = path.startsWith("/cv");
 ---
 <header class="site-header">
   <div class="inner">
     <a href="/" class="brand">Lindsey Liang</a>
     <nav>
       <a href="/" aria-current={isWork ? "page" : undefined}>Work</a>
-      <a href="/cv" aria-current={isCV ? "page" : undefined}>CV</a>
       <a href="/about" aria-current={isAbout ? "page" : undefined}>About</a>
+      <a href="/cv" aria-current={isCV ? "page" : undefined}>CV</a>
     </nav>
   </div>
 </header>
@@ -32,6 +32,17 @@ const isAbout = path.startsWith("/about");
   }
   .brand { text-decoration: none; font-weight: 500; }
   nav { display: flex; gap: var(--s-3); }
-  nav a { text-decoration: none; }
-  nav a[aria-current="page"] { font-weight: 500; }
+  nav a {
+    text-decoration: none;
+    padding: 0 5px;
+    margin: 0 -5px;
+  }
+  nav a[aria-current="page"] {
+    background-image: linear-gradient(
+      transparent 20%,
+      var(--highlight) 20%,
+      var(--highlight) 85%,
+      transparent 85%
+    );
+  }
 </style>
