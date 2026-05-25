@@ -7,7 +7,7 @@ test.describe("portfolio smoke", () => {
     const navLinks = page.locator("header.site-header nav a");
     await expect(navLinks).toHaveCount(3);
     await expect(navLinks.nth(0)).toHaveText("Work");
-    await expect(navLinks.nth(1)).toHaveText("About/CV");
+    await expect(navLinks.nth(1)).toHaveText("About");
     await expect(navLinks.nth(2)).toHaveText("Github↗");
     await expect(navLinks.nth(2)).toHaveAttribute("href", "https://github.com/ziyun-liang");
     await expect(navLinks.nth(0)).toHaveAttribute("aria-current", "page");
@@ -22,14 +22,15 @@ test.describe("portfolio smoke", () => {
     await expect(page.locator(".home-foot")).toBeVisible();
   });
 
-  test("about page renders About + Contact + CV sections", async ({ page }) => {
+  test("about page renders About label + bio + contact links", async ({ page }) => {
     await page.goto("/about");
-    const labels = page.locator("main.about .section-label");
-    await expect(labels).toHaveCount(2);
-    await expect(labels.nth(0)).toHaveText("About");
-    await expect(labels.nth(1)).toHaveText("CV");
+    await expect(page.locator("main.about .section-label")).toHaveText("About");
     await expect(page.getByRole("heading", { name: "Contact" })).toBeVisible();
-    await expect(page.locator(".company-block").first()).toBeVisible();
+    await expect(page.getByRole("link", { name: "ziyunliang522@gmail.com" })).toBeVisible();
+    await expect(page.getByRole("link", { name: /LinkedIn/ })).toHaveAttribute(
+      "href",
+      "https://www.linkedin.com/in/lindsey-ziyun-liang-a6333884/",
+    );
   });
 
   test("each case study renders title, dek, sections, and footer nav", async ({ page }) => {
