@@ -24,14 +24,20 @@ const { entries } = Astro.props;
       {entries.map((entry, i) => (
         <li class={`sw-row ${i === 0 ? "is-active" : ""}`} data-index={i}>
           <p class="sw-row-meta">
-            <span class="sw-row-client">{entry.client}</span>
+            {entry.url ? (
+              <a class="sw-row-link" href={entry.url} target="_blank" rel="noopener">
+                <span class="sw-row-project sw-row-project-mark">{entry.project}</span>
+                <span class="sw-row-arrow" aria-hidden="true">↗</span>
+              </a>
+            ) : (
+              <span class="sw-row-project sw-row-project-mark">{entry.project}</span>
+            )}
             <span class="sw-row-sep"> / </span>
             <span class="sw-row-employer">{entry.employer}</span>
-            <span class="sw-row-sep"> · </span>
+            <span class="sw-row-sep"> • </span>
             <span class="sw-row-year">{entry.year}</span>
           </p>
-          <h3 class="sw-row-title"><span class="sw-row-title-mark">{entry.project}</span></h3>
-          <p class="sw-row-role">{entry.role}</p>
+          <em class="sw-row-role">{entry.role}</em>
         </li>
       ))}
     </ol>
@@ -81,28 +87,27 @@ const { entries } = Astro.props;
   }
 
   .sw-row {
-    padding: var(--s-2) var(--s-6);
+    padding: var(--s-3) var(--s-6);
     border-bottom: 1px solid var(--rule);
-  }
-
-  .sw-row-meta {
-    font-family: var(--font-mono);
-    font-size: var(--fs-meta);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--ink-muted);
-    margin-bottom: 6px;
-  }
-  .sw-row-client { color: var(--ink); }
-  .sw-row-title {
-    font-family: var(--font-display);
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 1.2;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--s-4);
+    font-family: var(--font-body);
+    font-size: var(--fs-body);
+    line-height: 24px;
     color: var(--ink);
-    margin: 0 0 4px 0;
   }
-  .sw-row-title-mark {
+  .sw-row-meta {
+    margin: 0;
+    flex: 1;
+    min-width: 0;
+  }
+  .sw-row-project {
+    font-family: var(--font-display);
+    font-weight: 600;
+  }
+  .sw-row-project-mark {
     background-image: linear-gradient(
       transparent 20%,
       var(--highlight) 20%,
@@ -115,13 +120,30 @@ const { entries } = Astro.props;
     margin: 0 -4px;
     transition: background-size 280ms ease;
   }
-  .sw-row.is-active .sw-row-title-mark {
+  .sw-row.is-active .sw-row-project-mark {
     background-size: 100% 100%;
   }
-  .sw-row-role {
-    font-family: var(--font-body);
-    font-size: var(--fs-body);
+  .sw-row-link {
+    color: inherit;
+    text-decoration: none;
+  }
+  .sw-row-arrow {
+    font-size: 0.85em;
     color: var(--ink-muted);
+    margin-left: 2px;
+    display: inline-block;
+    transform: translateY(-1px);
+  }
+  .sw-row-sep,
+  .sw-row-employer,
+  .sw-row-year {
+    color: var(--ink);
+  }
+  .sw-row-role {
+    font-style: italic;
+    flex-shrink: 0;
+    text-align: right;
+    color: var(--ink);
   }
 
   @media (max-width: 899px), (prefers-reduced-motion: reduce) {

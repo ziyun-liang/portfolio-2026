@@ -1,15 +1,16 @@
 export interface SelectedWorkEntry {
-  client: string;
+  project: string;
   employer: string;
   year: number;
-  project: string;
   role: string;
   image: string;
   alt: string;
+  /** Optional outbound link — when present, the project name becomes clickable. */
+  url?: string;
 }
 
 // Inline color-box image as a data URI. Used as a placeholder while real
-// imagery is being collected. The encoded `#` keeps the URI a single, valid
+// imagery is being collected. The `#` is encoded so the URI stays a single
 // fragment (otherwise the browser treats `#FF6B6B` as a fragment identifier).
 const colorBox = (hex: string): string => {
   const safe = hex.replace("#", "%23");
@@ -17,24 +18,24 @@ const colorBox = (hex: string): string => {
 };
 
 export const selectedWork: SelectedWorkEntry[] = [
-  { client: "Visible Mobile",   employer: "Madwell",                year: 2022, project: "This beach is a phone store",     role: "Art direction · OOH production",       image: colorBox("#FF6B6B"), alt: "Coral red placeholder" },
-  { client: "Verizon",          employer: "Madwell",                year: 2022, project: "Yes you can",                     role: "Brand campaign · digital",             image: colorBox("#4ECDC4"), alt: "Teal placeholder" },
-  { client: "Casper",           employer: "Madwell",                year: 2021, project: "Sleep channel rebrand",           role: "Art direction · motion",               image: colorBox("#FFE66D"), alt: "Yellow placeholder" },
-  { client: "Dunkin'",          employer: "Madwell",                year: 2021, project: "Iced season identity",            role: "Brand identity · packaging",           image: colorBox("#95E1D3"), alt: "Mint placeholder" },
-  { client: "ESPN",             employer: "Kettle",                 year: 2021, project: "Tournament hub redesign",         role: "Product design · prototyping",         image: colorBox("#C44569"), alt: "Magenta placeholder" },
-  { client: "Sonos",            employer: "Kettle",                 year: 2020, project: "Listener archive",                role: "Product design · IA",                  image: colorBox("#F8B500"), alt: "Amber placeholder" },
-  { client: "Discovery+",       employer: "Kettle",                 year: 2020, project: "Watchlist UX",                    role: "Product design",                       image: colorBox("#6C5CE7"), alt: "Purple placeholder" },
-  { client: "Equinox",          employer: "Kettle",                 year: 2020, project: "Trainer profile system",          role: "Product design · system",              image: colorBox("#00B894"), alt: "Emerald placeholder" },
-  { client: "Squarespace",      employer: "Kettle",                 year: 2019, project: "Template gallery rework",         role: "Product design",                       image: colorBox("#E17055"), alt: "Terracotta placeholder" },
-  { client: "Bumble",           employer: "Kettle",                 year: 2019, project: "BFF discovery",                   role: "Product design · research",            image: colorBox("#74B9FF"), alt: "Sky placeholder" },
-  { client: "Marco Polo",       employer: "Marco Polo Learning",    year: 2017, project: "Read-along reader",               role: "Lead PD · product",                    image: colorBox("#FD79A8"), alt: "Pink placeholder" },
-  { client: "Marco Polo",       employer: "Marco Polo Learning",    year: 2017, project: "World of Animals",                role: "Lead PD · system",                     image: colorBox("#A29BFE"), alt: "Lavender placeholder" },
-  { client: "Marco Polo",       employer: "Marco Polo Learning",    year: 2016, project: "Ocean playset",                   role: "Lead PD",                              image: colorBox("#FDCB6E"), alt: "Sun placeholder" },
-  { client: "Marco Polo",       employer: "Marco Polo Learning",    year: 2016, project: "Weather investigations",          role: "Lead PD · curriculum",                 image: colorBox("#55EFC4"), alt: "Spring placeholder" },
-  { client: "Marco Polo",       employer: "Marco Polo Learning",    year: 2016, project: "Parent dashboard",                role: "Lead PD",                              image: colorBox("#FAB1A0"), alt: "Peach placeholder" },
-  { client: "Marco Polo",       employer: "Marco Polo Learning",    year: 2016, project: "Onboarding flow",                 role: "Lead PD",                              image: colorBox("#81ECEC"), alt: "Cyan placeholder" },
-  { client: "Marco Polo",       employer: "Marco Polo Learning",    year: 2015, project: "First brand system",              role: "Lead PD · brand",                      image: colorBox("#00CEC9"), alt: "Turquoise placeholder" },
-  { client: "Marco Polo",       employer: "Marco Polo Learning",    year: 2015, project: "Pilot user studies",              role: "Research · synthesis",                 image: colorBox("#FF7675"), alt: "Salmon placeholder" },
-  { client: "Marco Polo",       employer: "Marco Polo Learning",    year: 2015, project: "Investor deck",                   role: "Visual design",                        image: colorBox("#636E72"), alt: "Slate placeholder" },
-  { client: "Marco Polo",       employer: "Marco Polo Learning",    year: 2015, project: "Logo + first identity",           role: "Brand · identity",                     image: colorBox("#2D3436"), alt: "Charcoal placeholder" },
+  { project: "NYT Cooking",                 employer: "NYT",                year: 2025, role: "Concept",                                                       image: colorBox("#FF6B6B"), alt: "Coral red placeholder" },
+  { project: "AI User Research Site",       employer: "NYT",                year: 2025, role: "Vibe Code with Figma Make",                                     image: colorBox("#4ECDC4"), alt: "Teal placeholder" },
+  { project: "NYT Movie Planner",           employer: "NYT",                year: 2025, role: "Vibe Code with Figma Make",                                     image: colorBox("#FFE66D"), alt: "Yellow placeholder" },
+  { project: "NYT Cooking Planner",         employer: "NYT",                year: 2025, role: "Vibe Code with Figma Make",                                     image: colorBox("#95E1D3"), alt: "Mint placeholder" },
+  { project: "Your Daytime Firework",       employer: "TRLab",              year: 2022, role: "Product direction, NFT production",                             image: colorBox("#C44569"), alt: "Magenta placeholder" },
+  { project: "RFLCT",                       employer: "Kettle",             year: 2022, role: "UX/UI Direction",                                               image: colorBox("#F8B500"), alt: "Amber placeholder" },
+  { project: "The Calder Question",         employer: "TRLab",              year: 2022, role: "UX/UI Direction",                                               image: colorBox("#6C5CE7"), alt: "Purple placeholder" },
+  { project: "Space-between Ads",           employer: "NYT",                year: 2021, role: "Concept",                                                       image: colorBox("#00B894"), alt: "Emerald placeholder" },
+  { project: "Wordle Desktop Ad",           employer: "NYT",                year: 2021, role: "UX/UI Direction",                                               image: colorBox("#E17055"), alt: "Terracotta placeholder" },
+  { project: "MasterClass",                 employer: "Kettle",             year: 2020, role: "UX/UI Direction",                                               image: colorBox("#74B9FF"), alt: "Sky placeholder" },
+  { project: "Apple",                       employer: "Kettle",             year: 2020, role: "UX/UI Direction",                                               image: colorBox("#FD79A8"), alt: "Pink placeholder" },
+  { project: "Kettle Website",              employer: "Kettle",             year: 2020, role: "UX/UI Direction",                                               image: colorBox("#A29BFE"), alt: "Lavender placeholder" },
+  { project: "Apple App Store",             employer: "Kettle",             year: 2020, role: "UX/UI Direction",                                               image: colorBox("#FDCB6E"), alt: "Sun placeholder", url: "https://www.apple.com/app-store/" },
+  { project: "KORESS",                      employer: "Kettle",             year: 2020, role: "UX/UI Direction",                                               image: colorBox("#55EFC4"), alt: "Spring placeholder" },
+  { project: "American Express App",        employer: "Kettle",             year: 2019, role: "Concept",                                                       image: colorBox("#FAB1A0"), alt: "Peach placeholder" },
+  { project: "Babe Hatch Blog",             employer: "Hatch",              year: 2019, role: "UX/UI Direction",                                               image: colorBox("#81ECEC"), alt: "Cyan placeholder" },
+  { project: "Lycored",                     employer: "Madwell",            year: 2018, role: "UX/UI Direction",                                               image: colorBox("#00CEC9"), alt: "Turquoise placeholder" },
+  { project: "Visible",                     employer: "Madwell",            year: 2018, role: "Design Direction, Production",                                  image: colorBox("#FF7675"), alt: "Salmon placeholder" },
+  { project: "The Polos TV Show",           employer: "MarcoPolo Learning", year: 2018, role: "Character Design, TV show storyboard",                          image: colorBox("#636E72"), alt: "Slate placeholder" },
+  { project: "MarcoPolo World Schools",     employer: "MarcoPolo Learning", year: 2017, role: "UX/UI Direction, Illustration, Game Design, Production",        image: colorBox("#2D3436"), alt: "Charcoal placeholder" },
 ];
