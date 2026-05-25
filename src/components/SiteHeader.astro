@@ -9,6 +9,7 @@ const isAboutCV = path.startsWith("/about") || path.startsWith("/cv");
     <nav>
       <a href="/" aria-current={isWork ? "page" : undefined}>Work</a>
       <a href="/about" aria-current={isAboutCV ? "page" : undefined}>About/CV</a>
+      <a href="https://github.com/ziyun-liang" target="_blank" rel="noopener" class="ext">Github<span class="ext-arrow" aria-hidden="true">↗</span></a>
     </nav>
   </div>
 </header>
@@ -41,5 +42,12 @@ const isAboutCV = path.startsWith("/about") || path.startsWith("/cv");
       var(--highlight) 85%,
       transparent 85%
     );
+  }
+  .ext-arrow {
+    font-size: 0.85em;
+    color: var(--ink-muted);
+    margin-left: 2px;
+    display: inline-block;
+    transform: translateY(-1px);
   }
 </style>

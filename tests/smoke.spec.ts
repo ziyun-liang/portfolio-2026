@@ -5,9 +5,11 @@ test.describe("portfolio smoke", () => {
     await page.goto("/");
     await expect(page.locator("header.site-header .brand")).toHaveText("Lindsey Liang");
     const navLinks = page.locator("header.site-header nav a");
-    await expect(navLinks).toHaveCount(2);
+    await expect(navLinks).toHaveCount(3);
     await expect(navLinks.nth(0)).toHaveText("Work");
     await expect(navLinks.nth(1)).toHaveText("About/CV");
+    await expect(navLinks.nth(2)).toHaveText("Github↗");
+    await expect(navLinks.nth(2)).toHaveAttribute("href", "https://github.com/ziyun-liang");
     await expect(navLinks.nth(0)).toHaveAttribute("aria-current", "page");
   });
 
