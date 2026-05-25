@@ -4,6 +4,7 @@ interface Props {
   caption?: string;
   poster?: string;
   placeholder?: boolean;
+  wide?: boolean;
   ratio?: string;
   alt?: string;
 }
@@ -12,13 +13,14 @@ const {
   caption,
   poster,
   placeholder = false,
+  wide = false,
   ratio = "16 / 9",
   alt,
 } = Astro.props;
 
 const placeholderSrc = "/media/_placeholder/video-placeholder.mp4";
 ---
-<figure>
+<figure class={wide ? "wide" : ""}>
   {placeholder ? (
     <div class="placeholder-wrap" style={`aspect-ratio: ${ratio};`}>
       <video src={placeholderSrc} preload="metadata" autoplay loop muted playsinline controls />
@@ -38,15 +40,45 @@ const placeholderSrc = "/media/_placeholder/video-placeholder.mp4";
   video { width: 100%; border-radius: var(--radius-sm); display: block; }
   figcaption {
     margin-top: var(--s-2);
-    font-family: var(--font-sans);
+    font-family: var(--font-mono);
     font-size: var(--fs-margin);
-    line-height: var(--lh-normal);
+    line-height: var(--lh-snug);
     color: var(--ink-muted);
   }
+
+  /* Wide variant: near-full-bleed with 32px buffer on each side, caption at body-column position.
+     Shift further left by half the aside track to land on viewport center. */
+  figure.wide {
+    --bleed-w: min(100vw - 64px, 1216px);
+    --aside-offset: calc((var(--col-left) + var(--col-gutter)) / 2);
+    grid-column: 1 / -1;
+    width: var(--bleed-w);
+    margin-left: calc((100% - var(--bleed-w)) / 2 - var(--aside-offset));
+    display: grid;
+    grid-template-columns:
+      minmax(0, 1fr)
+      var(--col-left)
+      var(--col-gutter)
+      var(--col-center)
+      var(--col-gutter)
+      var(--col-right)
+      minmax(0, 1fr);
+  }
+  figure.wide > video,
+  figure.wide > .placeholder-wrap {
+    grid-column: 1 / -1;
+    width: 100%;
+    border-radius: 0;
+  }
+  figure.wide > figcaption {
+    grid-column: 4;
+    max-width: 320px;
+  }
+
   .placeholder-wrap {
     position: relative;
     width: 100%;
-    border: 1px dashed #BFB8A6;
+    border: 1px dashed #9AA8A7;
     border-radius: var(--radius-sm);
     overflow: hidden;
   }
@@ -81,5 +113,32 @@ const placeholderSrc = "/media/_placeholder/video-placeholder.mp4";
     color: var(--ink);
     max-width: 50ch;
     line-height: var(--lh-normal);
+  }
+
+  /* Tablet: 2-column grid (no TOC). Reset aside-offset since aside is hidden. */
+  @media (max-width: 1199px) {
+    figure.wide {
+      --aside-offset: 0px;
+      grid-template-columns:
+        minmax(0, 1fr)
+        var(--col-center)
+        var(--col-gutter)
+        var(--col-right)
+        minmax(0, 1fr);
+    }
+    figure.wide > figcaption {
+      grid-column: 2;
+    }
+  }
+
+  /* Mobile: single content column */
+  @media (max-width: 767px) {
+    figure.wide {
+      grid-template-columns: 0 1fr 0;
+    }
+    figure.wide > figcaption {
+      grid-column: 2;
+      max-width: 100%;
+    }
   }
 </style>
