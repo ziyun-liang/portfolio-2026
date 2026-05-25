@@ -113,6 +113,29 @@ const { entries } = Astro.props;
     font-size: var(--fs-body);
     color: var(--ink-muted);
   }
+
+  @media (max-width: 899px), (prefers-reduced-motion: reduce) {
+    .sw-anchor {
+      height: auto;
+    }
+    .sw {
+      position: static;
+      height: auto;
+      flex-direction: column;
+    }
+    .sw-image-pane {
+      aspect-ratio: 1 / 1;
+      flex: none;
+    }
+    .sw-list {
+      padding: 0;
+      overflow: visible;
+      transform: none !important;
+    }
+    .sw-row {
+      opacity: 1;
+    }
+  }
 </style>
 
 <script>
@@ -132,6 +155,16 @@ const { entries } = Astro.props;
         pre.src = real;
       }
     });
+
+    const mq = window.matchMedia("(max-width: 899px), (prefers-reduced-motion: reduce)");
+    if (mq.matches) {
+      rows.forEach((row, i) => {
+        row.addEventListener("pointerenter", () => {
+          images.forEach((img, j) => img.classList.toggle("is-visible", j === i));
+        });
+      });
+      return;
+    }
 
     let scrollActiveIndex = 0;
     let hoverIndex: number | null = null;
