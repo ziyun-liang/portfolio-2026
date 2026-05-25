@@ -149,10 +149,11 @@ const {
   .hero { margin-bottom: var(--s-8); }
   .hero:empty { display: none; }
 
-  /* Body layout: LeftNav as sticky aside, body grid for content + margin. */
+  /* Body layout: LeftNav as sticky aside, body grid for content + margin.
+     align-items defaults to stretch so .cs-aside takes the full body height,
+     giving its inner sticky LeftNav room to travel with scroll. */
   .cs-layout {
     display: flex;
-    align-items: flex-start;
     justify-content: center;
     column-gap: var(--col-gutter);
   }
