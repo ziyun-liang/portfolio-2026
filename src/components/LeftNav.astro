@@ -13,6 +13,7 @@ const { sections } = Astro.props;
 </nav>
 
 <script>
+  const nav = document.querySelector<HTMLElement>(".left-nav");
   const links = document.querySelectorAll<HTMLAnchorElement>(".left-nav a[data-section]");
   const targets: HTMLElement[] = [];
   links.forEach((a) => {
@@ -21,6 +22,7 @@ const { sections } = Astro.props;
     if (el) targets.push(el);
   });
 
+  // Active section tracking
   if (targets.length > 0) {
     const setActive = (id: string) => {
       links.forEach((a) => {
@@ -39,30 +41,104 @@ const { sections } = Astro.props;
     );
     targets.forEach((t) => obs.observe(t));
   }
+
+  // Scroll-direction-based collapse
+  if (nav) {
+    let lastY = window.scrollY;
+    let collapsed = false;
+    const COLLAPSE_AFTER = 240;
+    const DELTA = 6;
+
+    const onScroll = () => {
+      const y = window.scrollY;
+      const delta = y - lastY;
+
+      if (y < COLLAPSE_AFTER) {
+        if (collapsed) {
+          nav.classList.remove("is-collapsed");
+          collapsed = false;
+        }
+      } else if (delta > DELTA && !collapsed) {
+        nav.classList.add("is-collapsed");
+        collapsed = true;
+      } else if (delta < -DELTA && collapsed) {
+        nav.classList.remove("is-collapsed");
+        collapsed = false;
+      }
+
+      lastY = y;
+    };
+
+    let raf = 0;
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (raf) return;
+        raf = requestAnimationFrame(() => {
+          onScroll();
+          raf = 0;
+        });
+      },
+      { passive: true }
+    );
+  }
 </script>
 
 <style>
   .left-nav {
     grid-column: 1;
+    grid-row: 1 / -1;
     position: sticky;
     top: var(--s-6);
     align-self: start;
+    z-index: 5;
   }
-  .left-nav ul { display: flex; flex-direction: column; gap: var(--s-1); }
+  .left-nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-1);
+  }
+  .left-nav li {
+    overflow: hidden;
+    transition: max-height 220ms ease, opacity 200ms ease, margin 220ms ease;
+    max-height: 2em;
+    opacity: 1;
+  }
   .left-nav a {
-    display: block;
+    display: inline-block;
     font-family: var(--font-sans);
     font-size: var(--fs-margin);
     color: var(--ink-muted);
     text-decoration: none;
     line-height: var(--lh-normal);
-    padding: 4px 0;
-    border-left: 2px solid transparent;
-    padding-left: var(--s-1);
-    transition: color 150ms ease, border-color 150ms ease;
+    padding: 0 4px;
+    margin: 0 -4px;
+    background-image: linear-gradient(
+      transparent 20%,
+      var(--highlight) 20%,
+      var(--highlight) 85%,
+      transparent 85%
+    );
+    background-size: 0% 100%;
+    background-repeat: no-repeat;
+    transition: background-size 280ms ease, color 150ms ease;
   }
   .left-nav a:hover { color: var(--ink); }
-  .left-nav a.is-active { color: var(--ink); border-left-color: var(--accent); }
+  .left-nav a.is-active {
+    color: var(--ink);
+    background-size: 100% 100%;
+  }
+
+  /* Collapsed: only the active section stays visible */
+  .left-nav.is-collapsed li {
+    max-height: 0;
+    opacity: 0;
+    margin: 0;
+  }
+  .left-nav.is-collapsed li:has(a.is-active) {
+    max-height: 2em;
+    opacity: 1;
+  }
 
   @media (max-width: 1199px) {
     .left-nav { display: none; }
