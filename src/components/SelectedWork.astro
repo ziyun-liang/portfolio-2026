@@ -40,23 +40,24 @@ const { entries } = Astro.props;
 
 <style>
   .sw-anchor {
-    height: 300vh;
+    /* The wrapper exists so existing tests can locate the section. */
   }
   .sw {
-    position: sticky;
-    top: 0;
-    height: 100vh;
     width: 100vw;
     margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);
     display: flex;
-    overflow: hidden;
+    align-items: flex-start;
     background: var(--bg);
   }
 
   .sw-image-pane {
-    position: relative;
-    flex: 1 1 50%;
+    position: sticky;
+    top: 0;
+    flex: 0 0 50%;
+    width: 50%;
+    height: 100vh;
+    align-self: flex-start;
     overflow: hidden;
   }
   .sw-image-layer {
@@ -77,9 +78,6 @@ const { entries } = Astro.props;
     list-style: none;
     margin: 0;
     padding: 0;
-    overflow: hidden;
-    position: relative;
-    will-change: transform;
   }
 
   .sw-row {
@@ -127,22 +125,15 @@ const { entries } = Astro.props;
   }
 
   @media (max-width: 899px), (prefers-reduced-motion: reduce) {
-    .sw-anchor {
-      height: auto;
-    }
     .sw {
-      position: static;
-      height: auto;
       flex-direction: column;
     }
     .sw-image-pane {
+      position: static;
+      width: 100%;
+      height: auto;
       aspect-ratio: 1 / 1;
       flex: none;
-    }
-    .sw-list {
-      padding: 0;
-      overflow: visible;
-      transform: none !important;
     }
   }
 </style>
@@ -150,7 +141,6 @@ const { entries } = Astro.props;
 <script>
   function initSelectedWork(anchor: HTMLElement) {
     const section = anchor.querySelector(".sw") as HTMLElement;
-    const list = section.querySelector(".sw-list") as HTMLElement;
     const rows = Array.from(section.querySelectorAll<HTMLElement>(".sw-row"));
     const images = Array.from(section.querySelectorAll<HTMLElement>(".sw-image-layer"));
     const N = rows.length;
@@ -164,16 +154,6 @@ const { entries } = Astro.props;
         pre.src = real;
       }
     });
-
-    const mq = window.matchMedia("(max-width: 899px), (prefers-reduced-motion: reduce)");
-    if (mq.matches) {
-      rows.forEach((row, i) => {
-        row.addEventListener("pointerenter", () => {
-          images.forEach((img, j) => img.classList.toggle("is-visible", j === i));
-        });
-      });
-      return;
-    }
 
     let scrollActiveIndex = 0;
     let hoverIndex: number | null = null;
@@ -192,22 +172,33 @@ const { entries } = Astro.props;
       lastShown = i;
     }
 
+    const mq = window.matchMedia("(max-width: 899px), (prefers-reduced-motion: reduce)");
+    if (mq.matches) {
+      // Stacked layout: skip scroll-driven swap; only tap-to-swap.
+      rows.forEach((row, i) => {
+        row.addEventListener("pointerenter", () => {
+          hoverIndex = i;
+          showIndex(activeIndex());
+        });
+      });
+      return;
+    }
+
     function update() {
-      const rect = anchor.getBoundingClientRect();
-      const runway = anchor.offsetHeight - window.innerHeight;
-      const scrolled = -rect.top;
-      const progress = Math.max(0, Math.min(1, scrolled / runway));
-
-      // Translate so the bottom of the list reaches the bottom of the section
-      // at progress=1. Top rows scroll out the top; bottom rows enter from below.
-      const maxTranslate = Math.max(0, list.scrollHeight - section.offsetHeight);
-      const currentTranslate = progress * maxTranslate;
-      list.style.transform = `translateY(-${currentTranslate}px)`;
-
-      // Active row = whichever row's top is at or just past the section top
-      // (i.e. the top-most fully-visible row).
-      const rowHeight = rows[0].offsetHeight || 1;
-      scrollActiveIndex = Math.min(N - 1, Math.floor(currentTranslate / rowHeight));
+      // Active row = the highest-index row whose top has crossed the viewport
+      // top (or is right at it). Rows are in document order, so the loop short-
+      // circuits as soon as we find one whose top is still below the viewport
+      // top.
+      let active = 0;
+      for (let i = 0; i < N; i++) {
+        const top = rows[i].getBoundingClientRect().top;
+        if (top <= 0) {
+          active = i;
+        } else {
+          break;
+        }
+      }
+      scrollActiveIndex = active;
       showIndex(activeIndex());
     }
 
