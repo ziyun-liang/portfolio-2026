@@ -70,15 +70,15 @@ const variantClass = wide ? "wide" : fullBleed ? "full-bleed" : "inline";
     border-radius: 0;
   }
   figure.wide > figcaption {
-    grid-column: 4;                         /* caption sits in body column */
-    max-width: 320px;
+    grid-column: 1 / -1;                    /* caption left-aligns with the image */
   }
 
   figcaption {
     margin-top: var(--s-2);
-    font-family: var(--font-mono);
-    font-size: var(--fs-margin);
-    line-height: var(--lh-snug);
+    font-family: var(--font-body);
+    font-style: italic;
+    font-size: 14px;
+    line-height: 1.4;
     color: var(--ink-muted);
     display: flex;
     justify-content: space-between;
@@ -126,7 +126,7 @@ const variantClass = wide ? "wide" : fullBleed ? "full-bleed" : "inline";
         minmax(0, 1fr);
     }
     figure.wide > figcaption {
-      grid-column: 2;
+      grid-column: 1 / -1;
     }
   }
 
@@ -136,7 +136,7 @@ const variantClass = wide ? "wide" : fullBleed ? "full-bleed" : "inline";
       grid-template-columns: 0 1fr 0;
     }
     figure.wide > figcaption {
-      grid-column: 2;
+      grid-column: 1 / -1;
       max-width: 100%;
     }
   }
