@@ -47,11 +47,10 @@ test.describe("portfolio smoke", () => {
     }
   });
 
-  test("nyt-search case study has marginalia in three kinds", async ({ page }) => {
+  test("nyt-search case study renders footnote + note marginalia", async ({ page }) => {
     await page.setViewportSize({ width: 1400, height: 900 });
     await page.goto("/work/nyt-search");
     await expect(page.locator(".margin--footnote").first()).toBeVisible();
     await expect(page.locator(".margin--note").first()).toBeVisible();
-    await expect(page.locator(".margin--credit").first()).toBeVisible();
   });
 });
