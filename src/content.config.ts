@@ -6,9 +6,16 @@ const work = defineCollection({
   schema: z.object({
     title: z.string(),
     dek: z.string(),
-    role: z.string(),
-    year: z.string(),
-    context: z.string(),
+    myRole: z.string().default(""),
+    corePartners: z
+      .array(
+        z.object({
+          group: z.string(),
+          names: z.string(),
+        }),
+      )
+      .default([]),
+    timeframe: z.string().default(""),
     thumbnail: z.string(),       // path under /media/<slug>/
     order: z.number(),           // display order on index
   }),

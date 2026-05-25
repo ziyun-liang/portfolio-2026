@@ -2,24 +2,65 @@
 import Base from "./Base.astro";
 import LeftNav from "../components/LeftNav.astro";
 
+interface Partner {
+  group: string;
+  names: string;
+}
 interface Props {
   title: string;
   dek: string;
-  role: string;
-  year: string;
-  context: string;
+  myRole: string;
+  corePartners: Partner[];
+  timeframe: string;
   sections: { id: string; label: string }[];
   prev?: { href: string; title: string };
   next?: { href: string; title: string };
 }
-const { title, dek, role, year, context, sections, prev, next } = Astro.props;
+const {
+  title,
+  dek,
+  myRole,
+  corePartners,
+  timeframe,
+  sections,
+  prev,
+  next,
+} = Astro.props;
 ---
 <Base title={`${title} — Lindsey Liang`} description={dek}>
   <article class="cs">
-    <header class="cs-title">
-      <h1>{title}</h1>
-      <p class="dek">{dek}</p>
-      <p class="meta">{role} · {year} · {context}</p>
+    <header class="cs-hero">
+      <h1 class="cs-hero-title">{title}</h1>
+      <dl class="cs-meta">
+        {myRole && (
+          <div class="cs-meta-row">
+            <dt class="cs-meta-key cs-meta-anchor">My Role</dt>
+            <dd class="cs-meta-val">{myRole}</dd>
+          </div>
+        )}
+
+        {corePartners && corePartners.length > 0 && (
+          <div class="cs-meta-block">
+            <div class="cs-meta-row">
+              <dt class="cs-meta-key cs-meta-anchor">Core Partners</dt>
+              <dd class="cs-meta-val cs-meta-spacer" />
+            </div>
+            {corePartners.map((p) => (
+              <div class="cs-meta-row">
+                <dt class="cs-meta-key">{p.group}</dt>
+                <dd class="cs-meta-val cs-meta-name">{p.names}</dd>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {timeframe && (
+          <div class="cs-meta-row">
+            <dt class="cs-meta-key cs-meta-anchor">Timeframe</dt>
+            <dd class="cs-meta-val">{timeframe}</dd>
+          </div>
+        )}
+      </dl>
     </header>
 
     <div class="hero"><slot name="hero" /></div>
@@ -38,22 +79,69 @@ const { title, dek, role, year, context, sections, prev, next } = Astro.props;
 </Base>
 
 <style is:global>
-  .cs { max-width: var(--page-max); margin: 0 auto; padding: var(--s-12) var(--s-4); }
-  .cs-title { max-width: var(--col-center); margin-bottom: var(--s-8); }
-  .cs-title h1 { font-size: var(--fs-h1); margin-bottom: var(--s-3); }
-  .cs-title .dek {
-    font-size: var(--fs-dek);
+  .cs { max-width: var(--page-max); margin: 0 auto; padding: var(--s-12) var(--s-4); overflow-x: clip; }
+
+  /* Title hero — two-column wide layout: title on the left, metadata grid on the right. */
+  .cs-hero {
+    width: min(100vw - 64px, 1216px);
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--s-8);
+    align-items: center;
+    margin-bottom: var(--s-12);
+  }
+  .cs-hero-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(40px, 5vw, 66px);
+    line-height: 1.0;
+    letter-spacing: -0.01em;
+    margin: 0;
+    max-width: 12ch;
+  }
+
+  /* Metadata grid (right column). Each row is its own grid for tab alignment. */
+  .cs-meta {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-3);
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 17px;
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .cs-meta-block {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .cs-meta-row {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    column-gap: var(--s-3);
+  }
+  .cs-meta-key {
+    margin: 0;
+    font-weight: 400;
+    white-space: nowrap;
+  }
+  .cs-meta-key.cs-meta-anchor { font-weight: 600; }
+  .cs-meta-val {
+    margin: 0;
+    font-weight: 400;
+  }
+  .cs-meta-name {
+    font-family: var(--font-body);
     font-style: italic;
-    line-height: var(--lh-snug);
-    margin-bottom: var(--s-3);
+    font-weight: 400;
   }
-  .cs-title .meta {
-    font-family: var(--font-sans);
-    font-size: var(--fs-meta);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--ink-muted);
-  }
+  .cs-meta-spacer { min-height: 0; }
+
   .hero { margin-bottom: var(--s-8); }
   .hero:empty { display: none; }
 
@@ -61,6 +149,7 @@ const { title, dek, role, year, context, sections, prev, next } = Astro.props;
     display: grid;
     grid-template-columns: var(--col-left) var(--col-center) var(--col-right);
     column-gap: var(--col-gutter);
+    justify-content: center;
     align-items: start;
   }
   .cs-body .content { display: contents; }
@@ -90,12 +179,19 @@ const { title, dek, role, year, context, sections, prev, next } = Astro.props;
   .cs-foot a:nth-child(2) { justify-self: center; color: var(--ink-muted); }
   .cs-foot a:nth-child(3) { justify-self: end; }
 
+  /* Stack title + metadata at narrower widths. */
   @media (max-width: 1199px) {
+    .cs-hero {
+      grid-template-columns: 1fr;
+      gap: var(--s-6);
+    }
+    .cs-hero-title { max-width: none; }
     .cs-body { grid-template-columns: var(--col-center) var(--col-right); }
     .cs-body .content > * { grid-column: 1; }
     .cs-body .content > .margin { grid-column: 2; }
   }
   @media (max-width: 767px) {
+    .cs-meta-row { grid-template-columns: 110px 1fr; column-gap: var(--s-2); }
     .cs-body { grid-template-columns: 1fr; }
     .cs-body .content > * { grid-column: 1; }
     .cs-body .content > .margin {
