@@ -21,9 +21,13 @@ const { kind, n } = Astro.props;
   }
   .margin--footnote { display: grid; grid-template-columns: auto 1fr; gap: var(--s-1); }
   .margin--footnote .num {
+    font-family: var(--font-mono);
     font-variant-numeric: tabular-nums;
     font-weight: 500;
     color: var(--ink);
+    background: var(--highlight);
+    padding: 0 4px;
+    align-self: start;
   }
   .margin--note { font-style: italic; }
   .margin--credit :global(ul) { display: flex; flex-direction: column; gap: 4px; }
