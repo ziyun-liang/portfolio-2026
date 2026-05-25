@@ -2,45 +2,65 @@
 import Base from "../layouts/Base.astro";
 const lastUpdated = "May 2026";
 
-const disciplines = {
-  games: {
-    title: "Games",
+const companies = {
+  "marco-polo-learning": {
+    title: "Marco Polo Learning",
     items: [
-      { alt: "Marco Polo mobile game — gameplay screen" },
-      { alt: "Marco Polo mobile game — character design" },
-      { alt: "Wordle interstitial reference" },
+      {
+        src: "/media/about/marco-polo-learning/01.png",
+        alt: "Marco Polo Learning — mobile game gameplay screen",
+        caption: "Mobile game design — gameplay, characters, level art.",
+      },
+      {
+        src: "/media/about/marco-polo-learning/02.png",
+        alt: "Marco Polo Learning — animation storyboard / character illustration",
+        caption: "Character illustration and animation storyboards.",
+      },
+      {
+        src: "/media/about/marco-polo-learning/03.png",
+        alt: "Marco Polo Learning — investor deck / TV show concept",
+        caption: "Investor decks and TV show concepts.",
+      },
     ],
   },
-  illustrations: {
-    title: "Illustrations",
+  madwell: {
+    title: "Madwell",
     items: [
-      { alt: "Editorial illustration — set 1" },
-      { alt: "Character illustration" },
-      { alt: "Spot illustration" },
+      {
+        src: "/media/about/madwell/01.png",
+        alt: "Madwell — advertising campaign work",
+        caption: "Advertising campaign — placeholder caption.",
+      },
+      {
+        src: "/media/about/madwell/02.png",
+        alt: "Madwell — brand identity",
+        caption: "Brand identity — placeholder caption.",
+      },
+      {
+        src: "/media/about/madwell/03.png",
+        alt: "Madwell — animation / social",
+        caption: "Animated social spot — placeholder caption.",
+      },
     ],
   },
-  animation: {
-    title: "Animation",
+  kettle: {
+    title: "Kettle",
     items: [
-      { alt: "Animation storyboard — Marco Polo" },
-      { alt: "Motion graphic — agency client" },
-      { alt: "Social motion piece" },
-    ],
-  },
-  branding: {
-    title: "Branding",
-    items: [
-      { alt: "Identity system — agency client" },
-      { alt: "Logo exploration" },
-      { alt: "Brand guidelines spread" },
-    ],
-  },
-  advertising: {
-    title: "Advertising",
-    items: [
-      { alt: "Campaign — agency client" },
-      { alt: "Social ad set" },
-      { alt: "Out-of-home concept" },
+      {
+        src: "/media/about/kettle/01.png",
+        alt: "Kettle — product design",
+        caption: "Product design — placeholder caption.",
+      },
+      {
+        src: "/media/about/kettle/02.png",
+        alt: "Kettle — design system",
+        caption: "Design system — placeholder caption.",
+      },
+      {
+        src: "/media/about/kettle/03.png",
+        alt: "Kettle — visual exploration",
+        caption: "Visual exploration — placeholder caption.",
+      },
     ],
   },
 };
@@ -58,9 +78,9 @@ const disciplines = {
 
       <p>If I have a magic power, it's speed — being able to pull a clear, simple solution out of a vague idea or a chaotic conversation, and put it on a page so the room can react to it. Product design is visual problem-solving, and at its best it feels a little like driving in the dark with strong partners, figuring out where to go together.</p>
 
-      <p>I came into design through a startup. My first job was at <em>Marco Polo</em>, designing and building mobile <button class="discipline" data-discipline="games" type="button">games</button> alongside the engineers and the CEO without really knowing what I was doing — somehow the company raised $8M during that period. I wore a lot of hats: <button class="discipline" data-discipline="games" type="button">games</button>, <button class="discipline" data-discipline="illustrations" type="button">illustrations</button>, investor decks, <button class="discipline" data-discipline="animation" type="button">animation storyboards</button>, TV show concepts. It taught me to be useful in any room.</p>
+      <p>I came into design through a startup. My first job was at <button class="company" data-company="marco-polo-learning" type="button">Marco Polo Learning</button>, designing and building mobile games alongside the engineers and the CEO without really knowing what I was doing — somehow the company raised $8M during that period.{/* TODO: wrap "$8M" above in <a href="..."> when Lindsey sends the article URL */} I wore a lot of hats: games, illustrations, investor decks, animation storyboards, TV show concepts. It taught me to be useful in any room.</p>
 
-      <p>After that I worked agency-side — <button class="discipline" data-discipline="branding" type="button">branding</button>, <button class="discipline" data-discipline="advertising" type="button">advertising</button>, <button class="discipline" data-discipline="animation" type="button">animation</button>, social, product, with big and small clients. The agency era taught me what excellence looks like and built the judgment I now mostly use to critique my own work.</p>
+      <p>After that I worked agency-side, first at <button class="company" data-company="madwell" type="button">Madwell</button> and then at <button class="company" data-company="kettle" type="button">Kettle</button>. Across both, the work spanned branding, advertising, animation, social, and product, for clients large and small. The agency era taught me what excellence looks like and built the judgment I now mostly use to critique my own work.</p>
 
       <p>The last few years at the Times have been different. Bigger teams, more people, more conflict, more impact. The work is slower and the systems are bigger, and a lot of design here is advocacy as much as it is pixels.</p>
 
@@ -78,41 +98,49 @@ const disciplines = {
     <p class="updated">Last updated {lastUpdated}.</p>
   </main>
 
-  <dialog id="discipline-modal" class="discipline-modal" aria-labelledby="modal-title">
+  <dialog id="company-modal" class="company-modal" aria-labelledby="modal-title">
     <header class="modal-header">
       <h2 id="modal-title"></h2>
       <button class="modal-close" type="button" aria-label="Close">×</button>
     </header>
-    <div id="modal-grid" class="modal-grid"></div>
+    <div id="modal-stack" class="modal-stack"></div>
   </dialog>
 </Base>
 
-<script is:inline define:vars={{ disciplines }}>
-  const modal = document.getElementById("discipline-modal");
+<script is:inline define:vars={{ companies }}>
+  const modal = document.getElementById("company-modal");
   const titleEl = document.getElementById("modal-title");
-  const gridEl = document.getElementById("modal-grid");
+  const stackEl = document.getElementById("modal-stack");
   const closeBtn = modal.querySelector(".modal-close");
 
-  function renderGrid(category) {
-    const data = disciplines[category];
+  function isVideoSrc(src) {
+    return /\.(mp4|webm|mov)$/i.test(src);
+  }
+
+  function renderStack(category) {
+    const data = companies[category];
     if (!data) return;
     titleEl.textContent = data.title;
-    gridEl.innerHTML = data.items
-      .map((item, i) => {
-        const src = `/media/about/${category}/${String(i + 1).padStart(2, "0")}.png`;
-        // Render as <img>; if file is missing the img.onerror handler swaps to a placeholder.
+    stackEl.innerHTML = data.items
+      .map((item) => {
+        const media = isVideoSrc(item.src)
+          ? `<video src="${item.src}" preload="metadata" autoplay loop muted playsinline controls
+                    onerror="this.parentElement.classList.add('placeholder'); this.remove();"></video>`
+          : `<img src="${item.src}" alt="${item.alt || ""}" loading="lazy"
+                  onerror="this.parentElement.classList.add('placeholder'); this.remove();" />`;
         return `<figure class="modal-item">
-          <img src="${src}" alt="${item.alt}" loading="lazy"
-               onerror="this.parentElement.classList.add('placeholder'); this.remove();" />
-          <figcaption>${item.alt}</figcaption>
+          ${media}
+          ${item.caption ? `<figcaption>${item.caption}</figcaption>` : ""}
         </figure>`;
       })
       .join("");
+    // Reset scroll to top when content changes
+    stackEl.scrollTop = 0;
   }
 
-  document.querySelectorAll("[data-discipline]").forEach((btn) => {
+  document.querySelectorAll("[data-company]").forEach((btn) => {
     btn.addEventListener("click", () => {
-      renderGrid(btn.dataset.discipline);
+      renderStack(btn.dataset.company);
       modal.showModal();
     });
   });
@@ -136,8 +164,8 @@ const disciplines = {
   .bio p { margin-bottom: var(--s-3); }
   .bio em { font-style: italic; }
 
-  /* Clickable discipline words */
-  .discipline {
+  /* Clickable company words — same treatment as the previous discipline triggers */
+  .company {
     font: inherit;
     color: inherit;
     background: none;
@@ -151,8 +179,8 @@ const disciplines = {
     text-decoration-color: var(--ink-muted);
     transition: text-decoration-color 150ms ease, color 150ms ease;
   }
-  .discipline:hover,
-  .discipline:focus-visible {
+  .company:hover,
+  .company:focus-visible {
     text-decoration-color: var(--accent, currentColor);
     color: var(--accent, currentColor);
     outline: none;
@@ -162,26 +190,32 @@ const disciplines = {
   .contact li { font-family: var(--font-sans); font-size: var(--fs-margin); }
   .updated { font-family: var(--font-sans); font-size: var(--fs-meta); color: var(--ink-muted); margin-top: var(--s-12); }
 
-  /* Modal */
-  .discipline-modal {
+  /* Modal — sized to match case-study wide-figure pattern */
+  .company-modal {
     border: 0;
     border-radius: 8px;
     padding: 0;
-    max-width: 720px;
-    width: calc(100% - 2 * var(--s-4));
+    width: min(100vw - 64px, 1216px);
+    max-width: 1216px;
+    max-height: calc(100vh - 64px);
     background: var(--bg, #fff);
     color: var(--ink, #111);
     box-shadow: 0 16px 64px rgba(0, 0, 0, 0.18);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
   }
-  .discipline-modal::backdrop {
+  .company-modal::backdrop {
     background: rgba(0, 0, 0, 0.4);
   }
   .modal-header {
+    flex: 0 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: var(--s-3) var(--s-4);
+    padding: var(--s-3) var(--s-5);
     border-bottom: 1px solid var(--rule);
+    background: var(--bg, #fff);
   }
   .modal-header h2 {
     font-size: var(--fs-h3);
@@ -199,32 +233,35 @@ const disciplines = {
   }
   .modal-close:hover { color: var(--ink); }
 
-  .modal-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: var(--s-3);
-    padding: var(--s-4);
+  /* Vertical stack — one item per row, full-width inside modal */
+  .modal-stack {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    padding: var(--s-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-6);
   }
   .modal-item {
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: var(--s-1);
+    gap: var(--s-2);
   }
-  .modal-item img {
+  .modal-item img,
+  .modal-item video {
     width: 100%;
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
-    background: var(--rule);
-    border-radius: 4px;
+    height: auto;
     display: block;
+    border-radius: var(--radius-sm, 4px);
+    background: var(--rule);
   }
-  /* When the image fails to load, the parent gets .placeholder via onerror */
+  /* When media fails to load, the parent gets .placeholder via onerror */
   .modal-item.placeholder::before {
     content: "";
     display: block;
     width: 100%;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 16 / 9;
     background: repeating-linear-gradient(
       45deg,
       var(--rule, #eee),
@@ -232,11 +269,23 @@ const disciplines = {
       var(--bg, #fff) 8px,
       var(--bg, #fff) 16px
     );
-    border-radius: 4px;
+    border-radius: var(--radius-sm, 4px);
   }
   .modal-item figcaption {
-    font-family: var(--font-sans);
-    font-size: var(--fs-meta);
+    font-family: var(--font-mono);
+    font-size: var(--fs-margin);
+    line-height: var(--lh-snug);
     color: var(--ink-muted);
+    max-width: 60ch;
+  }
+
+  /* Mobile */
+  @media (max-width: 767px) {
+    .company-modal {
+      width: calc(100vw - 16px);
+      max-height: calc(100vh - 32px);
+    }
+    .modal-header { padding: var(--s-3) var(--s-4); }
+    .modal-stack { padding: var(--s-4); gap: var(--s-5); }
   }
 </style>
