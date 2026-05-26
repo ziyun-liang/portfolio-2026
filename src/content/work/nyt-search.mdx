@@ -62,7 +62,7 @@ NYT search shouldn't try to be Google Gemini. It should be the answer only NYT c
   caption="The editorial rubric: what an NYT search answer should be — faithfulness, voice, how contested claims get framed."
 />
 
-The longer-range bet is that search becomes an "ask" capability — an action you take wherever you are, not a destination. The hard part is figuring out *when and why* readers ask the Times specifically, and *what and how* the Times can answer at editorial standard.
+The longer-range bet is that search becomes an "ask" capability, an action you take wherever you are rather than a destination. The hard part is figuring out *when and why* readers ask the Times specifically, and *what and how* the Times can answer at editorial standard.
 
 <Figure
   wide
@@ -80,7 +80,7 @@ The longer-range bet is that search becomes an "ask" capability — an action yo
 
 ### Intent-first
 
-A central structural choice: NYT search is built around user intent, not keyword matching. Queries pass through an intent analyzer that parses possible intents and generates outputs matched to them. Working with engineers and PMs, I helped crystallize the six major intents<Fn n={2} /> we now design and build for. The long-term thesis is a multi-intent world; in the short term we ship one intent at a time, starting with **Latest News**.
+A central structural choice: NYT search is built around user intent, not keyword matching. Queries pass through an intent analyzer that parses possible intents and generates outputs matched to them. Working with engineers and PMs, I helped crystallize the six major intents<Fn n={2} /> we now design and build for. The long-term thesis is a multi-intent world. In the short term we ship one intent at a time, starting with **Latest News**.
 
 <Margin kind="footnote" n={2}>
   The six intents: Latest News, Q&A, Navigational, Topic, Recommendation, Specific Retrieval.
@@ -95,7 +95,7 @@ A central structural choice: NYT search is built around user intent, not keyword
 
 ### How I worked
 
-Through 2024 and most of 2025, my contribution was Figma — high-fidelity design and prototypes that engineers used as a spec for what to build. Starting in late 2025 I shifted to vibe coding: building real working prototypes directly, so each Friday's demo was an actual interaction, not a flat mockup. Engineers handle the backend — prompt refinement, intent analysis, orchestration; the front-end surfaces start as live prototypes I push.
+Through 2024 and most of 2025, my contribution was Figma: high-fidelity design and prototypes that engineers used as a spec for what to build. Starting in late 2025 I shifted to vibe coding, building real working prototypes directly so each Friday's demo was an actual interaction, not a flat mockup. Engineers handle the backend (prompt refinement, intent analysis, orchestration). The front-end surfaces start as live prototypes I push.
 
 <Figure
   wide
@@ -111,7 +111,7 @@ Through 2024 and most of 2025, my contribution was Figma — high-fidelity desig
   caption="Late 2025 onward: working prototypes, shipped weekly. Real interactions, not mockups."
 />
 
-Through the work I started documenting common AI design elements — small visual signals for *when*, *how*, and *on what authority* AI is acting — and shared them across the company as a starting point for discussion. The same elements now appear across NYT AI surfaces, not only in search.
+Through the work I started documenting common AI design elements: small visual signals for *when*, *how*, and *on what authority* AI is acting. I shared them across the company as a starting point for discussion. The same elements now appear across NYT AI surfaces, not only in search.
 
 <Figure
   wide
@@ -124,11 +124,11 @@ Through the work I started documenting common AI design elements — small visua
 
 ### Tools as clarity
 
-The tool I reach for depends on how clear the idea is. When the system or the idea is fuzzy, I prototype to figure things out as I build. When I have a clear visual idea, I sketch it in Figma first; locking the visual in before I build gets me to a better working prototype faster.
+The tool I reach for depends on how clear the idea is. When the system or the idea is fuzzy, I prototype to figure things out as I build. When I have a clear visual idea, I sketch it in Figma first. Locking the visual in before I build gets me to a better working prototype faster.
 
 Two examples from this work.
 
-**First — a fuzzy system.** Early on we didn't really know how the intent system would work. The team came together on a FigJam whiteboard and quickly sketched out the system as we thought through it. As a quick follow-up, we built it into a working interactive prototype — somewhere we could test different search queries, play around, and see how the system actually behaved. The prototype is what gave us shared understanding.
+**1. A fuzzy system.** Early on we didn't really know how the intent system would work. The team came together on a FigJam whiteboard and quickly sketched out the system as we thought through it. As a quick follow-up, we built it into a working interactive prototype, a place where we could test different search queries, play around, and see how the system actually behaved. The prototype is what gave us shared understanding.
 
 <Figure
   wide
@@ -144,7 +144,7 @@ Two examples from this work.
   caption="The system, rebuilt as an interactive prototype."
 />
 
-**Second — clear visual ideas.** Once I had concrete ideas to push on — a timeline answer, a comparison card, a related-questions panel — I sketched each output component in Figma first. About 10–20 sketches, each testing a different theory of what AI search at NYT could be. The ones that held up I built into prototypes. None shipped as designed. All shaped what we eventually built.
+**2. Clear visual ideas.** When I had concrete ideas about what each intent-based output should look like, I sketched them clearly and quickly in Figma. None shipped as designed. All shaped what we eventually built.
 
 <Figure
   wide
@@ -155,11 +155,11 @@ Two examples from this work.
 
 ### The last 10% push
 
-With the structure of the answer card decided, the work that mattered most was the final layer of polish — the moments where the gap between a thoughtful experience and a generic one is small but felt.
+With the structure of the answer card decided, the work that mattered most was the final layer of polish, the moments where the gap between a thoughtful experience and a generic one is small but felt.
 
-Two examples — one in motion, one in visual.
+Two examples, one in motion and one in visual.
 
-**Motion — pushed in code.** Loading states, the chain-of-thought reveal, the failure mode — these are timing problems, not layout problems. I built motion directly in code; the final pixel pushing happened in real CSS against real content.
+**Motion: pushed in code.** Loading states, the chain-of-thought reveal, the failure mode. These are timing problems, not layout problems. I built motion directly in code, with the final pixel pushing happening in real CSS against real content.
 
 <Video
   wide
@@ -168,10 +168,10 @@ Two examples — one in motion, one in visual.
   caption="Motion in code. Query → loading → chain-of-thought reveal → answer card."
 />
 
-**Visual — sketched in Figma, checked in code.** Most of the visual refinement happened in Figma: sketching alternatives, pushing pixels, comparing variants. Code came in at the end as a sanity check against real content. The example I keep coming back to is how we marked AI-generated content inside the answer card. Earlier versions used a subtle sparkle icon and italic *"AI summary"* caption — readable, but easy to miss. The label kept losing the visual hierarchy fight against the editorial copy itself. We refined: stronger typographic label, slightly more visual weight, an explicit disclaimer one tap away. Same intent, different trust signal.
+**Visual: sketched in Figma, checked in code.** Most of the visual refinement happened in Figma: sketching alternatives, pushing pixels, comparing variants. Code came in at the end as a sanity check against real content. The example I keep coming back to is how we marked AI-generated content inside the answer card. Earlier versions used a subtle sparkle icon and italic *"AI summary"* caption, readable but easy to miss. The label kept losing the visual hierarchy fight against the editorial copy itself. We refined: stronger typographic label, slightly more visual weight, an explicit disclaimer one tap away. Same intent, different trust signal.
 
 <Margin kind="note">
-  The first 90% — where the AI summary sits, what it contains, how citations work — felt like the heavy lift. The last 10% — what the label looks like — shifted the experience from feeling LLM-generic to feeling NYT.
+  The first 90% (where the AI summary sits, what it contains, how citations work) felt like the heavy lift. The last 10%, what the label looks like, shifted the experience from feeling LLM-generic to feeling NYT.
 </Margin>
 
 <Figure
