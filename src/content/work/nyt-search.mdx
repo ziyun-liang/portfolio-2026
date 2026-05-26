@@ -15,6 +15,7 @@ import Margin from "../../components/Margin.astro";
 import Figure from "../../components/Figure.astro";
 import Video from "../../components/Video.astro";
 import Fn from "../../components/Fn.astro";
+import Quote from "../../components/Quote.astro";
 
 ## Context
 
@@ -39,28 +40,52 @@ In January 2026 NYT formalized the work as **NAPP** — New AI Products and Plat
 
 ## Approach
 
-**The thesis.** AI search engines like Google Gemini are useful — fast, informative, broadly capable. What NYT can add is a different *kind* of answer. NYT has its own editorial standards: how summaries are written, how contested questions are framed, when to surface visual evidence instead of a flat yes/no. A line from user research stuck with me: someone said NYT's AI summary felt like *"show me the answer,"* while Gemini felt like *"tell me the answer."* That distinction — show vs. tell — captures the opportunity. Built on NYT reporting, AI search can foreground evidence rather than flatten it.
+### The thesis
+
+NYT search shouldn't try to be Google Gemini. It should be the answer only NYT can give — grounded in our reporting, with editorial standards baked into how it's framed: how summaries are written, how contested questions are presented, when to surface visual evidence instead of a flat yes/no.
+
+<Quote cite="from user research">
+  NYT's AI answer felt like "show me the answer." Gemini felt like "tell me the answer."
+</Quote>
+
+That distinction — show vs. tell — is the opportunity. Built on NYT reporting, AI search can foreground evidence rather than flatten it.
+
+<Figure
+  wide
+  placeholder
+  alt="Show vs. tell — a side-by-side visual contrasting NYT's evidence-forward answer style with the generic 'tell' style of other AI search engines."
+  caption="Show vs. tell — the distinction that defines the bet."
+/>
 
 <Figure
   wide
   src="/media/nyt-search/summary-standards.png"
   alt="NYT summary standards — annotated prompt excerpts (faithfulness, voice, framing of contested claims) shown alongside an example AI-generated summary that follows those rules."
-  caption="What 'editorial standard' looks like inside the prompt: faithfulness, voice, how contested claims get framed."
+  caption="The editorial rubric: what an NYT search answer should be — faithfulness, voice, how contested claims get framed."
 />
 
 The longer-range bet is that search becomes an "ask" capability — an action you take wherever you are, not a destination. The hard part is figuring out *when and why* readers ask the Times specifically, and *what and how* the Times can answer at editorial standard.
 
 <Figure
   wide
-  src="/media/nyt-search/search-as-ask-vision.png"
-  alt="Vision diagram of search-as-ask — readers triggering an NYT 'ask' from many surfaces (article page, home, podcast, email) and getting answers shaped to the moment."
-  caption="The longer-range bet: search as an action you take wherever you are."
+  placeholder
+  alt="Search-as-ask user journey — a reader's path from a question to an NYT-grounded answer across surfaces."
+  caption="The user journey for ask: question in, NYT-grounded answer out."
 />
 
-**Intent-first.** A central structural choice: NYT search is built around user intent, not keyword matching. Queries pass through an intent analyzer that parses possible intents and generates outputs matched to them. Working with engineers and PMs, I helped crystallize the six major intents<Fn n={2} /> we now design and build for. The long-term thesis is a multi-intent world; in the short term we ship one intent at a time, starting with **Latest News**.
+<Figure
+  wide
+  placeholder
+  alt="Various entry points for the Ask capability — article page, home, podcast, email, and other NYT surfaces."
+  caption="Where ask lives: many entry points across NYT surfaces."
+/>
+
+### Intent-first
+
+A central structural choice: NYT search is built around user intent, not keyword matching. Queries pass through an intent analyzer that parses possible intents and generates outputs matched to them. Working with engineers and PMs, I helped crystallize the six major intents<Fn n={2} /> we now design and build for. The long-term thesis is a multi-intent world; in the short term we ship one intent at a time, starting with **Latest News**.
 
 <Margin kind="footnote" n={2}>
-  The six intents: **Latest News**, **Q&A**, **Navigational**, **Topic**, **Recommendation**, **Specific Retrieval**.
+  The six intents: Latest News, Q&A, Navigational, Topic, Recommendation, Specific Retrieval.
 </Margin>
 
 <Video
@@ -70,7 +95,9 @@ The longer-range bet is that search becomes an "ask" capability — an action yo
   caption="The intent map, made interactive. Query in, parsed intent, output shaped to it."
 />
 
-**How I worked.** Through 2024 and most of 2025, my contribution was Figma — high-fidelity design and prototypes that engineers used as a spec for what to build. Starting in late 2025 I shifted to vibe coding: building real working prototypes directly, so each Friday's demo was an actual interaction, not a flat mockup. Engineers handle the backend — prompt refinement, intent analysis, orchestration; the front-end surfaces start as live prototypes I push.
+### How I worked
+
+Through 2024 and most of 2025, my contribution was Figma — high-fidelity design and prototypes that engineers used as a spec for what to build. Starting in late 2025 I shifted to vibe coding: building real working prototypes directly, so each Friday's demo was an actual interaction, not a flat mockup. Engineers handle the backend — prompt refinement, intent analysis, orchestration; the front-end surfaces start as live prototypes I push.
 
 <Figure
   wide
@@ -79,10 +106,10 @@ The longer-range bet is that search becomes an "ask" capability — an action yo
   caption="2024: Figma as the spec. High-fidelity frames engineers built against."
 />
 
-<Figure
+<Video
   wide
-  placeholder
-  alt="Late 2025 onward — screenshots of working coded prototypes shipped each Friday, real interactions running in the browser."
+  src="/media/nyt-search/content-card-system.mp4"
+  alt="Late 2025 onward — working coded prototypes of the content card system, shipped weekly. Real interactions running in the browser."
   caption="Late 2025 onward: working prototypes, shipped weekly. Real interactions, not mockups."
 />
 
@@ -90,19 +117,7 @@ The longer-range bet is that search becomes an "ask" capability — an action yo
   The team works in four-week cycles. Daily standups across eng, newsroom, design, and PM. Wednesday cross-team check-ins. Friday demos with working prototypes. The bar isn't polish — it's that something has to actually run.
 </Margin>
 
-**Principles.** Two rules shape every AI output we ship:
-
-1. **Sourced from NYT reporting.** Every output starts from NYT articles. Not the open web.
-2. **Delivered as content cards.** AI surfaces are multi-modal — text, video, audio, interactive — not text walls. Latest News started with text; other intents will pull in other modalities.
-
-<Video
-  wide
-  src="/media/nyt-search/content-card-system.mp4"
-  alt="Content card system — a family of card types (text recap, timeline, comparison, audio, video, interactive) shown together as a visual vocabulary."
-  caption="The content card system. One vocabulary, many shapes — text, timeline, comparison, audio, video, interactive."
-/>
-
-Alongside those rules, design produced a small visual vocabulary that signals when, how, and on what authority AI is acting. The same elements appear across NYT AI surfaces, not only in search.
+Through the work I started documenting common AI design elements — small visual signals for *when*, *how*, and *on what authority* AI is acting — and shared them across the company as a starting point for discussion. The same elements now appear across NYT AI surfaces, not only in search.
 
 <Figure
   wide
@@ -126,6 +141,13 @@ Two examples from this work.
   caption="The system on a whiteboard. Built to be reacted to."
 />
 
+<Video
+  wide
+  placeholder
+  alt="Interactive intent prototype — the system from the whiteboard rebuilt as a live working interaction in the browser."
+  caption="The system, rebuilt as an interactive prototype."
+/>
+
 **Specific ideas — Figma.** Once I had concrete ideas to push on — a timeline answer, a comparison card, a related-questions panel — sketching in Figma was faster. About 10–20 sketches, each testing a different theory of what AI search at NYT could be. None shipped as designed. All shaped what we eventually built.
 
 <Figure
@@ -135,22 +157,13 @@ Two examples from this work.
   caption="A subset of the early concept work."
 />
 
-**Building: prototyping toward shippable.** When NAPP formed, the first intent we shipped for was **Latest News** — the most frequent reader query type, and a good place to learn the pipeline before generalizing. The answer card pulls a synthesized recap with editorial voice, an excerpt drawn directly from a current report, and a path to deeper coverage. The card sits at the top of results when intent detection has high confidence; results-first when it doesn't.<Fn n={3} />
+### The last 10% push
 
-<Margin kind="footnote" n={3}>
-  Intent detection confidence thresholds were tuned over months. Placement above or below results is a query-by-query call.
-</Margin>
+With the structure of the answer card decided, the work that mattered most was the final layer of polish — the moments where the gap between a thoughtful experience and a generic one is small but felt.
 
-<Figure
-  wide
-  placeholder
-  alt="The shipping form of the Latest News answer card — synthesized recap, editorial excerpt, path to deeper coverage."
-  caption="The shipping form of the Latest News answer card."
-/>
+Two examples — one in motion, one in visual.
 
-**The last 10% push.** With the structure of the answer card decided, the work that mattered most was the final layer of polish — the moments where the gap between a thoughtful experience and a generic one is small but felt.
-
-The first was motion. Loading states, the chain-of-thought reveal, the failure mode — these are timing problems, not layout problems. I built motion directly in code; the final pixel pushing happened in real CSS against real content.
+**Motion — pushed in code.** Loading states, the chain-of-thought reveal, the failure mode — these are timing problems, not layout problems. I built motion directly in code; the final pixel pushing happened in real CSS against real content.
 
 <Video
   wide
@@ -159,7 +172,7 @@ The first was motion. Loading states, the chain-of-thought reveal, the failure m
   caption="Motion in code. Query → loading → chain-of-thought reveal → answer card."
 />
 
-The second was AI labeling — how we marked AI-generated content inside the answer card. Earlier versions used a subtle sparkle icon and italic *"AI summary"* caption — readable, but easy to miss. The label kept losing the visual hierarchy fight against the editorial copy itself. We refined: stronger typographic label, slightly more visual weight, an explicit disclaimer one tap away. Same intent, different trust signal.
+**Visual — sketched in Figma, checked in code.** Most of the visual refinement happened in Figma: sketching alternatives, pushing pixels, comparing variants. Code came in at the end as a sanity check against real content. The example I keep coming back to is how we marked AI-generated content inside the answer card. Earlier versions used a subtle sparkle icon and italic *"AI summary"* caption — readable, but easy to miss. The label kept losing the visual hierarchy fight against the editorial copy itself. We refined: stronger typographic label, slightly more visual weight, an explicit disclaimer one tap away. Same intent, different trust signal.
 
 <Margin kind="note">
   The first 90% — where the AI summary sits, what it contains, how citations work — felt like the heavy lift. The last 10% — what the label looks like — shifted the experience from feeling LLM-generic to feeling NYT.
