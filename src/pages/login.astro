@@ -1,0 +1,80 @@
+---
+import Base from "../layouts/Base.astro";
+
+const url = new URL(Astro.request.url);
+const next = url.searchParams.get("next") ?? "/";
+const error = url.searchParams.get("error");
+---
+<Base title="Lindsey Liang — Designer">
+  <main class="login">
+    <form method="POST" action="/api/auth" class="login-form">
+      <input type="hidden" name="next" value={next} />
+      <label class="login-label" for="password">Password</label>
+      <input
+        id="password"
+        type="password"
+        name="password"
+        autocomplete="current-password"
+        autofocus
+        required
+        class="login-input"
+      />
+      <button type="submit" class="login-button">Enter</button>
+      {error && <p class="login-error">Wrong password.</p>}
+    </form>
+  </main>
+</Base>
+
+<style>
+  .login {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--s-12) var(--s-4);
+  }
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-2);
+    width: min(100%, 320px);
+  }
+  .login-label {
+    font-family: var(--font-display);
+    font-size: 14px;
+    color: var(--ink);
+  }
+  .login-input {
+    font-family: var(--font-display);
+    font-size: 16px;
+    padding: 10px 12px;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: var(--ink);
+  }
+  .login-input:focus {
+    outline: 2px solid var(--ink);
+    outline-offset: 1px;
+    border-color: transparent;
+  }
+  .login-button {
+    font-family: var(--font-display);
+    font-size: 14px;
+    padding: 10px 12px;
+    border: 1px solid var(--ink);
+    border-radius: var(--radius-sm);
+    background: var(--ink);
+    color: var(--bg);
+    cursor: pointer;
+  }
+  .login-button:hover {
+    opacity: 0.92;
+  }
+  .login-error {
+    font-family: var(--font-display);
+    font-size: 14px;
+    color: var(--accent-coral);
+    margin: 0;
+  }
+</style>

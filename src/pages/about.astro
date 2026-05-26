@@ -3,32 +3,24 @@ import Base from "../layouts/Base.astro";
 ---
 <Base title="About — Lindsey Liang">
   <main class="about">
-    <h2 class="section-label">About</h2>
-
     <figure class="about-cover">
       <img src="/media/about/portrait.png" alt="Lindsey Liang portrait" />
     </figure>
 
     <section class="bio">
-      <p>I'm a product designer. Right now I'm at The New York Times, where I work across advertising, AI-powered search, and editorial summarization — much of what I've shipped lives in the case studies on this site.</p>
+      <p>I find myself useful in any room because I've been in many kinds. I started at a startup, <a href="https://marcopoloworldschool.com/" target="_blank" rel="noopener noreferrer"><em>MarcoPolo Learning</em><span class="ext-arrow" aria-hidden="true">↗</span></a>, wearing every hat: designing and building mobile games, illustrations, animation storyboards, investor decks, TV show concepts. Then agency-side at <em>Madwell</em> and <a href="https://www.wearekettle.com/" target="_blank" rel="noopener noreferrer"><em>Kettle</em><span class="ext-arrow" aria-hidden="true">↗</span></a>, where I built craft and speed and a sense of what excellence looks like. That's the judgment I mostly use now to critique work. Now at NYT, the teams are bigger, the systems heavier, and the work calls for patience, resilience, and communication as much as design itself.</p>
 
-      <p>What I value in design is clarity, and craft, and the small moments of delight that simple, consistent design can hold. I enjoy the process. The ideal day for me is one where, after each conversation, brainstorm, or meeting, the idea is sharper than it was before we walked in. That's the bar I set for myself when I'm in the room.</p>
-
-      <p>If I have a magic power, it's speed — being able to pull a clear, simple solution out of a vague idea or a chaotic conversation, and put it on a page so the room can react to it. Product design is visual problem-solving, and at its best it feels a little like driving in the dark with strong partners, figuring out where to go together.</p>
-
-      <p>I came into design through a startup. My first job was at <em>Marco Polo Learning</em>, designing and building mobile games alongside the engineers and the CEO without really knowing what I was doing — somehow the company raised $8M during that period.{/* TODO: wrap "$8M" above in <a href="..."> when Lindsey sends the article URL */} I wore a lot of hats: games, illustrations, investor decks, animation storyboards, TV show concepts. It taught me to be useful in any room.</p>
-
-      <p>After that I worked agency-side, first at <em>Madwell</em> and then at <em>Kettle</em>. Across both, the work spanned branding, advertising, animation, social, and product, for clients large and small. The agency era taught me what excellence looks like and built the judgment I now mostly use to critique my own work.</p>
-
-      <p>The last few years at the Times have been different. Bigger teams, more people, more conflict, more impact. The work is slower and the systems are bigger, and a lot of design here is advocacy as much as it is pixels.</p>
-
-      <p>Inside that, a lot of the time I feel like a one-person shop. I meet the colleagues who want to build something, dive in with them, invest the craft and skills I bring, and enjoy the process alongside them. Most of what I've made lately is on this site.</p>
+      <p>Good design, to me, is clarity and high craft with a memorable touch. What I'm looking for is an ambitious idea and a group of strong partners willing to drive in the dark together, figuring out where to go and being honest with each other along the way.</p>
     </section>
 
     <section class="contact">
       <h3>Contact</h3>
       <ul>
-        <li><a href="mailto:ziyunliang522@gmail.com">ziyunliang522@gmail.com</a></li>
+        <li>
+          <a href="mailto:ziyunliang522@gmail.com" target="_blank" rel="noopener noreferrer">
+            ziyunliang522@gmail.com<span class="ext-arrow" aria-hidden="true">↗</span>
+          </a>
+        </li>
         <li>
           <a href="https://www.linkedin.com/in/lindsey-ziyun-liang-a6333884/" target="_blank" rel="noopener">
             LinkedIn<span class="ext-arrow" aria-hidden="true">↗</span>
@@ -62,6 +54,10 @@ import Base from "../layouts/Base.astro";
 
   .bio p { margin-bottom: var(--s-3); }
   .bio em { font-style: italic; }
+  .bio a {
+    text-decoration: none;
+    color: var(--ink);
+  }
 
   .contact {
     margin-top: var(--s-8);
@@ -76,8 +72,12 @@ import Base from "../layouts/Base.astro";
     gap: var(--s-1);
   }
   .contact li {
-    font-family: var(--font-sans);
-    font-size: var(--fs-margin);
+    font-family: var(--font-display);
+    font-size: 15px;
+  }
+  .contact a {
+    text-decoration: none;
+    color: var(--ink);
   }
   .ext-arrow {
     font-size: 0.85em;

@@ -1,11 +1,11 @@
 ---
 title: "AI Summary at The Times"
-dek: "A capability that takes many shapes — text, audio, email, article overview — across NYT's brands and surfaces."
+dek: "Designing AI summary as a visual, interactive layer that draws readers into NYT's reporting."
 myRole: "Lead Product Designer"
 corePartners:
   - { group: "Editorial", names: "Rubina Fillion" }
   - { group: "Engineer",  names: "Angela Dai" }
-timeframe: "2026"
+timeframe: "March 2026 – Now"
 thumbnail: "/media/summary/cover.png"
 order: 2
 ---
@@ -17,89 +17,40 @@ import Fn from "../../components/Fn.astro";
 
 ## Context
 
-In March 2026, two months into my full-time NAPP role, an editor I'd been working with on Search asked if I could help with something different. He was leading a summary workstream inside the Newsroom AI Initiative team — a separate group from NAPP, sitting inside the newsroom and focused on AI tools for reporters and editors. They wanted help thinking about how AI-generated summaries should appear to readers.
-
-<Margin kind="credit">
-  - **AI Initiative team** — Editorial leadership, prompt shaping
-  - **Brand standard team** — Voice and tone feedback
-</Margin>
+In March 2026, two months into my full-time NAPP role, an editor I'd been working with on Search asked if I could help with something different. He was leading a summary workstream inside the [Newsroom AI Initiative team](https://www.nytco.com/press/introducing-the-a-i-initiatives-team/) — a separate group from NAPP, sitting inside the newsroom and focused on AI tools for reporters and editors. They wanted help thinking about how AI-generated summaries should appear to readers.
 
 ## Approach
 
-**The working thesis.** Most AI summaries on the market are text — natural language, quick, generated on demand. The working theory at NYT is that summary here should be different: not a replacement for the human report, but an *additive* layer. Engaging, often visual, often interactive, in support of the broader newsroom move toward multimodal storytelling. The point isn't to compress the story so a reader can skip it; the hope is to give them a useful entry, a satisfying angle, or a way back into reporting they wouldn't otherwise approach. None of this is settled — these are the differences we currently think are worth starting from.
-
-<Margin kind="note">
-  A market summary asks: how do I get the answer fast? The version we're sketching tries to ask: how do I make the journalism more reachable?
-</Margin>
+Most AI summaries on the market are text-based and quick, optimized to save the reader time. NYT's bet runs the other way: summary as an *additive* layer, visual and interactive, designed to pull readers *into* the reporting rather than past it.
 
 <Figure
   wide
-  placeholder
-  alt="Industry pattern (text-first AI summary, generated on demand) on the left; NYT bet (additive, visual, interactive — a story-style card or richer treatment) on the right"
-  caption="Two postures, side by side: the industry default versus the bet NYT is making."
+  src="/media/summary/industry-vs-nyt-bet.png"
+  alt="A market audit of AI summary products: outputs from competing tools shown side by side, every one rendered as plain text"
+  caption="An audit of the field: across products today, AI summaries render as text."
 />
-
-**Open questions.** Three sit at the center.
-
-*How do we hold an editorial standard at AI speed?* We want to match the market's pace of building and testing. The editorial POV that defines what "good" means develops more slowly.
-
-*Where do humans loop into the process?* Editors today write and shape stories. With AI-generated outputs, the role expands toward review and approval — and which moments need a human, in what shape, is the question.
-
-*Whose voice is an AI summary?* Editorial's? Each product's — Cooking, the Athletic, Wirecutter each already speaking in their own voice? Or its own thing, distinct from any of them?
-
-We have hypotheses on each. No definite answer yet.
 
 ## Exploration
 
-**Where it started.** The work began with one article and an internal tool where editors could prompt for summaries in different styles — a paragraph, bullet points, a longer recap. The first thing that resonated, in sketches, was a different artifact entirely: a full-screen, Instagram-story-style summary card.
+The quickest way to figure out what "additive, visual, interactive" actually meant for the Times was to sketch. The internal tool produced text; the design question was how that text should appear to readers. I lined up three directions: an inline one-sentence summary, an inline bullet breakdown, and a full-screen story-card I sketched as the alternative.
 
 <Figure
   wide
   src="/media/summary/internal-tool-styles.png"
-  alt="Internal tool output: same article rendered as a paragraph, a bullet list, and a longer recap — the simple summary variants editors could prompt for"
-  caption="The starting point: same article, three simple summary styles produced through the internal editor tool."
+  alt="The same NYT article shown three ways: an inline A.I. Summary panel, an inline Key Takeaways bullet panel, and a full-screen Article Overview story-card"
+  caption="Three reader-facing summary directions on a single article: a one-sentence summary, a bullet breakdown, a full-screen story-card."
 />
+
+The story-card was the one that resonated. Building out the fuller experience meant working with an editor to shape a five-slide narrative arc. The card had to carry the tangible and informational pieces (a number, a quote, an image) that anchor a story, with a final slide that returns the reader to the reporting.
 
 <Figure
   wide
   src="/media/summary/story-card-first-sketch.png"
-  alt="Full-screen Instagram-story-style summary card — the first sketch direction that resonated"
-  caption="The first sketch direction that resonated: a full-screen, story-style card."
+  alt="Five-slide story-card: a tap-forward narrative built around an NYT article, with a hook, anchoring beats (number, quote, image), and a final slide that returns the reader to the reporting"
+  caption="The same story, told as a five-slide tap-through."
 />
 
-**Why zoom in on one card.** Not because it was the right answer — that hasn't been decided. It was the artifact concrete enough to mock up, share with the newsroom, and react to. Most of what landed in the current direction came through reactions to this card, not through system thinking on its own.
-
-**The format, and why this format.** The card borrows a familiar pattern. Stories on Instagram, Snap, TikTok — readers already know how to read a tap-forward unit on a phone. NYT is producing more and more vertical video and image work, and a full-screen card sits naturally next to that output. It's visual-forward in a way a paragraph of text isn't, additive rather than reductive, and shareable on its own — meaning a single summary can move across surfaces without being rewritten.
-
-What the format borrows from social, it had to translate to NYT. A lot of design time went into the small signals that make a card recognizable as the Times when it lands in a feed somewhere else — the masthead bar, the typographic system, the way photography is treated, byline and attribution placement. When a reader shares a frame to a friend, the friend should know at a glance that this is NYT journalism, not generic content.
-
-<Margin kind="note">
-  A summary is only useful if it travels. A bullet list lives on the article page that produced it; a story-style card can be reposted, embedded in a digest, set as the lead in a brand newsletter.
-</Margin>
-
-**Sketches → comps → prototype.** I worked the card across a range of directions — from very templatized (lock the frame structure, easy for editors, ships at scale) to more editorial-looking treatments where the card flexes closer to a piece of original visual journalism. Sketches also had to account for content realities: a low-image article, a piece without a strong pull-quote, a fast-news brief versus a longform investigation. Each needed a different default treatment so the card didn't fall back on a missing element.
-
-Comps locked the visual system. A working prototype made the tap-through legible — you could feel the rhythm, the way one card sets up the next, the way the last card brings you back to reporting.
-
-<Figure
-  wide
-  src="/media/summary/card-directions-range-1.png"
-  alt="Design spectrum: four levels of card direction from systematic / AI-templated (Minimal utility, Elevated template) to expressive / editorial (Editorial light, Full editorial), with example NYT summary card mockups at each level"
-/>
-
-<Figure
-  wide
-  src="/media/summary/card-directions-range-2.png"
-  alt="Design variables: typography, image styling, no-image treatment, and layout structure choices that distinguish the four spectrum levels"
-  caption="A range of directions, taken in two passes — the spectrum at the top, the variables underneath."
-/>
-
-<Figure
-  wide
-  src="/media/summary/nyt-identity-comps.png"
-  alt="Comps showing NYT visual identity translated into the story format — masthead bar, typography, photo treatment"
-  caption="The translation work: masthead bar, typography, photo treatment, attribution — so a shared frame still reads as NYT."
-/>
+Once a static design feels decent, I'd like to move into prototyping as soon as possible, so the experience feels real instead of imagined. A static frame couldn't answer the questions tap-forward poses about rhythm, entry, and the return to the reporting.
 
 <Video
   wide
@@ -107,42 +58,60 @@ Comps locked the visual system. A working prototype made the tap-through legible
   caption="Working prototype: the tap-through rhythm, and the last frame's return path to the full article."
 />
 
-**What it unlocked in the room.** To be honest about the signal: this isn't a *go ahead, let's build it*. The prototype moved the newsroom from abstract interest to concrete use cases, and pulled the conversation about productionizing it — bringing the workflow into Scoop, building the editor approval surface — into more serious territory.
+<Margin kind="note">
+  The prototype turned abstract interest into concrete use cases, and productionizing the work became real conversation in the newsroom.
+</Margin>
 
-The implication I find most interesting is what this would mean for editorial work. An editor's job has been to write and shape the story; here, they may also be reviewing AI-generated summary variants and approving what goes out. The card is what made that shift concrete enough for the room to start picturing.
+With the basic experience working, I pushed harder on the design itself, exploring a wider range of directions: from systematic and templatized (lock the frame, ship at scale) to expressive and editorial (the card flexes closer to original visual journalism).
 
-**Zooming back out.** The card stayed in front of me, but the more I worked on it, the bigger the surrounding question got. Article summary was one application. The same primitives could power a "catch me up" surface, a home-tab digest, a multi-article briefing, a multi-source synthesis — and not just in text. The expansion wasn't only mine — leadership conversations and work-shares I sat in on were already gesturing at the same shape. I spent the time sketching out what summary as a *capability* could look like across NYT.
+<Figure
+  wide
+  src="/media/summary/card-directions-range-1.png"
+  alt="Design spectrum: four levels of card direction from systematic and templated (Minimal utility, Elevated template) to expressive and editorial (Editorial light, Full editorial), with example NYT summary card mockups at each level"
+/>
+
+<Figure
+  wide
+  src="/media/summary/card-directions-range-2.png"
+  alt="Design variables: typography, image styling, no-image treatment, and layout structure choices that distinguish the four spectrum levels"
+  caption="Two layers of exploration: the spectrum across the top, the variables shaping each level beneath."
+/>
+
+The other constraint was NYT visual identity. The card borrows a familiar tap-forward pattern from Instagram, Snap, TikTok; the small signals that make a frame recognizably NYT (masthead, typography, photo treatment, byline) had to be designed in, so a shared frame still reads as NYT, not generic content.
+
+<Figure
+  wide
+  src="/media/summary/nyt-identity-comps.png"
+  alt="Comps showing NYT visual identity translated into the story-card format: masthead, typography, photo treatment, attribution"
+  caption="The translation work: masthead, typography, photo treatment, attribution, so a shared frame still reads as NYT."
+/>
+
+Article summary is one application of the same primitives. The same idea could power a "catch me up" surface, a home-tab digest, a multi-article briefing, a multi-source synthesis. The expansion wasn't only mine; leadership conversations and work-shares I sat in on were already pointing at the same shape. I sketched what summary as a *capability* could look like across NYT, using The Athletic as the working example.
 
 <Figure
   wide
   src="/media/summary/summary-as-capability.png"
-  alt="Sketch of summary as a capability across NYT surfaces — article tap, home-tab digest, multi-article briefing, multi-source synthesis"
-  caption="Summary as a capability: one set of primitives, many surfaces — article tap, digest, briefing, synthesis."
+  alt="Summary as a capability, sketched on The Athletic: the same primitives feeding multiple entry points (article tap, home-tab modules, lock-screen notifications), each producing a tap-forward sequence shaped to the content"
+  caption="Summary as a capability, sketched on The Athletic: one set of primitives, multiple entry points (article tap, home-tab modules, lock-screen notifications), each producing a tap-forward sequence."
 />
 
-The shape I've been sketching<Fn n={1} /> uses Scoop — NYT's internal publishing CMS — as the foundation. The idea: for any piece of journalism, an editor in Scoop can produce up to three base summary types — a paragraph, a bullet or multi-slide breakdown, and a richer one organized around evidence (quotes, numbers, charts, video). Each surface that wants to *show* a summary picks the base it needs and applies its own prompt at request time, shaping the output to the moment. An article-page "summarize this" tap, for example, would draw from the bullet base and produce a full-screen, Instagram-story-style card — because the reader's intent at that moment is *get the gist*, not leave the article behind.
-
-<Margin kind="footnote" n={1}>
-  This is still a sketch, not a shipped architecture. Leadership commitment is light; the shape is meant to invite review, not to declare a direction.
-</Margin>
+The shape I've been sketching uses Scoop, NYT's CMS, as the foundation. An editor in Scoop produces up to three base summary types per article: a paragraph, a bullet or multi-slide breakdown, and a richer one organized around evidence. Each surface picks the base it needs and applies its own prompt at request time. The implication for editorial work is real: editors review AI-generated variants and approve what goes out, alongside the older work of writing and shaping the story.
 
 <Figure
   wide
   src="/media/summary/architecture-diagram.png"
-  alt="Summary system sketch: Scoop produces 3 base summary types per article; each consumer surface applies its own prompt at request time"
-  caption="The system as I currently sketch it: Scoop bases at the bottom, surface-specific prompts on top. Still exploratory."
+  alt="Sketch of where the AI summary editor surface lives inside Scoop, NYT's CMS: a new module in the article editor where editors review and approve AI-generated summary variants before they go out"
+  caption="The editor review surface, sketched into Scoop: where AI-generated summaries get vetted and approved before they go out."
 />
 
 ## Outcome
 
-This section is harder to write than most. Summary work is exploratory, and a lot of what happens to it next is out of my hands. The clearest thing I can say is that a design now exists where before there wasn't one — leadership has the system sketch, the card, and the prototype, and what they do with it is past my role. The future the work is pointing at, if it gets there: AI summary moving from sketches into a committed workstream; Scoop gaining an editor surface for reviewing AI-generated summary variants; reader-facing products surfacing multiple summary moments — article tap, home tab digest, multi-source briefing — each drawing from a shared base.
-
-<Margin kind="note">
-  Most portfolio outcomes are written as finish lines. The work I've found most valuable hasn't always had one — and being honest about that is part of doing it well.
-</Margin>
+Design makes the abstract explicit. The summary work has been discussed more and more across teams: people share prototype links, the work has come up in meetings, conversations have sparked from it. The Athletic product team reached out to discuss the project further. I'm hoping they partner with NAPP to build it for H2.
 
 ## Reflection
 
-**Design as making the invisible visible.** The thing I'm taking forward from this work is a sharper sense of what design is for. A system diagram describes a possible future; a card you can swipe through *is* that future, in miniature, a thing the room can hold and react to. The diagram needs the card to mean anything to anyone. That's the move I most want to keep — using design to pull something into existence so it can be touched, edited, refused, or advanced. The magic, when it works, is a small one: making something abstract feel real enough to argue with.
+The thing I'm taking forward from this work is a sharper sense of what design is for. A system diagram describes a possible future; a card you can swipe through *is* that future, in miniature, a thing the room can hold and react to. The diagram needs the card to mean anything to anyone. The magic, when it works, is small: making something abstract feel real enough to argue with.
 
-**Hope for the influence; be okay with not knowing.** I hope the work has influence — that the workstream gets real, that summary becomes a capability across NYT, that some version of what I sketched lands in front of readers. But I've learned, on this one, to hold that hope loosely. The decisions about what happens next aren't mine. What mattered to me, and what I think mattered most to the room, was making the thing — pulling an abstract idea into a tangible experience and putting it on the table. The process is what I'd call the work. The outcome is what I have to be okay with not controlling.
+I want to keep doing this, and I want more room for design to show up earlier, as a strategic partner in conversations with business, masthead, and the people setting direction, not only as the team translating decisions later.
+
+I'm also learning to be okay with not knowing the fate of the project. What I can invest in fully is the process: my craft, thinking, skill, passion. That's the only thing I really influence, and the thing that matters to me most.

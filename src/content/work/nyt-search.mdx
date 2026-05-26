@@ -1,6 +1,6 @@
 ---
 title: "AI-Powered Search at The Times"
-dek: "Rebuilding search around what readers are actually trying to do."
+dek: "Designing AI search grounded in NYT's human reporting, not flat synthesized answers."
 myRole: "Lead Product Designer"
 corePartners:
   - { group: "Editorial", names: "Mukul Devichand" }
@@ -19,28 +19,24 @@ import Quote from "../../components/Quote.astro";
 
 ## Context
 
-In 2024 I was lead product designer on the Ad mission. I asked my manager if I could also work on Search — NYT search was so bad that most readers found NYT articles through Google rather than through NYT itself. He let me try. Search became my passion project for the next two years, alongside my Ad work.
+In 2024 I was lead product designer on the Ad Mission. I asked my manager if I could also work on Search, because NYT search was so bad that most readers found NYT articles through Google rather than through NYT itself. He let me try. Search became my passion project for the next two years.
 
-ChatGPT had been out for a while and reader behavior was shifting fast — people had stopped expecting keyword search to work and started expecting a synthesized answer. NYT's search at the time was still lexical<Fn n={1} />: type a word, hope an article matches it.
+ChatGPT had been out for a while, and reader behavior was shifting fast from keyword search to expecting synthesized answers. NYT's search was still lexical<Fn n={1} />: type a word, hope an article matches it. On the side of day jobs, we sketched what an alternative could look like (AI summaries, timelines, multi-modal answers, related questions, interactive formats), concrete enough to build conviction with newsroom partners and business leadership, and to articulate what a new architecture would need.
 
 <Margin kind="footnote" n={1}>
-  Lexical search ranks documents by literal word overlap. Semantic search matches by meaning using embeddings — a different retrieval architecture entirely.
+  Lexical search ranks documents by literal word overlap. Semantic search matches by meaning using embeddings, a different retrieval architecture entirely.
 </Margin>
-
-For two years the design side ran ahead in vision — AI summaries, timelines, multi-modal answers, related questions, interactive formats. The work was free labor on the side of our day jobs, but the prototypes were concrete. We shared them with newsroom partners and business leadership, and they did two things: built the conviction that NYT search could be something different, and articulated what a new architecture would need to support.
 
 <Figure
   wide
   src="/media/nyt-search/vision-collage.png"
   alt="Wide collage / overview of the 2024–2025 vision work — summaries, timelines, multi-modal answers, related questions, interactive formats — assembled as one visual."
-  caption="Two years of vision work, in one frame."
+  caption="2024–2025 early sketch."
 />
 
-In January 2026 NYT formalized the work as **NAPP** — New AI Products and Platforms — and the engineering team began rebuilding the architecture from the ground up: semantic retrieval, a user-intent analyzer, an LLM orchestration layer capable of coordinating multiple model calls. I joined as lead product designer, currently the only full-time designer on the mission, working in close collaboration with the newsroom and the search engineering team. The bet: if NYT search could match what readers now expect from AI, and surface NYT's journalism in the formats that match how people actually ask, search could become a starting point — where a reader either leaves with a good answer, or follows that answer deeper into NYT's reporting.
+In January 2026, NYT formed a new mission, NAPP (New AI Products and Platforms). I joined as the first and currently only full-time designer leading design for NYT Search.
 
 ## Approach
-
-### The thesis
 
 NYT search shouldn't try to be Google Gemini. It should be the answer only NYT can give: grounded in our reporting, with editorial standards baked into how summaries are written, how contested questions are presented, when to surface visual evidence instead of a flat yes/no. AI search can foreground that evidence rather than flatten it.
 
@@ -51,8 +47,8 @@ NYT search shouldn't try to be Google Gemini. It should be the answer only NYT c
 <Figure
   wide
   src="/media/nyt-search/show-vs-tell.png"
-  alt="Show vs. tell — a side-by-side visual contrasting NYT's evidence-forward answer style with the generic 'tell' style of other AI search engines."
-  caption="Show vs. tell — the distinction that defines the bet."
+  alt="Three approaches to AI search results for the same query: A is a Gemini-style bulleted synthesis, B is the NYT approach with narrative tied to embedded reporting, C is a conversational chat-style interface."
+  caption="A. Tell, Gemini style. B. Tell, NYT approach."
 />
 
 <Figure
@@ -62,13 +58,13 @@ NYT search shouldn't try to be Google Gemini. It should be the answer only NYT c
   caption="The editorial rubric: what an NYT search answer should be — faithfulness, voice, how contested claims get framed."
 />
 
-The longer-range bet is that search becomes an "ask" capability, an action you take wherever you are rather than a destination. The hard part is figuring out *when and why* readers ask the Times specifically, and *what and how* the Times can answer at editorial standard.
+The bigger goal is for search to become an "ask" capability, an action you take wherever you are rather than a destination. The hard part is figuring out *when and why* readers ask the Times specifically, and *what and how* the Times can answer at editorial standard.
 
 <Figure
   wide
   src="/media/nyt-search/search-as-ask-journey.png"
-  alt="Search-as-ask user journey — a reader's path from a question to an NYT-grounded answer across surfaces."
-  caption="The user journey for ask: question in, NYT-grounded answer out."
+  alt="The user ask journey as a six-step framework: starting point, inputs, query-refinement controls, results, results-optimization controls, and pathways."
+  caption="The user ask journey, used as a framework for design features."
 />
 
 <Figure
@@ -95,7 +91,7 @@ A central structural choice: NYT search is built around user intent, not keyword
 
 ### How I worked
 
-Through 2024 and most of 2025, my contribution was Figma: high-fidelity design and prototypes that engineers used as a spec for what to build. Starting in late 2025 I shifted to vibe coding, building real working prototypes directly so each Friday's demo was an actual interaction, not a flat mockup. Engineers handle the backend (prompt refinement, intent analysis, orchestration). The front-end surfaces start as live prototypes I push.
+Through 2024 and most of 2025, my contribution was Figma: high-fidelity design and prototypes that engineers used as a spec for what to build.
 
 <Figure
   wide
@@ -103,6 +99,8 @@ Through 2024 and most of 2025, my contribution was Figma: high-fidelity design a
   alt="2024 exploration — gallery of high-fidelity Figma frames produced as a spec for engineering."
   caption="2024: Figma as the spec. High-fidelity frames engineers built against."
 />
+
+Starting in late 2025 I shifted to vibe coding, building real working prototypes directly so each Friday's demo was an actual interaction, not a flat mockup. Engineers handle the backend (prompt refinement, intent analysis, orchestration). The front-end surfaces start as live prototypes I push.
 
 <Video
   wide
@@ -121,8 +119,6 @@ Through the work I started documenting common AI design elements: small visual s
 />
 
 ## Exploration
-
-### Tools as clarity
 
 The tool I reach for depends on how clear the idea is. When the system or the idea is fuzzy, I prototype to figure things out as I build. When I have a clear visual idea, I sketch it in Figma first. Locking the visual in before I build gets me to a better working prototype faster.
 
@@ -144,18 +140,18 @@ Two examples from this work.
   caption="The system, rebuilt as an interactive prototype."
 />
 
-**2. Clear visual ideas.** When I had concrete ideas about what each intent-based output should look like, I sketched them clearly and quickly in Figma. None shipped as designed. All shaped what we eventually built.
+**2. Clear visual ideas.** When I had concrete ideas about what each intent-based output should look like, I sketched them in Figma, then built them as working prototypes.
 
 <Figure
   wide
   src="/media/nyt-search/early-concepts.png"
   alt="Grid of early concept explorations in Figma — timeline answer, comparison card, related-questions panel, and other variants."
-  caption="A subset of the early concept work."
+  caption="Figma sketches of intent-mapped output formats."
 />
 
 ### The last 10% push
 
-With the structure of the answer card decided, the work that mattered most was the final layer of polish, the moments where the gap between a thoughtful experience and a generic one is small but felt.
+With the structure and design of intent-mapped outputs in a good place, the work that mattered most was the final layer of polish, the moments where the gap between a thoughtful experience and a generic one is small but felt.
 
 Two examples, one in motion and one in visual.
 
@@ -168,7 +164,7 @@ Two examples, one in motion and one in visual.
   caption="Motion in code. Query → loading → chain-of-thought reveal → answer card."
 />
 
-**Visual: sketched in Figma, checked in code.** Most of the visual refinement happened in Figma: sketching alternatives, pushing pixels, comparing variants. Code came in at the end as a sanity check against real content. The example I keep coming back to is how we marked AI-generated content inside the answer card. Earlier versions used a subtle sparkle icon and italic *"AI summary"* caption, readable but easy to miss. The label kept losing the visual hierarchy fight against the editorial copy itself. We refined: stronger typographic label, slightly more visual weight, an explicit disclaimer one tap away. Same intent, different trust signal.
+**Visual: sketched in Figma, checked in code.** Most of the visual refinement happened in Figma: sketching alternatives, pushing pixels, comparing variants. Code came in at the end as a sanity check against real content. The example I keep coming back to is how we marked AI-generated content inside the answer card. Earlier versions used a small *"A.I. introduction of Times reporting"* line with a BETA badge, readable but easy to miss. The label kept losing the visual hierarchy fight against the editorial copy itself. We refined to a clear *"Overview"* heading at the top of the card, with the AI disclosure as a sub-label directly below. Same intent, different trust signal.
 
 <Margin kind="note">
   The first 90% (where the AI summary sits, what it contains, how citations work) felt like the heavy lift. The last 10%, what the label looks like, shifted the experience from feeling LLM-generic to feeling NYT.
@@ -181,28 +177,20 @@ Two examples, one in motion and one in visual.
   caption="Before and after. Same label, more weight, more trust."
 />
 
-This change wasn't only visual. Some of design's input here shifted the *prompt* — the shorter, more digestible excerpt length we wanted UX-side got baked into what the prompt asks the model for. More on that in the Reflection.
-
 ## Outcome
 
-The Latest News answer card is preparing for live H1 user testing — NYT's first generated-text format tested with real readers in product, after six rounds of internal editorial evaluation and one round of qualitative research. The bar we care about isn't first-use clicks; it's whether readers come back. From here, the work scales in two directions: more intents on top of the same pipeline (Q&A, Navigational, Topic, Recommendation, Specific Retrieval), and search-as-ask beyond the search page itself — wherever a reader has a question worth asking the Times.
+The Latest News answer card is preparing for 2026 H1 beta launch, NYT's first generated-text format reaching real readers in product. It went through four rounds of internal editorial evaluation and one round of qualitative research. The bar isn't first-use clicks; it's whether readers come back. From here the work scales in two directions: more intents on the same pipeline (Q&A, Navigational, Topic, Recommendation, Specific Retrieval), and search-as-ask beyond the search page, wherever a reader has a question worth asking the Times.
 
 <Figure
   wide
   src="/media/nyt-search/roadmap.png"
-  alt="Roadmap visual — Latest News (live H1 testing) → next intents in the pipeline → search-as-ask surfaces beyond /search."
-  caption="The roadmap. One intent live, five in the pipeline, search-as-ask beyond the search page."
+  alt="Editorial evaluation scorecard across three rounds, showing accuracy, fairness, and relevance scores per round, with accuracy and fairness rising and relevance broadly flat."
+  caption="Editorial evaluation scores across rounds."
 />
-
-<Margin kind="note">
-  Six editorial rounds, one user research round before the H1 test. The slowness was the point: faster iteration would have meant shipping something the newsroom couldn't stand behind.
-</Margin>
 
 ## Reflection
 
-**Designing through prompts.** This work taught me that design's surface area on AI features extends beyond pixels. The prompt is part of the artifact. The question of *what makes a good answer* — its length, its tone, what it includes, what it leaves out — is a design question that ends up encoded in the prompt as much as in the UI.
-
-One small example. An early version of the answer card asked the model to write a bridging line introducing the NYT excerpt that followed the summary. The intro kept growing — long, redundant, hedging. The fix wasn't to refine the prompt's wording. It was to take that work *off* the prompt entirely. We added a static UI label — *"From Times coverage"* — that did the bridging job better than any generated sentence could. The prompt got simpler. The output got cleaner. The reader got clarity.
+Designing for AI features means understanding the underlying tech, including how the prompt works. I'm grateful for generous engineering partners who made it easy to ask about technical structure when I needed to. One example: the answer card had an early bridging line generated by the model that kept growing long and hedging. Once I understood the prompt fully, the fix was to take that work *off* the prompt and replace it with a static UI label, *"From Times coverage."* The prompt got simpler, the output cleaner, the reader got clarity.
 
 <Figure
   wide
@@ -211,14 +199,6 @@ One small example. An early version of the answer card asked the model to write 
   caption="The fix: take the bridging job off the prompt and give it back to the UI."
 />
 
-<Margin kind="note">
-  Sometimes the best design move on an AI surface is removing a job from the model and giving it back to the UI.
-</Margin>
+AI doesn't take the human work out of any of the roles around me; it sharpens what each one is for. Editors hold the line on judgment and voice. Engineers write prompts as a craft, not a quick task. PMs keep the vision sharp. Design pursues clarity for the reader, again and again. None of these is replaceable, and the collaboration is what makes the whole thing work.
 
-Design has a place in the *eval* stage, too. Editors and engineers need concrete rules to write good prompts and evaluate good outputs — and rules need a point of view about what "good" even means for *this* feature, *this* query type, *this* reader. The "From Times coverage" decision started as a design observation and ended up changing both the prompt and the UI. The artifact list keeps expanding.
-
-**Strong partners.** What this work has reinforced: AI doesn't take the human work out of any of these roles — it sharpens what each of them is for. Editors hold the line on judgment and voice. Engineers write prompts that are real, careful writing in their own right. PMs keep the vision sharp and the work moving. Design's job is what it has always been — pursuing clarity for the reader, again and again, in whatever medium serves. None of those parts is replaceable; the collaboration is what makes the whole thing better than any of us could make alone.
-
-The personal piece, alongside all that: being able to *build* what I can see. Vibe coding closed the gap between "I can imagine this clearly" and "I can put it in front of you on Friday." Quietly transforming.
-
-**What's next.** Two years ago I asked to work on Search because it was bad. The work has its own shape now, and the questions are bigger: what reader–editorial interaction becomes in an AI age, how far the newsroom can push without losing what makes it the newsroom, what *valuable* even means when an AI is in the loop. More to figure out. More to build.
+What I'm most excited and curious about is where the NYT newsroom goes in embracing this transformative technology. More to figure out. More to build.

@@ -16,9 +16,11 @@
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.6",
+    "@astrojs/vercel": "^10.0.7",
     "@fontsource/inter": "^5.2.8",
     "@fontsource/source-serif-4": "^5.2.9",
-    "astro": "^6.3.6"
+    "astro": "^6.3.6",
+    "rehype-external-links": "^3.0.0"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",

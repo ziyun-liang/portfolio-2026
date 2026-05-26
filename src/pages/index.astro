@@ -9,7 +9,7 @@ const entries = (await getCollection("work")).sort((a, b) => a.data.order - b.da
 <Base title="Lindsey Liang — Designer">
   <main class="index">
     <p class="intro">
-      I'm at The New York Times, where I work across advertising, AI-powered search, and editorial summarization — much of what I've shipped lives in the case studies on this site.
+      I'm a lead product designer at The New York Times, currently building user-facing AI features.
     </p>
 
     <h2 class="section-label">Case Study</h2>
@@ -19,7 +19,11 @@ const entries = (await getCollection("work")).sort((a, b) => a.data.order - b.da
         <li class="cs-card">
           <a href={`/work/${e.id}`} class="cs-card-link">
             <div class="cs-card-thumb">
-              <img src={e.data.thumbnail} alt="" loading="lazy" />
+              {e.data.thumbnail.endsWith(".mp4") ? (
+                <video src={e.data.thumbnail} autoplay loop muted playsinline preload="metadata" />
+              ) : (
+                <img src={e.data.thumbnail} alt="" loading="lazy" />
+              )}
             </div>
             <div class="cs-card-meta">
               <h3 class="cs-card-title"><span class="cs-card-title-mark">{e.data.title}</span></h3>
@@ -73,10 +77,12 @@ const entries = (await getCollection("work")).sort((a, b) => a.data.order - b.da
     overflow: hidden;
     margin-bottom: var(--s-3);
   }
-  .cs-card-thumb img {
+  .cs-card-thumb img,
+  .cs-card-thumb video {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
   }
   .cs-card-title {
     font-family: var(--font-display);
