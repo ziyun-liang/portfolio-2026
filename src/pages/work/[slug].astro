@@ -1,20 +1,16 @@
 ---
-import { getCollection, render } from "astro:content";
+import { getCollection, getEntry, render } from "astro:content";
 import CaseStudy from "../../layouts/CaseStudy.astro";
 
-export async function getStaticPaths() {
-  const entries = (await getCollection("work")).sort((a, b) => a.data.order - b.data.order);
-  return entries.map((entry, i) => ({
-    params: { slug: entry.id },
-    props: {
-      entry,
-      prev: i > 0 ? { href: `/work/${entries[i - 1].id}`, title: entries[i - 1].data.title } : undefined,
-      next: i < entries.length - 1 ? { href: `/work/${entries[i + 1].id}`, title: entries[i + 1].data.title } : undefined,
-    },
-  }));
-}
+const { slug } = Astro.params;
+const entry = slug ? await getEntry("work", slug) : undefined;
+if (!entry) return new Response(null, { status: 404 });
 
-const { entry, prev, next } = Astro.props;
+const all = (await getCollection("work")).sort((a, b) => a.data.order - b.data.order);
+const i = all.findIndex((e) => e.id === entry.id);
+const prev = i > 0 ? { href: `/work/${all[i - 1].id}`, title: all[i - 1].data.title } : undefined;
+const next = i < all.length - 1 ? { href: `/work/${all[i + 1].id}`, title: all[i + 1].data.title } : undefined;
+
 const { Content, headings } = await render(entry);
 const sections = headings
   .filter((h) => h.depth === 2)
