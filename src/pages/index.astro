@@ -34,9 +34,11 @@ const entries = (await getCollection("work")).sort((a, b) => a.data.order - b.da
       ))}
     </ul>
 
-    <h2 class="section-label">Other Selected Work</h2>
+    <div class="selected-work-wrap">
+      <h2 class="section-label">Other Selected Work</h2>
 
-    <SelectedWork entries={selectedWork} />
+      <SelectedWork entries={selectedWork} />
+    </div>
   </main>
 </Base>
 
@@ -114,6 +116,12 @@ const entries = (await getCollection("work")).sort((a, b) => a.data.order - b.da
     font-size: var(--fs-body);
     line-height: 24px;
     color: var(--ink);
+  }
+
+  /* Other Selected Work is hidden on mobile until the section is redesigned
+     for small screens. The current sticky-pair layout doesn't translate. */
+  @media (max-width: 899px) {
+    .selected-work-wrap { display: none; }
   }
 
 </style>
