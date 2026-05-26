@@ -24,6 +24,32 @@ const { title, description = "Portfolio of Lindsey Liang." } = Astro.props;
     <SiteHeader />
     <slot />
     <slot name="footer"><Footer /></slot>
+    <script is:inline>
+      // Skeleton-to-loaded transition: tag images and videos with .media-loaded
+      // when their content actually finishes downloading, so the CSS skeleton
+      // pulse stops and the rule-color background fades to transparent.
+      function markMediaLoaded() {
+        document.querySelectorAll("img, video").forEach((el) => {
+          if (el.classList.contains("media-loaded")) return;
+          const isImg = el.tagName.toLowerCase() === "img";
+          const ready = isImg
+            ? el.complete && el.naturalHeight > 0
+            : el.readyState >= 2;
+          if (ready) {
+            el.classList.add("media-loaded");
+            return;
+          }
+          const event = isImg ? "load" : "loadeddata";
+          const done = () => el.classList.add("media-loaded");
+          el.addEventListener(event, done, { once: true });
+          el.addEventListener("error", done, { once: true });
+        });
+      }
+      markMediaLoaded();
+      // Re-run after Astro client-side navigation so freshly mounted media
+      // also get the skeleton-to-loaded treatment.
+      document.addEventListener("astro:page-load", markMediaLoaded);
+    </script>
   </body>
 </html>
 

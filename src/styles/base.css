@@ -39,17 +39,26 @@ hr { border: none; border-top: 1px solid var(--rule); margin: var(--s-12) 0; }
 
 ::selection { background: var(--select-bg); color: var(--ink); }
 
-/* Gentle fade-in for images and videos so they don't pop in choppily.
-   Runs once when each element enters the document. */
-@keyframes media-fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+/* Skeleton loading: while an image or video file is downloading, show the
+   rule color with a subtle pulse. When load fires (handled by inline script
+   in Base.astro), .media-loaded is added and the skeleton fades away. */
+@keyframes media-skeleton-pulse {
+  0%, 100% { background-color: var(--rule); }
+  50%      { background-color: color-mix(in oklab, var(--rule) 60%, transparent); }
 }
 img, video {
-  animation: media-fade-in 0.4s ease-out;
+  background-color: var(--rule);
+  transition: background-color 0.4s ease-out;
+}
+img:not(.media-loaded), video:not(.media-loaded) {
+  animation: media-skeleton-pulse 1.4s ease-in-out infinite;
+}
+img.media-loaded, video.media-loaded {
+  background-color: transparent;
+  animation: none;
 }
 @media (prefers-reduced-motion: reduce) {
-  img, video { animation: none; }
+  img, video { animation: none; transition: none; }
 }
 
 .full-bleed {
