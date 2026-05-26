@@ -39,6 +39,19 @@ hr { border: none; border-top: 1px solid var(--rule); margin: var(--s-12) 0; }
 
 ::selection { background: var(--select-bg); color: var(--ink); }
 
+/* Gentle fade-in for images and videos so they don't pop in choppily.
+   Runs once when each element enters the document. */
+@keyframes media-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+img, video {
+  animation: media-fade-in 0.4s ease-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  img, video { animation: none; }
+}
+
 .full-bleed {
   width: 100vw;
   margin-left: calc(50% - 50vw);
