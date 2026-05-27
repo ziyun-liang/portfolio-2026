@@ -11,13 +11,27 @@ const { entries } = Astro.props;
   <section class="sw" data-row-count={entries.length}>
     <div class="sw-image-pane">
       {entries.map((entry, i) => (
-        <img
-          class={`sw-image-layer ${i === 0 ? "is-visible" : ""}`}
-          src={entry.image}
-          alt={entry.alt}
-          data-index={i}
-          loading={i === 0 ? "eager" : "lazy"}
-        />
+        entry.image.endsWith(".mp4") ? (
+          <video
+            class={`sw-image-layer ${i === 0 ? "is-visible" : ""}`}
+            src={entry.image}
+            data-index={i}
+            autoplay
+            loop
+            muted
+            playsinline
+            preload="metadata"
+            aria-label={entry.alt}
+          />
+        ) : (
+          <img
+            class={`sw-image-layer ${i === 0 ? "is-visible" : ""}`}
+            src={entry.image}
+            alt={entry.alt}
+            data-index={i}
+            loading={i === 0 ? "eager" : "lazy"}
+          />
+        )
       ))}
     </div>
     <ol class="sw-list">
@@ -170,9 +184,11 @@ const { entries } = Astro.props;
     const N = rows.length;
     if (N === 0) return;
 
-    // Preload all images so swaps are instant.
-    images.forEach((img) => {
-      const real = (img as HTMLImageElement).src;
+    // Preload still images so swaps are instant. Videos are skipped — they
+    // already use preload="metadata" and decode lazily when scrolled to.
+    images.forEach((el) => {
+      if (el.tagName.toLowerCase() !== "img") return;
+      const real = (el as HTMLImageElement).src;
       if (real) {
         const pre = new Image();
         pre.src = real;
