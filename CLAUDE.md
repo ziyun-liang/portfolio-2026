@@ -15,7 +15,9 @@ Three case studies + CV + About all written and polished end-to-end. Asset optim
 
 ### Open threads (not blocking)
 
-- **"Selected work" surface** — still TBD. Lindsey wants somewhere to show non-case-study work (Marco Polo Learning era games/illustrations/animation; Madwell + Kettle agency-era branding/social/product). Could be a `/work` gallery, a `/selected` page, or per-company pages. Empty company folders still in place at `public/media/about/{marco-polo-learning,madwell,kettle}/` (`.gitkeep` only) — might be repurposed or deleted.
+- **Other Selected Work — mobile redesign** — desktop sticky scroll-pair pattern is shipped. Mobile is currently `display: none` on the whole section (see Home page status above). Followup: design an inline-thumbnail-per-row pattern that doesn't depend on an absolute-positioned image pane. Until then, the entire "Other Selected Work" surface is desktop-only.
+- **More demo videos for Selected Work** — only NYT Movie Planner and NYT Cooking Planner have `.mp4` previews so far. Remaining Figma Make / unreleased prototype entries still rely on a static `.png`. Recording short (~30–60s) muted screen captures and dropping them in `public/media/selected/` will progressively replace stills with autoplay video as time allows.
+- **Empty company folders** at `public/media/about/{marco-polo-learning,madwell,kettle}/` (`.gitkeep` only) — leftover from an earlier "per-company gallery" idea that's been superseded by the Selected Work section. Safe to delete or repurpose.
 - **CV** — Kettle, Madwell, MarcoPolo Learning role descriptions still empty (`description: ""`). Education section placeholder. Skills section TBD whether to include.
 
 ---
@@ -58,7 +60,7 @@ Three case studies + CV + About all written and polished end-to-end. Asset optim
 ### About page — REWRITTEN to 2 short paragraphs (2026-05-26)
 - File: `src/pages/about.astro`
 - Was 7 paragraphs (current role + values + magic power + startup + agency + NYT + one-person-shop). Now: career arc paragraph + values paragraph.
-- Opener: *"I find myself useful in any room, maybe because I've been in a few different kinds."* (softer than original "because I've been in many kinds" — hedged with "maybe" + scoped to "a few").
+- Opener (2026-05-26 evening): *"Ten years into product design, I find myself useful in any room, maybe because I've been in a few different kinds."* — fronts a credibility anchor (ten years, Dec 2015 → now) before the value claim, so "useful" lands as earned rather than asserted cold. Comma joiner keeps the rhythm smooth (vs. an earlier draft using a period after "now" that read more staccato).
 - Career arc: startup (*MarcoPolo Learning*, linked to https://marcopoloworldschool.com/) → agency (*Madwell*, *Kettle*, Kettle linked to https://www.wearekettle.com/) → NYT (patience/resilience/communication framing, replaced earlier "advocacy as much as pixels").
 - Values paragraph: *"Good design, to me, is clarity and high craft with a memorable touch. What I'm looking for is an ambitious idea and a group of strong partners excited to drive in the dark together..."*
 - Page-level changes: dropped `### About` h2 section label. Contact section: email + LinkedIn both Work Sans 15px, ↗ arrow only, no underline, both open in new tab.
@@ -72,6 +74,7 @@ Three case studies + CV + About all written and polished end-to-end. Asset optim
 - Intro: *"I'm a lead product designer at The New York Times, currently building user-facing AI features."*
 - Card thumbnails support both `<img>` (PNG/JPG) and `<video>` (MP4). The Advertising card now renders `cover.mp4` as a looping muted video.
 - All three case study deks rewritten to lead with "Designing AI..." or "Four years..." patterns (concrete, no em dashes, no list-only descriptions).
+- **Other Selected Work section** (`SelectedWork.astro` + `src/data/selected-work.ts`) is shipped on desktop only. Sticky scroll-pair pattern: image pane on left, list of project · employer · year · role on right. 20 entries spanning NYT, TRLab, Kettle, Madwell, Hatch, MarcoPolo Learning. Image pane now also supports `<video>` for `.mp4` entries (autoplay loop muted playsinline preload="metadata"). NYT Movie Planner and NYT Cooking Planner render as videos; AI User Research Site stays static. Three Vibe Code with Figma Make entries had their `.figma.site` URLs stripped (the URLs 302-redirect to Figma auth — not truly public); they render as plain-text rows. Wrapped in `.selected-work-wrap` and **hidden via `display: none` at `≤899px`** because the sticky pane's absolute-positioned image layers escape their static parent on mobile and overlay the case study cards. Proper mobile redesign is a follow-up (likely inline thumbnails per row, no sticky pane).
 
 ---
 
@@ -132,13 +135,13 @@ Site is password-gated but still a public-facing artifact. In copy:
 
 **Files:**
 - Layouts: `src/layouts/{Base,CaseStudy}.astro`
-- Components: `src/components/{SiteHeader,Footer,LeftNav,Margin,Figure,Video,PullQuote,Quote,Aside,CaseStudyCard,Fn}.astro`
+- Components: `src/components/{SiteHeader,Footer,LeftNav,Margin,Figure,Video,PullQuote,Quote,Aside,CaseStudyCard,SelectedWork,Fn}.astro`
 - Pages: `src/pages/{index,about,cv,login}.astro` + `src/pages/work/[slug].astro` (SSR'd via `getEntry()`, NOT `getStaticPaths()`) + `src/pages/api/auth.ts`
 - Middleware: `src/middleware.ts` (password gate; bypasses static assets and the `/login` + `/api/auth` routes)
 - Content: `src/content/work/{nyt-search,summary,advertising}.mdx` + `src/content/config.ts` (zod schema)
 - Data: `src/data/selected-work.ts` (Other Selected Work entries with optional `url` field)
 - Styles: `src/styles/{tokens,base,fonts}.css`
-- Media: `public/media/{nyt-search,summary,advertising,about}/` + `public/media/_placeholder/video-placeholder.mp4` (shared placeholder)
+- Media: `public/media/{nyt-search,summary,advertising,about,selected}/` + `public/media/_placeholder/video-placeholder.mp4` (shared placeholder). The `selected/` folder backs the home page's Selected Work section — mostly `.png` stills, plus `nyt-cooking-planner.mp4` (2.3MB compressed from 33MB) and `nyt-movie-planner.mp4` (6.4MB).
 - Fonts: `public/fonts/`
 - Favicon: `public/favicon.svg` (solid `#DAE5E4` circle, replaces Astro logo)
 
