@@ -18,7 +18,20 @@ Three case studies + CV + About all written and polished end-to-end. Asset optim
 - **Other Selected Work — mobile redesign** — desktop sticky scroll-pair pattern is shipped. Mobile is currently `display: none` on the whole section (see Home page status above). Followup: design an inline-thumbnail-per-row pattern that doesn't depend on an absolute-positioned image pane. Until then, the entire "Other Selected Work" surface is desktop-only.
 - **More demo videos for Selected Work** — only NYT Movie Planner and NYT Cooking Planner have `.mp4` previews so far. Remaining Figma Make / unreleased prototype entries still rely on a static `.png`. Recording short (~30–60s) muted screen captures and dropping them in `public/media/selected/` will progressively replace stills with autoplay video as time allows.
 - **Empty company folders** at `public/media/about/{marco-polo-learning,madwell,kettle}/` (`.gitkeep` only) — leftover from an earlier "per-company gallery" idea that's been superseded by the Selected Work section. Safe to delete or repurpose.
-- **CV** — Kettle, Madwell, MarcoPolo Learning role descriptions still empty (`description: ""`). Education section placeholder. Skills section TBD whether to include.
+- **CV** — Kettle, Madwell, MarcoPolo Learning role descriptions still empty (`description: ""`) on the site, but the 2026-05-27 Figma resume has tight versions that can be ported. Education section placeholder. Skills section TBD whether to include.
+
+---
+
+## ▶ Resume polished and ready (2026-05-27)
+
+- **Figma file:** https://www.figma.com/design/lzfsH9VaQzCFXxIKeJINlc/P?node-id=104-10889 — frame "Latest" (older bullet-point version preserved as frame `106:10883` "Old" in the same file for reference)
+- Single-page recruiter-ready resume covering current career arc: NAPP / AI Mission → Advertising Mission → TRLab → Kettle → Madwell → MarcoPolo Learning. NYT spans 2021—Now (Advertising 2021—2026, then AI Mission 2026—Now). TRLab 2021—2023 overlaps NYT (concurrent / contract — Lindsey confirmed OK to leave as-is).
+- Voice mirrors About-page style: first-person, concrete, one or two flowing sentences per role. No em-dashes in prose. No label-colon openings. No "Won + Nominee/Honoree/Shortlisted" contradictions.
+- Voices & Recognition section uses two-line stacked entries: line 1 = `[Recognition], [Subcategory]`, line 2 = `[Project]`. Single-line for entries with no project (e.g. "Graphic Design USA Award"). Em-dashes reserved for year ranges only (tight, no spaces).
+- Madwell entry intentionally has no body description (shortest stint, layout absorbs the asymmetry).
+- LinkedIn URL added to header: https://www.linkedin.com/in/lindsey-ziyun-liang-a6333884/
+- Brand-name spellings verified: MasterClass (capital C), Pratt Institute (not "Institution"), Linfield University (renamed from College in 2020), LinkedIn (capital I), Mind the Product (not "Product Mind"), Interactive Emmy (not "Interactional"), ConveyUX, MarcoPolo, Wirecutter, The Athletic, Cai Guo-Qiang, Calder Foundation.
+- **Followup:** copy from the Figma resume can be ported to the `/cv` page on the portfolio site to fill Kettle, Madwell, and MarcoPolo Learning role descriptions.
 
 ---
 
