@@ -19,6 +19,7 @@
     "@astrojs/vercel": "^10.0.7",
     "@fontsource/inter": "^5.2.8",
     "@fontsource/source-serif-4": "^5.2.9",
+    "@vercel/analytics": "^2.0.1",
     "astro": "^6.3.6",
     "rehype-external-links": "^3.0.0"
   },
