@@ -22,6 +22,17 @@ Three case studies + CV + About all written and polished end-to-end. Asset optim
 
 ---
 
+## ▶ Analytics wired up (2026-05-28)
+
+- **Vercel Analytics** enabled in dashboard (Production env) and wired into `src/layouts/Base.astro` via the official `<Analytics />` component from `@vercel/analytics/astro`. Every page reports automatically since Base.astro is the shared layout.
+- Cookieless, no banner needed. Data appears in the Vercel project's Analytics tab within ~30 seconds of a visit. Confirmed working live.
+- **What it tracks:** visitors, page views, top pages, referrers, countries, devices, OS. Good for "who's visiting and where do they land."
+- **What it doesn't track:** scroll depth, time-on-page distribution, session recordings, funnels (e.g. "of visitors who hit `/`, how many made it 80% through `/work/nyt-search`?").
+- **Possible follow-up:** if basic stats don't answer "is the portfolio convincing / where do people drop," layer in **PostHog** (free tier, ~30KB JS, gives scroll depth + session recordings + funnels). Decision deferred until we see what real traffic reveals.
+- Ad blockers (uBlock, Brave) sometimes block `_vercel/insights/script.js` — expected, just means a small undercount.
+
+---
+
 ## ▶ Resume polished and ready (2026-05-27)
 
 - **Figma file:** https://www.figma.com/design/lzfsH9VaQzCFXxIKeJINlc/P?node-id=104-10889 — frame "Latest" (older bullet-point version preserved as frame `106:10883` "Old" in the same file for reference)
@@ -142,6 +153,7 @@ Site is password-gated but still a public-facing artifact. In copy:
 - Output mode: `server` (SSR) via `@astrojs/vercel` adapter — required so middleware runs on every request for password gate
 - Self-hosted Source Serif 4 (`.ttf`) + Work Sans (`.woff2`) + Inter (`.woff2`) + JetBrains Mono (`.ttf`) — all open-source, in `public/fonts/`
 - `rehype-external-links` ^3.0.0 (auto-target=_blank for external links)
+- `@vercel/analytics` ^1.x (Vercel Analytics, mounted in Base.astro via `<Analytics />`)
 - Playwright smoke tests: `tests/smoke.spec.ts`
 
 **Project-local `.npmrc`** forces `registry=https://registry.npmjs.org/` so installs work on Vercel even if a contributor's global `~/.npmrc` points to a private registry (e.g. NYT Artifactory). Critical for deploys.
