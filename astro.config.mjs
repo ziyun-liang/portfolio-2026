@@ -12,7 +12,9 @@ const externalLinksPlugin = [
 // https://astro.build/config
 export default defineConfig({
   output: 'server',
-  adapter: vercel(),
+  adapter: vercel({
+    webAnalytics: { enabled: true },
+  }),
   integrations: [mdx({ rehypePlugins: [externalLinksPlugin] })],
   markdown: {
     rehypePlugins: [externalLinksPlugin],
